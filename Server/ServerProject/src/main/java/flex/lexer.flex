@@ -10,6 +10,9 @@ import  com.dani.Token;import com.dani.TokenType.*;
 %column
 %type Token
 //%cup
+WORLDS= "worlds"
+WORLD="world"
+ALL="all"
 NAME="name"
 ROWS="rows"
 FLOOR="FLOOR"
@@ -135,6 +138,10 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
     {number}
       {
           return methodWithToken(TokenType.NUM);
+      }
+    {decimalNumber}
+      {
+                return methodWithToken(TokenType.NUM);
       }
     /*simbolos aritmeticos*/
     [-]
