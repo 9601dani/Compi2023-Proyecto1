@@ -1,0 +1,67 @@
+package com.dani.appmovil;
+import java_cup.runtime.*;
+
+class ParserMov;
+/*parser code{:
+
+        public ParserMov(LexerMov lex){
+            super(lex);
+        }
+:}
+/*Gramatica txt
+expr ---> expr typeMov ;
+		 | typeMov ;
+typeMov---> instr (operacion1)
+			|push instr (operacion1)
+instr---> up
+		 |down
+		 |left
+		 |right
+operacion1---> operacion1 PLUS operacion1
+			 | operacion1 SUBSTRACTION operacion1
+			 | operacion2
+operacion2---> operacion2 MULTIPLY operacion2
+			 | operacion2 DIVIDE operacion2
+			 | operacion3
+operacion3---> int
+			 | CEIL (decimal | operacion1)
+			 | FLOOR (decimal | operacion1)
+operacion4---> DECIMAL
+			 | operacion1  */
+
+/*Simbolos terminales*/
+terminal Token DOWN,PUSH,RIGHT,FLOOR,CEIL,LEFT,UP,PUNTO_COMA,NUM,DECIMAL,SUMA,MULTIPLY,RESTA,DIVISION,L_PARENT,R_PARENT;
+nonterminal Double expr,typeMov,instr,operacion1,operacion2,operacion3;
+nonterminal Double operacion4;
+precedence left SUMA;
+precedence left RESTA ;
+precedence left MULTIPLY;
+precedence left DIVISION;
+start with expr;
+
+expr ::= expr typeMov:a1 PUNTO_COMA {:RESULT = a1;:}
+        | typeMov:a1 PUNTO_COMA {:RESULT = a1;:};
+
+typeMov ::= instr L_PARENT operacion1:a1 R_PARENT {:RESULT = a1;:}
+           | PUSH instr L_PARENT operacion1:a1 R_PARENT {:RESULT = a1;:};
+
+instr      ::= UP
+              | DOWN
+              | LEFT
+              | RIGHT;
+
+operacion1 ::= operacion1:a1 SUMA operacion1:a2 {:RESULT = a1 + a2 ; :}
+            | operacion1:a1 RESTA operacion1:a2 {:RESULT = a1 - a2 ; :}
+            | operacion2:a1 {:RESULT = a1 ; :};
+
+operacion2 ::= operacion2:a1 MULTIPLY operacion2:a2 {:RESULT = a1 * a2 ; :}
+             | operacion2:a1 DIVISION operacion2:a2 {:RESULT = a1 / a2 ; :}
+             | operacion3:a1 {:RESULT = a1 ; :} ;
+operacion3 ::= NUM:a1 {:RESULT = Double.parseDouble(a1.getLexeme()); :}
+               | operacion4:a1 {:RESULT =a1;:};
+
+operacion4 ::= DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :}
+               |L_PARENT operacion1:a1 R_PARENT {:RESULT =a1;:}
+               | CEIL L_PARENT operacion4:a1 R_PARENT {:RESULT = Math.ceil(a1);:}
+               | FLOOR L_PARENT operacion4:a1 R_PARENT {:RESULT = Math.floor(a1);:};
+

@@ -3,39 +3,26 @@ package com.dani.appmovil
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dani.appmovil.Objects.LexerMov
-import com.dani.appmovil.Objects.Token
-import com.dani.appmovil.Objects.TokenType
-import java.io.IOException
+import com.dani.appmovil.Objects.ParserMov
 import java.io.StringReader
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        println("hi")
-        this.compiler();
+        val cadenaN2="up(5-3*2);"
+        this.compile(cadenaN2);
+        val cadenaN3="up((5-3)*2);"
+        this.compile(cadenaN3);
+        val cadenaN4="up(7*5+6/9-5-4*5+FLOOR(10.2));"
+        this.compile(cadenaN4);
+        val cadenaN5="up(FLOOR(10.2)+ CEIL(12.6));"
+        this.compile(cadenaN5);
     }
-    private fun compiler(){
-        println("hola mundo")
-        val stringP="\"down (2 * 5 / 10);\\n\" +\n" +
-                "                \"\\n\" +\n" +
-                "                \"# empujando la caja hacia la derecha\\n\" +\n" +
-                "                \"push right (6 - 5);\\n\" +\n" +
-                "                \"\\n\" +\n" +
-                "                \"# hacia la izquierda una casilla\\n\" +\n" +
-                "                \"left (6 / 2 - 2);\\n\" +\n" +
-                "                \"\\n\" +\n" +
-                "                \"# hacia arriba una casilla\\n\" +\n" +
-                "                \"down (-1);\""
-        val lexer = LexerMov(StringReader(stringP))
-        try {
-            var token: Token = lexer.yylex()
-            while (token.tokenType !== TokenType.EOF) {
-                 token = lexer.yylex()
-                println(token.getInfo())
-            }
-        } catch (e: IOException) {
-            e.message
-        }
+    private fun compile(input: String) {
+        val lexer =  LexerMov(StringReader(input))
+        val pa= ParserMov(lexer);
+        val parser = pa.parse().value as Double?
+            println("Mov--> $parser")
     }
 }
