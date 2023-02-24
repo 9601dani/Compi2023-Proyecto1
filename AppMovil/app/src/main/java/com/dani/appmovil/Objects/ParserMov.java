@@ -5,6 +5,8 @@
 
 package com.dani.appmovil.Objects;
 
+import java.util.ArrayList;
+
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
 @SuppressWarnings({"rawtypes"})
@@ -28,13 +30,13 @@ public class ParserMov extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\025\000\002\002\004\000\002\002\005\000\002\002" +
-    "\004\000\002\003\006\000\002\003\007\000\002\004\003" +
-    "\000\002\004\003\000\002\004\003\000\002\004\003\000" +
-    "\002\005\005\000\002\005\005\000\002\005\003\000\002" +
-    "\006\005\000\002\006\005\000\002\006\003\000\002\007" +
-    "\003\000\002\007\003\000\002\010\003\000\002\010\005" +
-    "\000\002\010\006\000\002\010\006" });
+    "\000\025\000\002\002\004\000\002\010\005\000\002\010" +
+    "\004\000\002\002\006\000\002\002\007\000\002\003\003" +
+    "\000\002\003\003\000\002\003\003\000\002\003\003\000" +
+    "\002\007\005\000\002\007\005\000\002\007\003\000\002" +
+    "\005\005\000\002\005\005\000\002\005\003\000\002\004" +
+    "\003\000\002\004\003\000\002\006\003\000\002\006\005" +
+    "\000\002\006\006\000\002\006\006" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -86,25 +88,25 @@ public class ParserMov extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\054\000\010\002\010\003\012\004\003\001\001\000" +
+    "\000\054\000\010\002\012\003\003\010\010\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\006\003\051\004\003\001" +
-    "\001\000\004\004\014\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\012\005\022\006\021\007" +
-    "\017\010\026\001\001\000\002\001\001\000\002\001\001" +
+    "\001\001\000\002\001\001\000\006\002\051\003\003\001" +
+    "\001\000\004\003\014\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\012\004\017\005\021\006" +
+    "\026\007\022\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\012\005\032\006\021\007\017\010\026" +
-    "\001\001\000\002\001\001\000\002\001\001\000\004\010" +
+    "\002\001\001\000\012\004\017\005\021\006\026\007\032" +
+    "\001\001\000\002\001\001\000\002\001\001\000\004\006" +
     "\030\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\012\005\037\006\021\007\017\010\026\001" +
-    "\001\000\012\005\036\006\021\007\017\010\026\001\001" +
+    "\001\001\000\012\004\017\005\021\006\026\007\037\001" +
+    "\001\000\012\004\017\005\021\006\026\007\036\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\004\010\041\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\010\006\047\007\017\010\026\001" +
-    "\001\000\010\006\046\007\017\010\026\001\001\000\002" +
+    "\004\006\041\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\010\004\017\005\047\006\026\001" +
+    "\001\000\010\004\017\005\046\006\026\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\012\005\054\006\021\007\017" +
-    "\010\026\001\001\000\002\001\001\000\002\001\001" });
+    "\001\000\002\001\001\000\012\004\017\005\021\006\026" +
+    "\007\054\001\001\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -172,7 +174,7 @@ class CUP$ParserMov$actions {
               Object RESULT =null;
 		int start_valleft = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).left;
 		int start_valright = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).right;
-		Double start_val = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).value;
+		ArrayList<Integer> start_val = (ArrayList<Integer>)((java_cup.runtime.Symbol) CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).value;
 		RESULT = start_val;
               CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("$START",0, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
@@ -183,84 +185,93 @@ class CUP$ParserMov$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 1: // expr ::= expr typeMov PUNTO_COMA 
             {
-              Double RESULT =null;
+              ArrayList<Integer> RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)).right;
+		ArrayList<Integer> n1 = (ArrayList<Integer>)((java_cup.runtime.Symbol) CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)).value;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).right;
-		Double a1 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).value;
-		RESULT = a1;
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("expr",0, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+		Integer a1 = (Integer)((java_cup.runtime.Symbol) CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).value;
+		
+                n1.add((Integer)a1);
+                RESULT=n1;
+                
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("expr",6, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 2: // expr ::= typeMov PUNTO_COMA 
             {
-              Double RESULT =null;
+              ArrayList<Integer> RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).right;
-		Double a1 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).value;
-		RESULT = a1;
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("expr",0, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+		Integer a1 = (Integer)((java_cup.runtime.Symbol) CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).value;
+		
+             RESULT= new ArrayList<Integer>();
+             RESULT.add((Integer)a1);
+             
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("expr",6, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 3: // typeMov ::= instr L_PARENT operacion1 R_PARENT 
             {
-              Double RESULT =null;
+              Integer RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).right;
 		Double a1 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).value;
-		RESULT = a1;
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("typeMov",1, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-3)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+		RESULT= a1.intValue();
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("typeMov",0, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-3)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 4: // typeMov ::= PUSH instr L_PARENT operacion1 R_PARENT 
             {
-              Double RESULT =null;
+              Integer RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).right;
 		Double a1 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).value;
-		RESULT = a1;
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("typeMov",1, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-4)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+		RESULT= a1.intValue();
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("typeMov",0, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-4)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 5: // instr ::= UP 
             {
-              Double RESULT =null;
+              Object RESULT =null;
 
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("instr",2, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("instr",1, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 6: // instr ::= DOWN 
             {
-              Double RESULT =null;
+              Object RESULT =null;
 
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("instr",2, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("instr",1, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 7: // instr ::= LEFT 
             {
-              Double RESULT =null;
+              Object RESULT =null;
 
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("instr",2, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("instr",1, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 8: // instr ::= RIGHT 
             {
-              Double RESULT =null;
+              Object RESULT =null;
 
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("instr",2, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("instr",1, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
@@ -275,7 +286,7 @@ class CUP$ParserMov$actions {
 		int a2right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).right;
 		Double a2 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.peek()).value;
 		RESULT = a1 + a2 ; 
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion1",3, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion1",5, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
@@ -290,7 +301,7 @@ class CUP$ParserMov$actions {
 		int a2right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).right;
 		Double a2 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.peek()).value;
 		RESULT = a1 - a2 ; 
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion1",3, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion1",5, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
@@ -302,7 +313,7 @@ class CUP$ParserMov$actions {
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).right;
 		Double a1 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.peek()).value;
 		RESULT = a1 ; 
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion1",3, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion1",5, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
@@ -317,7 +328,7 @@ class CUP$ParserMov$actions {
 		int a2right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).right;
 		Double a2 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.peek()).value;
 		RESULT = a1 * a2 ; 
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion2",4, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion2",3, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
@@ -332,7 +343,7 @@ class CUP$ParserMov$actions {
 		int a2right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).right;
 		Double a2 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.peek()).value;
 		RESULT = a1 / a2 ; 
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion2",4, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion2",3, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
@@ -344,7 +355,7 @@ class CUP$ParserMov$actions {
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).right;
 		Double a1 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.peek()).value;
 		RESULT = a1 ; 
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion2",4, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion2",3, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
@@ -356,7 +367,7 @@ class CUP$ParserMov$actions {
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).right;
 		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserMov$stack.peek()).value;
 		RESULT = Double.parseDouble(a1.getLexeme()); 
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion3",5, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion3",2, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
@@ -368,7 +379,7 @@ class CUP$ParserMov$actions {
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).right;
 		Double a1 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.peek()).value;
 		RESULT =a1;
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion3",5, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion3",2, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
@@ -380,7 +391,7 @@ class CUP$ParserMov$actions {
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).right;
 		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserMov$stack.peek()).value;
 		 RESULT = Double.parseDouble(a1.getLexeme()); 
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion4",6, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion4",4, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
@@ -392,7 +403,7 @@ class CUP$ParserMov$actions {
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).right;
 		Double a1 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).value;
 		RESULT =a1;
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion4",6, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion4",4, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
@@ -404,7 +415,7 @@ class CUP$ParserMov$actions {
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).right;
 		Double a1 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).value;
 		RESULT = Math.ceil(a1);
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion4",6, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-3)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion4",4, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-3)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 
@@ -416,7 +427,7 @@ class CUP$ParserMov$actions {
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).right;
 		Double a1 = (Double)((java_cup.runtime.Symbol) CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).value;
 		RESULT = Math.floor(a1);
-              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion4",6, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-3)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion4",4, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-3)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 

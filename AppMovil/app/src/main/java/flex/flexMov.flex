@@ -39,7 +39,7 @@ whiteSpace     = {lineTerminator} | [ \t\f] | " "]
             System.out.printf(tok.toString());
             return tok;
         }
-return token(DECIMAL, yytext());*/
+       */
 
 %}
 %eofval{
