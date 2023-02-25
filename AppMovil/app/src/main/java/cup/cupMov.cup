@@ -1,12 +1,13 @@
 package com.dani.appmovil;
 import java_cup.runtime.*;
+import com.dani.appmovil.Objects.LexerMov;
 import java.util.ArrayList;
 class ParserMov;
-/*parser code{:
-        public ParserMov(LexerMov lex){
-            super(lex);
-        }
+
+parser code{:
+        Motion movimiento;
 :}
+/*
 Gramatica txt prueba 1
 expr ---> expr typeMov ;
 		 | typeMov ;
@@ -53,10 +54,11 @@ operacion4---> DECIMAL
 
 /*Simbolos terminales*/
 terminal Token DOWN,PUSH,RIGHT,FLOOR,CEIL,LEFT,UP,PUNTO_COMA,NUM,DECIMAL,SUMA,MULTIPLY,RESTA,DIVISION,L_PARENT,R_PARENT;
-nonterminal Integer typeMov;
+nonterminal Motion typeMov;
 nonterminal instr;
 nonterminal Double operacion3,operacion2,operacion4,operacion1;
-nonterminal ArrayList<Integer> expr ;
+//nonterminal ArrayList<Integer> expr ;
+nonterminal ArrayList<Motion> expr ;
 precedence left SUMA;
 precedence left RESTA ;
 precedence left MULTIPLY;
@@ -65,21 +67,29 @@ start with expr;
 
 expr ::= expr:n1 typeMov:a1 PUNTO_COMA
                 {:
-                n1.add((Integer)a1);
+                n1.add(a1);
                 RESULT=n1;
                 :}
         | typeMov:a1 PUNTO_COMA
              {:
-             RESULT= new ArrayList<Integer>();
-             RESULT.add((Integer)a1);
+            // RESULT= new ArrayList<Integer>();
+             RESULT= new ArrayList<Motion>();
+             RESULT.add(a1);
+             //RESULT.add((Integer)a1);
              :};
 
-typeMov ::= instr L_PARENT operacion1:a1 R_PARENT{:RESULT= a1.intValue();:}
-            | PUSH instr L_PARENT operacion1:a1 R_PARENT{:RESULT= a1.intValue();:};
-instr      ::= UP
-              | DOWN
-              | LEFT
-              | RIGHT;
+typeMov ::= instr:n1 L_PARENT operacion1:a1 R_PARENT
+             {:
+             RESULT= new Motion((Integer)n1,a1.intValue(),false);
+             :}
+            | PUSH instr:n1 L_PARENT operacion1:a1 R_PARENT
+            {:
+            RESULT= new Motion((Integer)n1,a1.intValue(),true);
+            :};
+instr      ::= UP:a {:RESULT= UP;:}
+              | DOWN:a {:RESULT=DOWN;:}
+              | LEFT:a {:RESULT=LEFT;:}
+              | RIGHT:a {:RESULT=RIGHT;:};
 
 operacion1 ::= operacion1:a1 SUMA operacion1:a2 {:RESULT = a1 + a2 ; :}
             | operacion1:a1 RESTA operacion1:a2 {:RESULT = a1 - a2 ; :}
