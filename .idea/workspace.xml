@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fa568fef-1e4f-407e-b126-20c0b0e64096" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/com/dani/objectXml/Board.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/com/dani/objectXml/Box.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/com/dani/objectXml/ConfigWorld.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/com/dani/objectXml/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/com/dani/objectXml/Target.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/com/dani/objectXml/World.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/cup/java-cup-11b.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/cup/json.cup" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/cup/parser.cup" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/flex/lexXml.flex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMovil/app/src/main/java/com/dani/appmovil/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/AppMovil/app/src/main/java/com/dani/appmovil/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMovil/app/src/main/java/com/dani/appmovil/Objects/ParserMov.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMovil/app/src/main/java/com/dani/appmovil/Objects/ParserMovSym.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppMovil/app/src/main/java/cup/cupMov.cup" beforeDir="false" afterPath="$PROJECT_DIR$/AppMovil/app/src/main/java/cup/cupMov.cup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/ServerProject/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/ServerProject/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/ServerProject/src/main/java/com/dani/Lexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/ServerProject/src/main/java/com/dani/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/com/dani/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/ServerProject/src/main/java/com/dani/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/com/dani/TokenType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/ServerProject/src/main/java/flex/lexer.flex" beforeDir="false" afterPath="$PROJECT_DIR$/Server/ServerProject/src/main/java/flex/lexer.flex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/ServerProject/target/classes/com/dani/Lexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/ServerProject/target/classes/com/dani/Lexer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/ServerProject/target/classes/com/dani/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/ServerProject/target/classes/com/dani/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/ServerProject/target/classes/com/dani/TokenType.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/ServerProject/target/classes/com/dani/TokenType.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2MQmqBV2iL4guvgXkGHHkTT7u9S" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/danimo/IntelliJIDEAProjects/CompiProject1/Server/ServerProject",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fa568fef-1e4f-407e-b126-20c0b0e64096" name="Changes" comment="" />
+      <created>1677708368791</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677708368791</updated>
+      <workItem from="1677708369898" duration="39000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

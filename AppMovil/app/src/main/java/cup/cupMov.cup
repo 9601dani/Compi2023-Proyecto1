@@ -99,8 +99,7 @@ operacion2 ::= operacion2:a1 MULTIPLY operacion2:a2 {:RESULT = a1 * a2 ; :}
              | operacion3:a1 {:RESULT = a1 ; :} ;
 operacion3 ::= NUM:a1 {:RESULT = Double.parseDouble(a1.getLexeme()); :}
                | operacion4:a1 {:RESULT =a1;:};
-operacion4 ::= DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :}
-               |L_PARENT operacion1:a1 R_PARENT {:RESULT =a1;:}
-               | CEIL L_PARENT operacion4:a1 R_PARENT {:RESULT = Math.ceil(a1);:}
-               | FLOOR L_PARENT operacion4:a1 R_PARENT {:RESULT = Math.floor(a1);:};
-
+operacion4 ::= L_PARENT operacion1:a1 R_PARENT {:RESULT =a1;:}
+               | CEIL L_PARENT operacion4:a1  R_PARENT {:RESULT = Math.ceil(a1);:}
+               | FLOOR L_PARENT operacion4:a1 R_PARENT {:RESULT = Math.floor(a1);:}
+               | DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :};

@@ -1,6 +1,5 @@
 package com.dani.appmovil
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,7 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dani.appmovil.Objects.LexerMov
 import com.dani.appmovil.Objects.Motion
 import com.dani.appmovil.Objects.ParserMov
+import com.dani.appmovil.server.ConexServer
+import java.io.DataInputStream
+import java.io.DataOutputStream
 import java.io.StringReader
+import java.net.Socket
+import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val editor: EditText = findViewById(R.id.etInput)
         val textView: TextView = findViewById(R.id.tvResult)
-        val backspaceButton: Button = findViewById(R.id.btnClear)
         val compileButton: Button = findViewById(R.id.btnCompile)
 
         compileButton.setOnClickListener(View.OnClickListener {
@@ -33,11 +36,13 @@ class MainActivity : AppCompatActivity() {
                 textView.text = "Something went wrong"
             }
         })
+        createSocket()
+        /*backspaceButton.setOnClickListener(View.OnClickListener {
+           *//* Log.println(Log.INFO, TAG, "Cleaning editor")*//*
+            *//*editor.setText("")*//*
 
-        backspaceButton.setOnClickListener(View.OnClickListener {
-           /* Log.println(Log.INFO, TAG, "Cleaning editor")*/
-            editor.setText("")
-        })
+        })*/
+
     }
     /*val cadenaN3="+"
         this.compile(cadenaN3)*/
@@ -49,4 +54,20 @@ class MainActivity : AppCompatActivity() {
             println("Mov--> ${it.getInfo()}")
         }
     }
+    private fun createSocket(){
+        findViewById<Button>(R.id.btnClear).setOnClickListener{
+            Log.d("Mensaje", "Conectandise al sevidor")
+            Executors.newSingleThreadExecutor().execute{
+                val socket = Socket("192.168.0.33",5000)
+                val dataInput= DataInputStream(socket.getInputStream())
+                val dataOutputStream= DataOutputStream(socket.getOutputStream())
+                dataOutputStream.writeUTF("Enviando mensaje desde el cliente")
+                val mensaje=dataInput.readUTF()
+                println(mensaje)
+            }
+        }
+
+    }
+
+
 }

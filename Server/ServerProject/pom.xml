@@ -64,7 +64,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>org.example.Main</mainClass>
+                                    <mainClass>com.dani.Main</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>

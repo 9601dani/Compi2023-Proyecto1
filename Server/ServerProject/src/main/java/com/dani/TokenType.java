@@ -42,4 +42,16 @@ public class TokenType {
     public static final int PUNTO_COMA=39;
     public static final int EOF=40;
     public static final int P_COLOR=41;
+    public static final int LITERAL=42;
+    public static final int ENCODING=43;
+    public static final int VERSION=44;
+    public static final int XML=45;
+    public static final int INTERROGACION=46;
+    public static final int WORLD=47;
+    public static final int WORLDS=48;
+    public static final int ALL=49;
+    public static final int SIG_IGUAL=50;
+    public static final int SIG_COMILLAS=51;
+    public static final int SIGNO_A=52;
+    public static final int SIGNO_C=53;
 }

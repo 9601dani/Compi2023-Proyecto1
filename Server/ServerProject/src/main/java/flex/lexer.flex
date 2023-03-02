@@ -10,9 +10,9 @@ import  com.dani.Token;import com.dani.TokenType.*;
 %column
 %type Token
 //%cup
-WORLDS= "worlds"
+/*WORLDS= "worlds"
 WORLD="world"
-ALL="all"
+ALL="all"*/
 NAME="name"
 ROWS="rows"
 FLOOR="FLOOR"
@@ -62,7 +62,7 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
 
 %}
 %eofval{
-         return methodWithToken(TokenType.EOF);
+        return methodWithToken(TokenType.EOF);
 //    return new Token(yytext(), TokenType.EOF, yycolumn + 1, yyline + 1);
 %eofval}
 %eofclose
@@ -265,7 +265,7 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
       }
 }
 <COLORS>{
-    [\"]
+    [<]
           {
               yybegin(YYINITIAL);
           }

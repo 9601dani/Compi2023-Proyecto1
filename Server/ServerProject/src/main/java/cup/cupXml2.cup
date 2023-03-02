@@ -1,0 +1,74 @@
+package com.dani;
+import java_cup.runtime.*;
+import com.dani.LexXml;
+import java.util.ArrayList;
+import com.dani.objectXml.*;
+
+class ParserXml;
+
+terminal LT, GT, QUESTION, XML_DECLARATION, SLASH;
+terminal NAME, INT;
+terminal OPEN_WORLD, CLOSE_WORLD, OPEN_CONFIG, CLOSE_CONFIG, OPEN_BOARD, CLOSE_BOARD,
+         OPEN_BOXES, CLOSE_BOXES, OPEN_TARGETS, CLOSE_TARGETS, OPEN_PLAYER, CLOSE_PLAYER;
+terminal OPEN_NAME, CLOSE_NAME, OPEN_ROWS, CLOSE_ROWS, OPEN_COLS, CLOSE_COLS, OPEN_POSX,
+         CLOSE_POSX, OPEN_POSY, CLOSE_POSY, OPEN_TYPE, CLOSE_TYPE, OPEN_BOX_COLOR,
+         CLOSE_BOX_COLOR, OPEN_BOX_ON_TARGET_COLOR, CLOSE_BOX_ON_TARGET_COLOR,
+         OPEN_TARGET_COLOR, CLOSE_TARGET_COLOR, OPEN_BRICK_COLOR, CLOSE_BRICK_COLOR,
+         OPEN_HALL_COLOR, CLOSE_HALL_COLOR, OPEN_UNDEFINED_COLOR, CLOSE_UNDEFINED_COLOR,
+         OPEN_PLAYER_COLOR, CLOSE_PLAYER_COLOR;
+nonterminal sta, worlds,world,config,config_elem,color,board,type,name,
+                box_list,box,target_list,boards,boxes,targets,player,target;
+/* Precedencia de los operadores */
+
+precedence left LT, GT, QUESTION;
+
+/* Producciones de la gramática */
+
+sta ::= OPEN_WORLD worlds CLOSE_WORLD;
+
+worlds ::= /* empty */
+         | worlds world;
+
+world ::= OPEN_WORLD OPEN_NAME name CLOSE_NAME OPEN_ROWS INT CLOSE_ROWS OPEN_COLS INT CLOSE_COLS
+          OPEN_CONFIG config CLOSE_CONFIG boards boxes targets player CLOSE_WORLD;
+
+config ::= /* empty */
+         | OPEN_CONFIG config_elem CLOSE_CONFIG;
+
+config_elem ::= config_elem config_elem
+              | OPEN_BOX_COLOR color CLOSE_BOX_COLOR
+              | OPEN_BOX_ON_TARGET_COLOR color CLOSE_BOX_ON_TARGET_COLOR
+              | OPEN_TARGET_COLOR color CLOSE_TARGET_COLOR
+              | OPEN_BRICK_COLOR color CLOSE_BRICK_COLOR
+              | OPEN_HALL_COLOR color CLOSE_HALL_COLOR
+              | OPEN_UNDEFINED_COLOR color CLOSE_UNDEFINED_COLOR
+              | OPEN_PLAYER_COLOR color CLOSE_PLAYER_COLOR;
+
+color ::= NAME;
+
+boards ::= /* empty */
+         | boards board;
+
+board ::= OPEN_BOARD OPEN_POSX INT CLOSE_POSX OPEN_POSY INT CLOSE_POSY OPEN_TYPE type CLOSE_BOARD;
+
+type ::= NAME;
+
+boxes ::= /* empty */
+        | OPEN_BOXES box_list CLOSE_BOXES;
+
+box_list ::= box_list box
+           | box;
+
+box ::= OPEN_POSX INT CLOSE_POSX OPEN_POSY INT CLOSE_POSY;
+
+targets ::= /* empty */
+           | OPEN_TARGETS target_list CLOSE_TARGETS;
+
+target_list ::= target_list target
+              | target;
+
+target ::= OPEN_POSX INT CLOSE_POSX OPEN_POSY INT CLOSE_POSY;
+
+player ::= OPEN_PLAYER OPEN_POSX INT CLOSE_POSX OPEN_POSY INT CLOSE_POSY CLOSE_PLAYER;
+
+name ::= NAME;
