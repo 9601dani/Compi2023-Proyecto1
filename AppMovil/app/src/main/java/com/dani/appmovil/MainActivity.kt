@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dani.appmovil.Objects.LexerMov
 import com.dani.appmovil.Objects.Motion
 import com.dani.appmovil.Objects.ParserMov
-import com.dani.appmovil.server.ConexServer
 import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.io.StringReader
