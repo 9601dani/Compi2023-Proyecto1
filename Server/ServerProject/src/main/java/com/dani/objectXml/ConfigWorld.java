@@ -51,30 +51,43 @@ public class ConfigWorld {
     }
 
     public void setBox_color(String box_color) {
-        this.box_color = box_color;
+        this.box_color = "#"+box_color;
     }
 
     public void setBox_on_target_color(String box_on_target_color) {
-        this.box_on_target_color = box_on_target_color;
+        this.box_on_target_color = "#"+box_on_target_color;
     }
 
     public void setTarget_color(String target_color) {
-        this.target_color = target_color;
+        this.target_color = "#"+target_color;
     }
 
     public void setBrick_color(String brick_color) {
-        this.brick_color = brick_color;
+        this.brick_color = "#"+brick_color;
     }
 
     public void setHall_color(String hall_color) {
-        this.hall_color = hall_color;
+        this.hall_color = "#"+hall_color;
     }
 
     public void setUndefined_color(String undefined_color) {
-        this.undefined_color = undefined_color;
+        this.undefined_color = "#"+undefined_color;
     }
 
     public void setPlayer_color(String player_color) {
-        this.player_color = player_color;
+        this.player_color = "#"+player_color;
+    }
+
+    @Override
+    public String toString() {
+        return "ConfigWorld{" +
+                "box_color='" + box_color + '\'' +
+                ", box_on_target_color='" + box_on_target_color + '\'' +
+                ", target_color='" + target_color + '\'' +
+                ", brick_color='" + brick_color + '\'' +
+                ", hall_color='" + hall_color + '\'' +
+                ", undefined_color='" + undefined_color + '\'' +
+                ", player_color='" + player_color + '\'' +
+                '}';
     }
 }

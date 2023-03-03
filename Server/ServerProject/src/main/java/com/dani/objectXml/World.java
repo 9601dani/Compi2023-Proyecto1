@@ -17,6 +17,20 @@ public class World {
     /*objeto de esta clase*/
 
     public World() {
+        arrayBoard= new ArrayList<Board>();
+        arrayBoxes= new ArrayList<Box>();
+        arrayTarget= new ArrayList<Target>();
+    }
+
+    public World(String name, Integer rows, Integer cols, ConfigWorld config, ArrayList<Board> arrayBoard, ArrayList<Box> arrayBoxes, ArrayList<Target> arrayTarget, Player player) {
+        this.name = name;
+        this.rows = rows;
+        this.cols = cols;
+        this.config = config;
+        this.arrayBoard = arrayBoard;
+        this.arrayBoxes = arrayBoxes;
+        this.arrayTarget = arrayTarget;
+        this.player = player;
     }
 
     public String getName() {
@@ -83,4 +97,17 @@ public class World {
         this.player = player;
     }
 
+    @Override
+    public String toString() {
+        return "World{" +
+                "name='" + name + '\'' +
+                ", rows=" + rows +
+                ", cols=" + cols +
+                ", config=" + config +
+                ", arrayBoard=" + arrayBoard +
+                ", arrayBoxes=" + arrayBoxes +
+                ", arrayTarget=" + arrayTarget +
+                ", player=" + player +
+                '}';
+    }
 }

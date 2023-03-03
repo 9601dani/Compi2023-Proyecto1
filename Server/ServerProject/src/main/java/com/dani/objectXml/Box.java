@@ -7,6 +7,11 @@ public class Box {
     public Box() {
     }
 
+    public Box(Integer posX, Integer posY) {
+        this.posX = posX;
+        this.posY = posY;
+    }
+
     public Integer getPosX() {
         return posX;
     }
@@ -21,5 +26,13 @@ public class Box {
 
     public void setPosY(Integer posY) {
         this.posY = posY;
+    }
+
+    @Override
+    public String toString() {
+        return "Box{" +
+                "posX=" + posX +
+                ", posY=" + posY +
+                '}';
     }
 }

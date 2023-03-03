@@ -40,18 +40,20 @@ PLAYER="player"
 letter=[a-zA-Z]
 digit=[0-9]
 number=({digit})+
-decimalNumber=({digit})+ \. ({digit})+
+decimalNumber={number} \. {number}
 palabra=[a-zA-Z_][a-zA-z][a-zA-z0-9]*
 palabraColor=([a-f0-9]{6} | [a-f0-9]{3})
-literal = ({letter})*\-{digit}
+literal = ({letter})* \- ({number}|{decimalNumber}) | {number} | {decimalNumber}
 lineTerminator = \r|\n|\r\n
 whiteSpace     = {lineTerminator} | [ \t\f | " "]
 %{
     private Symbol token(int type, Object value) {
+     System.out.println("Encontre un: "+ type+" "+value.toString());
             return new Symbol(type, new Token(value.toString(), type,  yycolumn + 1, yyline + 1));
      }
      private Symbol token(int type) {
-             return new Symbol(type, new Token(null, type, yycolumn + 1, yyline + 1));
+      System.out.println("Encontre un: "+ yytext()+" "+type);
+             return new Symbol(type, new Token(yytext(), type, yycolumn + 1, yyline + 1));
      }
 /*
         private Token token(int type){
@@ -63,16 +65,22 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
 
 %}
 %eofval{
+        System.out.println("retorne eof");
          return token(EOF);
 //    return new Token(yytext(), EOF, yycolumn + 1, yyline + 1);
 %eofval}
 %eofclose
-%state LITERAL
-%state COLORS
+%state LITERALS, COLORS
+
 %%
 <YYINITIAL>{
 //     ({digit}*){punto}({digit}* | {numberInteger}+) {return new Token(yytext(), DEC, yycolumn + 1, yyline + 1);}
 //     {numberInteger}({digit}*) {return token(NUM, yytext());}
+[\"]
+            {
+                  yybegin(LITERALS);
+                  return token(SIG_COMILLAS);
+            }
     [<]
       {
           return token(SIGNO_A);
@@ -85,6 +93,7 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
      {
           return token(DIVISION);
      }
+
     {number}
       {
           return token(ENTERO);
@@ -214,11 +223,7 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
                          yybegin(COLORS);
             }
 
-            [\"]
-            {
-                  yybegin(LITERAL);
-                  return token(SIG_COMILLAS);
-            }
+
           {palabra}
             {
                 return token(PALABRA);
@@ -229,7 +234,7 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
                 return token(ERROR);
             }
 }
-<LITERAL>{
+<LITERALS>{
     [\"]
           {
               yybegin(YYINITIAL);
@@ -237,15 +242,13 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
           }
     {literal}
       {
+
           return token(LITERAL);
       }
-      {decimalNumber}
-      {
-          return token(LITERAL);
-      }
+
       {whiteSpace}  {/*ignore*/}
 
-    [^] {}
+    [^] {return token(ERROR);}
 }
 <COLORS>{
     [\<]

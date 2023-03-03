@@ -18,6 +18,12 @@ public class Board {
         }
     }
 
+    public Board(Integer posX, Integer posY, Integer type) {
+        this.posX = posX;
+        this.posY = posY;
+        this.type = type;
+    }
+
     public void setPosX(Integer posX) {
         this.posX = posX;
     }
@@ -40,5 +46,14 @@ public class Board {
 
     public Integer getType() {
         return type;
+    }
+
+    @Override
+    public String toString() {
+        return "Board{" +
+                "posX=" + posX +
+                ", posY=" + posY +
+                ", type=" + type +
+                '}';
     }
 }

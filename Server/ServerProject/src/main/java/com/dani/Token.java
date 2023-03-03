@@ -1,6 +1,7 @@
 package com.dani;
 
 public class Token {
+    public Object getTokenType;
     private String lexeme;
     private int tokenType;
     private int column;
@@ -11,6 +12,14 @@ public class Token {
         this.tokenType = tokenType;
         this.column = column;
         this.line = line;
+    }
+
+    public String getLexeme() {
+        return lexeme;
+    }
+
+    public void setLexeme(String lexeme) {
+        this.lexeme = lexeme;
     }
 
     public int getTokenType() {

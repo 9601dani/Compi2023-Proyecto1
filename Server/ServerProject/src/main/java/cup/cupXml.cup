@@ -39,7 +39,7 @@ parser code {:
                         boxSingleton = new Box();
                     }
                     else{
-                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Board");
+                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Box");
                     }
                         return boxSingleton;
                 }
@@ -49,7 +49,7 @@ parser code {:
                         targetSingleton = new Target();
                     }
                     else{
-                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Board");
+                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Target");
                     }
                     return targetSingleton;
                 }
@@ -59,7 +59,7 @@ parser code {:
                         playerSingleton = new Player();
                     }
                     else{
-                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Board");
+                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Player");
                     }
                     return playerSingleton;
                 }
@@ -69,7 +69,7 @@ parser code {:
                         configSingleton = new ConfigWorld();
                     }
                     else{
-                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Board");
+                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase ConfigWorld");
                     }
                     return configSingleton;
                 }
@@ -138,71 +138,122 @@ terminal Token ENTERO,HALL,BRICK,PALABRA,VERSION,LITERAL,ENCODING,DIVISION,
          WORLDS, WORLD,NAME,ROWS,COLS,CONFIG,BOARD,BOXES,TARGETS,PLAYER,
          POS_Y,POS_X, TYPE, BOX_COLOR, BOX_ON_TARGET_COLOR,TARGET_COLOR,BRICK_COLOR,HALL_COLOR,UNDEFINED_COLOR,PLAYER_COLOR;
 terminal Token SIG_IGUAL,XML,INTERROGACION,DECIMAL,SIGNO_A,SIGNO_C,SIG_COMILLAS,ALL,ERROR;
-nonterminal inic,atri,producWorld,config, configPlayer,posTB,posBox,posT,typeH,configPro,posPlayer,
+nonterminal producWorld,config, configPlayer,posTB,posBox,posT,typeH,configPro,posPlayer,
          worldsA,worldsC,worldA,worldC,nameA,nameC,rowsA,rowsC,colsA,colsC,configA,configC,boardA,boardC,
          boxA,boxC,targetA,targetC,playerA,playerC,posX_A,posX_C,posY_A,posY_C, typeA,typeC,box_colorA,box_colorC,box_on_target_colorA,box_on_target_colorC,
          target_colorA,target_colorC,brick_colorA,brick_colorC,hall_colorA,hall_colorC,undefined_colorA,undefined_colorC,
          player_colorA,player_colorC,enco;
-nonterminal configBoard;
-nonterminal configBox;
-nonterminal configTarget;
-nonterminal  worldPro ;
-
+nonterminal  configBoard;
+nonterminal  configBox;
+nonterminal  configTarget;
+nonterminal World atri;
+nonterminal ArrayList<World> worldPro,inic ;
 start with inic;
-inic ::= worldsA worldPro:a worldsC {: RESULT=a;:};
-//enco ::= SIGNO_A INTERROGACION XML VERSION SIG_IGUAL DECIMAL ENCODING SIG_IGUAL LITERAL INTERROGACION SIGNO_C;
+inic ::= enco worldsA worldPro:a worldsC
+                    {:
+                       RESULT=a;
+                    :};
+enco ::= SIGNO_A INTERROGACION XML VERSION SIG_IGUAL SIG_COMILLAS LITERAL SIG_COMILLAS ENCODING SIG_IGUAL SIG_COMILLAS LITERAL SIG_COMILLAS INTERROGACION SIGNO_C;
 
-worldPro ::=  worldPro worldA atri:a1 worldC
-                /*{:
-                n1.add((World)a1);
+worldPro ::=  worldPro:n1 worldA atri:a1 worldC
+                {:
+                a1=new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
+                                                               getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer());
+                n1.add(a1);
                 RESULT=n1;
-                :}*/
-            | worldA atri:a1 worldC /*{:RESULT= new ArrayList<World>();
-                                                   RESULT.add((World)a1);:}*/;
-atri ::= atri producWorld  /*{:RESULT= getSingletonInstanceWorld(); :}*/
-        | producWorld  /*{:RESULT= getSingletonInstanceWorld(); :}*/;
+                :}
+            | worldA atri:a1 worldC {:
+             RESULT= new ArrayList<World>();
+             RESULT.add(new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
+                                     getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer()));
+                                                                                                  :};
+atri ::= atri producWorld  {:RESULT= getSingletonInstanceWorld(); :}
+        | producWorld  {:RESULT= getSingletonInstanceWorld(); :};
 
-producWorld ::= nameA PALABRA:a1 nameC        /*{: getSingletonInstanceWorld().setName(a1.toString()); :}*/
-                | rowsA ENTERO:a1 rowsC       /*{: getSingletonInstanceWorld().setRows((Integer)a1); :}*/
-                | colsA ENTERO:a1 colsC       /*{: getSingletonInstanceWorld().setCols((Integer)a1); :}*/
-                | configA config:a1 configC          /*{: getSingletonInstanceWorld().setConfig(new ConfigWorld(getSingletonInstanceConfig().getBox_color(),getSingletonInstanceConfig().getBox_on_target_color(),getSingletonInstanceConfig().getTarget_color(),
-                                                     getSingletonInstanceConfig().getBrick_color(), getSingletonInstanceConfig().getHall_color(), getSingletonInstanceConfig().getUndefined_color(), getSingletonInstanceConfig().getPlayer_color()));  :}*/
-                | boardA configBoard:a1 boardC    /*{: getSingletonInstanceWorld().getArrayBoard().add((Board)a1);  :}*/
-                | boxA configBox:a1 boxC          /*{: getSingletonInstanceWorld().getArrayBoxes().add((Box)a1);  :}*/
-                | targetA configTarget:a1 targetC /*{: getSingletonInstanceWorld().getArrayTarget().add((Target)a1); :}*/
-                | playerA configPlayer:a1 playerC    /*{: getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY())); :}*/;
-configBoard ::= configBoard posTB
-                | posTB:a1 /*{: RESULT=a1; :}*/;
-configBox ::= configBox posBox
-              | posBox:a1 /*{: RESULT=a1; :}*/;
-configTarget ::= configTarget posT
-                | posT:a1 /*{: RESULT=a1; :}*/;
-configPlayer ::= configPlayer posPlayer
-                | posPlayer:a1 /*{: RESULT=a1;:}*/;
-posT ::=  posX_A ENTERO:a1 posX_C /*{: getSingletonInstanceTarget().setPosX((Integer) a1); :}*/
-        | posY_A ENTERO:a1 posY_C /*{: getSingletonInstanceTarget().setPosY((Integer) a1); :}*/;
-        /**/
-posBox ::=  posX_A ENTERO:a1 posX_C/* {: getSingletonInstanceBox().setPosX((Integer) a1); :}*/
-        | posY_A ENTERO:a1 posY_C/* {:   getSingletonInstanceBox().setPosY((Integer) a1); :}*/;
+producWorld ::= nameA PALABRA:a1 nameC        {: getSingletonInstanceWorld().setName(a1.getLexeme());:}
+                | rowsA ENTERO:a1 rowsC       {: getSingletonInstanceWorld().setRows(Integer.parseInt(a1.getLexeme())); :}
+                | colsA ENTERO:a1 colsC       {: getSingletonInstanceWorld().setCols(Integer.parseInt(a1.getLexeme())); :}
+                | configA config:a1 configC          {: getSingletonInstanceWorld().setConfig(new ConfigWorld(getSingletonInstanceConfig().getBox_color(),getSingletonInstanceConfig().getBox_on_target_color(),getSingletonInstanceConfig().getTarget_color(),
+                                                     getSingletonInstanceConfig().getBrick_color(), getSingletonInstanceConfig().getHall_color(), getSingletonInstanceConfig().getUndefined_color(), getSingletonInstanceConfig().getPlayer_color()));  :}
+                | boardA configBoard:a1 boardC    {: getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType()));  :}
+                | boxA configBox:a1 boxC          {: getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY()));  :}
+                | targetA configTarget:a1 targetC {: getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :}
+                | playerA configPlayer:a1 playerC    {: getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY())); :};
+configBoard ::= configBoard posTB:a1 {: RESULT=a1; :}
+                | posTB:a1 {: RESULT=a1; :};
+configBox ::= configBox posBox:a1 {: RESULT=a1; :}
+              | posBox:a1
+{: RESULT=a1; :}
+;
+configTarget ::= configTarget posT:a1 {: RESULT=a1; :}
+                | posT:a1
+{: RESULT=a1; :}
+;
+configPlayer ::= configPlayer posPlayer:a1 {: RESULT=a1; :}
+                | posPlayer:a1
+{: RESULT=a1;:}
+;
+posT ::=  posX_A ENTERO:a1 posX_C
+{: getSingletonInstanceTarget().setPosX(Integer.parseInt(a1.getLexeme())); :}
 
-posPlayer ::=  posX_A ENTERO:a1 posX_C /*{: getSingletonInstancePlayer().setPosX( (Integer)a1); :}*/
-        | posY_A ENTERO:a1 posY_C /*{:   getSingletonInstancePlayer().setPosY((Integer)a1); :}*/;
+        | posY_A ENTERO:a1 posY_C
+{: getSingletonInstanceTarget().setPosY(Integer.parseInt(a1.getLexeme())); :}
+;
 
-posTB ::=  posX_A ENTERO:a1 posX_C /*{:  getSingletonInstanceBoard().setPosX((Integer)a1); :}*/
-         | posY_A ENTERO:a1 posY_C /*{:  getSingletonInstanceBoard().setPosY((Integer)a1); :}*/
-         | typeA typeH:a1 typeC    /*{:  getSingletonInstanceBoard().setType((Integer)a1); :}*/;
 
-typeH ::= HALL:t1/* {: RESULT=t1 ;:}*/
-         | BRICK:t1 /*{: RESULT=t1 ;:}*/;
+posBox ::=  posX_A ENTERO:a1 posX_C
+ {: getSingletonInstanceBox().setPosX(Integer.parseInt(a1.getLexeme())); :}
+
+        | posY_A ENTERO:a1 posY_C
+ {:   getSingletonInstanceBox().setPosY(Integer.parseInt(a1.getLexeme())); :}
+;
+
+posPlayer ::=  posX_A ENTERO:a1 posX_C
+{: getSingletonInstancePlayer().setPosX( Integer.parseInt(a1.getLexeme())); :}
+
+        | posY_A ENTERO:a1 posY_C
+{:   getSingletonInstancePlayer().setPosY(Integer.parseInt(a1.getLexeme())); :}
+;
+
+posTB ::=  posX_A ENTERO:a1 posX_C
+{:  getSingletonInstanceBoard().setPosX(Integer.parseInt(a1.getLexeme())); :}
+
+         | posY_A ENTERO:a1 posY_C
+{:  getSingletonInstanceBoard().setPosY(Integer.parseInt(a1.getLexeme())); :}
+
+         | typeA typeH:a1 typeC
+{:  getSingletonInstanceBoard().setType((Integer)a1); :}
+;
+
+typeH ::= HALL:t1
+ {: RESULT= t1.getTokenType() ;:}
+
+         | BRICK:t1
+{: RESULT=t1.getTokenType() ;:}
+;
 config ::= config configPro
            | configPro:a1 {: RESULT=a1;:};
-configPro ::= box_colorA PALABRA:a1 box_colorC/* {:  getSingletonInstanceConfig().setBox_color((String) a1);  :}*/
-              | box_on_target_colorA PALABRA:a1 box_on_target_colorC /*{:  getSingletonInstanceConfig().setBox_on_target_color((String) a1);  :}*/
-              | target_colorA PALABRA:a1 target_colorC/*{:  getSingletonInstanceConfig().setTarget_color((String) a1);  :}*/
-              | brick_colorA PALABRA:a1 brick_colorC/*{:  getSingletonInstanceConfig().setBrick_color((String) a1);  :}*/
-              | hall_colorA PALABRA:a1 hall_colorC/*{:  getSingletonInstanceConfig().setHall_color((String) a1);  :}*/
-              | undefined_colorA PALABRA:a1 undefined_colorC/*{:  getSingletonInstanceConfig().setUndefined_color((String) a1);  :}*/
-              | player_colorA PALABRA:a1 player_colorC/*{:  getSingletonInstanceConfig().setPlayer_color((String) a1);  :}*/;
+configPro ::= box_colorA PALABRA:a1 box_colorC
+ {:  getSingletonInstanceConfig().setBox_color(a1.getLexeme());  :}
+
+              | box_on_target_colorA PALABRA:a1 box_on_target_colorC
+{:  getSingletonInstanceConfig().setBox_on_target_color(a1.getLexeme());  :}
+
+              | target_colorA PALABRA:a1 target_colorC
+{:  getSingletonInstanceConfig().setTarget_color(a1.getLexeme());  :}
+
+              | brick_colorA PALABRA:a1 brick_colorC
+{:  getSingletonInstanceConfig().setBrick_color(a1.getLexeme());  :}
+
+              | hall_colorA PALABRA:a1 hall_colorC
+{:  getSingletonInstanceConfig().setHall_color(a1.getLexeme());  :}
+
+              | undefined_colorA PALABRA:a1 undefined_colorC
+{:  getSingletonInstanceConfig().setUndefined_color(a1.getLexeme());  :}
+
+              | player_colorA PALABRA:a1 player_colorC
+{:  getSingletonInstanceConfig().setPlayer_color(a1.getLexeme());  :}
+;
 
 
 worldsA::= SIGNO_A WORLDS SIGNO_C;
@@ -248,3 +299,7 @@ undefined_colorA ::= SIGNO_A UNDEFINED_COLOR SIGNO_C;
 undefined_colorC ::= SIGNO_A DIVISION UNDEFINED_COLOR SIGNO_C;
 player_colorA ::= SIGNO_A PLAYER_COLOR SIGNO_C;
 player_colorC ::= SIGNO_A DIVISION PLAYER_COLOR SIGNO_C;
+
+/*new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
+                                                                                                                      getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer()));
+                                                                                                                            System.out.println(RESULT.toString()*/

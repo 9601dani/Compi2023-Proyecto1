@@ -27,4 +27,12 @@ public class Player {
     public void setPosY(Integer posY) {
         this.posY = posY;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "posX=" + posX +
+                ", posY=" + posY +
+                '}';
+    }
 }
