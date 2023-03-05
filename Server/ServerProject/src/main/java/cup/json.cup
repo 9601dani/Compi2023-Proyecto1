@@ -1,0 +1,344 @@
+package com.dani;
+import java_cup.runtime.*;
+import com.dani.objects.*;
+
+import java.util.ArrayList;
+class ParserJson;
+
+parser code {:
+                    public ParserJson(Lexer lexer){
+                       super(lexer);
+                   }
+                   public static World worldSingleton;
+                       public static World getSingletonInstanceWorld() {
+                           if (worldSingleton == null){
+                               worldSingleton = new World();
+                           }
+                           else{
+                               System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase World");
+                           }
+                           return worldSingleton;
+                       }
+
+                        public static Board boardSingleton;
+                               public static Board getSingletonInstanceBoard() {
+                                   if (boardSingleton == null){
+                                       boardSingleton = new Board();
+                                   }
+                                   else{
+                                       System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Board");
+                                   }
+                                   return boardSingleton;
+                               }
+                         public static Box boxSingleton;
+                               public static Box getSingletonInstanceBox() {
+                                   if (boxSingleton == null){
+                                       boxSingleton = new Box();
+                                   }
+                                   else{
+                                       System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Box");
+                                   }
+                                       return boxSingleton;
+                               }
+                         public static Target targetSingleton;
+                               public static Target getSingletonInstanceTarget() {
+                                   if (targetSingleton == null){
+                                       targetSingleton = new Target();
+                                   }
+                                   else{
+                                       System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Target");
+                                   }
+                                   return targetSingleton;
+                               }
+                         public static Player playerSingleton;
+                               public static Player getSingletonInstancePlayer() {
+                                   if (playerSingleton == null){
+                                       playerSingleton = new Player();
+                                   }
+                                   else{
+                                       System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Player");
+                                   }
+                                   return playerSingleton;
+                               }
+                         public static ConfigWorld configSingleton;
+                               public static ConfigWorld getSingletonInstanceConfig() {
+                                   if (configSingleton == null){
+                                       configSingleton = new ConfigWorld();
+                                   }
+                                   else{
+                                       System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase ConfigWorld");
+                                   }
+                                   return configSingleton;
+                               }:}
+/* gramatica txt
+inic ::= worldPro:a
+                       {:
+                          RESULT=a;
+                       :};
+
+   worldPro ::=  worldPro:n1 COMA Llave_A atri:a1 Llave_C
+                   {:
+                   a1=new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
+                                                                  getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer());
+                   n1.add(a1);
+                   RESULT=n1;
+                   :}
+               | Llave_A atri:a1 Llave_C {:
+                RESULT= new ArrayList<World>();
+                RESULT.add(new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
+                                        getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer()));
+                                                                                                     :};
+   atri ::= atri COMA producWorld  {:RESULT= getSingletonInstanceWorld(); :}
+           | producWorld  {:RESULT= getSingletonInstanceWorld(); :};
+
+   producWorld ::= COMILLA NAME COMILLA DOS_PUNTOS COMILLA PALABRA COMILLA  {: getSingletonInstanceWorld().setName(a1.getLexeme());:}
+                   | COMILLA ROWS COMILLA DOS_PUNTOS COMILLA operacion:a1 COMILLA  {: getSingletonInstanceWorld().setRows(Integer.parseInt(a1.getLexeme())); :}
+                   | COMILLA COLS COMILLA DOS_PUNTOS COMILLA operacion:a1 COMILLA  {: getSingletonInstanceWorld().setCols(Integer.parseInt(a1.getLexeme())); :}
+                   | COMILLA CONFIG COMILLA DOS_PUNTOS LLAVE_A config:a LLAVE_C   {: getSingletonInstanceWorld().setConfig(new ConfigWorld(getSingletonInstanceConfig().getBox_color(),getSingletonInstanceConfig().getBox_on_target_color(),getSingletonInstanceConfig().getTarget_color(),
+                                                        getSingletonInstanceConfig().getBrick_color(), getSingletonInstanceConfig().getHall_color(), getSingletonInstanceConfig().getUndefined_color(), getSingletonInstanceConfig().getPlayer_color()));  :}
+                   | COMILLA BOARD COMILLA DOS PUNTOS L_CORCHETE configBoard R_CORCHETE    {: getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType()));  :}
+                   | boxA configBox:a1 boxC          {: getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY()));  :}
+                   | targetA configTarget:a1 targetC {: getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :}
+                   | playerA configPlayer:a1 playerC    {: getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY())); :};
+
+   configBoard ::= configBoard COMA LLAVE_A posTB:a1 LLAVE_C {: RESULT=a1; :}
+                   | LLAVE_A posTB:a1 LLAVE_C {: RESULT=a1; :};
+
+   configBox ::= configBox COMA LLAVE_A posBox:a1 LLAVE_C{: RESULT=a1; :}
+                 | LLAVE_A posBox:a1 LLAVE_C
+   {: RESULT=a1; :}
+   ;
+   configTarget ::= configTarget COMA LLAVE_A posT:a1 LLAVE_C {: RESULT=a1; :}
+                   | LLAVE_A posT:a1 LLAVE_C
+   {: RESULT=a1; :}
+   ;
+   configPlayer ::= configPlayer COMA LLAVE_A posPlayer:a1 LLAVE_C {: RESULT=a1; :}
+                   | LLAVE_A posPlayer:a1 LLAVE_C
+   {: RESULT=a1;:}
+   ;
+   posT ::=  posX_A operacion:a1 posX_C
+   {: getSingletonInstanceTarget().setPosX(Integer.parseInt(a1.getLexeme())); :}
+
+           | posY_A operacion:a1 posY_C
+   {: getSingletonInstanceTarget().setPosY(Integer.parseInt(a1.getLexeme())); :}
+   ;
+
+
+   posBox ::=  posX_A operacion:a1 posX_C
+    {: getSingletonInstanceBox().setPosX(Integer.parseInt(a1.getLexeme())); :}
+
+           | posY_A operacion:a1 posY_C
+    {:   getSingletonInstanceBox().setPosY(Integer.parseInt(a1.getLexeme())); :}
+   ;
+
+   posPlayer ::=  posX_A operacion:a1 posX_C
+   {: getSingletonInstancePlayer().setPosX( Integer.parseInt(a1.getLexeme())); :}
+
+           | posY_A operacion:a1 posY_C
+   {:   getSingletonInstancePlayer().setPosY(Integer.parseInt(a1.getLexeme())); :}
+   ;
+
+   posTB ::=  posX_A operacion:a1 posX_C
+   {:  getSingletonInstanceBoard().setPosX(Integer.parseInt(a1.getLexeme())); :}
+
+            | posY_A operacion:a1 posY_C
+   {:  getSingletonInstanceBoard().setPosY(Integer.parseInt(a1.getLexeme())); :}
+
+            | typeA typeH:a1 typeC
+   {:  getSingletonInstanceBoard().setType((Integer)a1); :}
+   ;
+
+   typeH ::= HALL:t1
+    {: RESULT= t1.getTokenType() ;:}
+
+            | BRICK:t1
+   {: RESULT=t1.getTokenType() ;:}
+   ;
+   config ::= config COMA configPro
+              | configPro:a1 {: RESULT=a1;:};
+   configPro ::= COMILLA BOX_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR COMILLA
+    {:  getSingletonInstanceConfig().setBox_color(a1.getLexeme());  :}
+
+                 | COMILLA BOX_ON_TARGET_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR COMILLA
+   {:  getSingletonInstanceConfig().setBox_on_target_color(a1.getLexeme());  :}
+
+                 | COMILLA TARGET_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR COMILLA
+   {:  getSingletonInstanceConfig().setTarget_color(a1.getLexeme());  :}
+
+                 | COMILLA BRICK_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR COMILLA
+   {:  getSingletonInstanceConfig().setBrick_color(a1.getLexeme());  :}
+
+                 | COMILLA HALL_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR COMILLA
+   {:  getSingletonInstanceConfig().setHall_color(a1.getLexeme());  :}
+
+                 | COMILLA UNDEFINED_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR COMILLA
+   {:  getSingletonInstanceConfig().setUndefined_color(a1.getLexeme());  :}
+
+                 | COMILLA PLAYER_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR COMILLA
+   {:  getSingletonInstanceConfig().setPlayer_color(a1.getLexeme());  :}
+
+   operacion ::= ENTERO
+                 | COMILLA operacion5:a1 COMILLA
+
+   operacion5 ::= L_PARENT operacion1:a1 R_PARENT
+                  | operacion1:a
+
+   operacion1 ::= operacion1:a1 SUMA operacion1:a2 {:RESULT = a1 + a2 ; :}
+               | operacion1:a1 RESTA operacion1:a2 {:RESULT = a1 - a2 ; :}
+               | operacion2:a1 {:RESULT = a1 ; :};
+   operacion2 ::= operacion2:a1 MULTIPLY operacion2:a2 {:RESULT = a1 * a2 ; :}
+                | operacion2:a1 DIVISION operacion2:a2 {:RESULT = a1 / a2 ; :}
+                | operacion3:a1 {:RESULT = a1 ; :} ;
+   operacion3 ::= NUM:a1 {:RESULT = Double.parseDouble(a1.getLexeme()); :}
+                  | operacion4:a1 {:RESULT =a1;:};
+   operacion4 ::= L_PARENT operacion1:a1 R_PARENT {:RESULT =a1;:}
+                  | CEIL L_PARENT operacion1:a1  R_PARENT {:RESULT = Math.ceil(a1);:}
+                  | FLOOR L_PARENT operacion1:a1 R_PARENT {:RESULT = Math.floor(a1);:}
+                  | DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :}; */
+terminal Token    ENTERO,HALL,BRICK,PALABRA,LITERAL,NAME,ROWS,COLS,CONFIG,BOARD,BOXES,TARGETS,PLAYER,DECIMAL,PLAYER_COLOR,ERROR,COMA,LLAVE_A,LLAVE_C,
+                  POS_Y,POS_X, TYPE, BOX_COLOR, BOX_ON_TARGET_COLOR,TARGET_COLOR,BRICK_COLOR,HALL_COLOR,UNDEFINED_COLOR,COMILLA,PALABRA_COLOR,
+                  SUMA,RESTA,MULTIPLY,DIVISION,CEIL,FLOOR,DOS_PUNTOS,L_CORCHETE,R_CORCHETE, L_PARENT,R_PARENT,PUNTO_COMA;
+nonterminal producWorld,config, configPlayer,posTB,posBox,posT,typeH,configPro,posPlayer,configBoard,configBoardArray,configBox,configBoxArray,configTarget,configTargetArray;
+nonterminal Double operacion1,operacion2,operacion3,operacion4;
+         /*worldsA,worldsC,worldA,worldC,nameA,nameC,rowsA,rowsC,colsA,colsC,configA,configC,boardA,boardC,
+         boxA,boxC,targetA,targetC,playerA,playerC,posX_A,posX_C,posY_A,posY_C, typeA,typeC,box_colorA,box_colorC,box_on_target_colorA,box_on_target_colorC,
+         target_colorA,target_colorC,brick_colorA,brick_colorC,hall_colorA,hall_colorC,undefined_colorA,undefined_colorC,
+         player_colorA,player_colorC,enco;*/
+nonterminal World atri;
+nonterminal ArrayList<World> worldPro,inic ;
+
+precedence left SUMA;
+precedence left RESTA ;
+precedence left MULTIPLY;
+precedence left DIVISION;
+start with inic;
+inic ::= worldPro:a {:RESULT=a;:};
+
+worldPro ::=  worldPro:n1 COMA LLAVE_A atri:a1 LLAVE_C
+                {:
+                a1=new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
+                                                               getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer());
+                n1.add(a1);
+                RESULT=n1;
+                :}
+            | LLAVE_A atri:a1 LLAVE_C {:
+             RESULT= new ArrayList<World>();
+             RESULT.add(new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
+                                     getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer()));
+                                                                                                  :};
+atri ::= atri COMA producWorld  {:RESULT= getSingletonInstanceWorld(); :}
+        | producWorld  {:RESULT= getSingletonInstanceWorld(); :};
+
+producWorld ::= COMILLA NAME COMILLA DOS_PUNTOS COMILLA PALABRA:a1 COMILLA  {: getSingletonInstanceWorld().setName(a1.getLexeme());:}
+                | COMILLA ROWS COMILLA DOS_PUNTOS  operacion1:a1   {: getSingletonInstanceWorld().setRows(a1.intValue()); :}
+                | COMILLA COLS COMILLA DOS_PUNTOS  operacion1:a1   {: getSingletonInstanceWorld().setCols(a1.intValue()); :}
+                | COMILLA CONFIG COMILLA DOS_PUNTOS LLAVE_A config:a1 LLAVE_C   {: getSingletonInstanceWorld().setConfig(new ConfigWorld(getSingletonInstanceConfig().getBox_color(),getSingletonInstanceConfig().getBox_on_target_color(),getSingletonInstanceConfig().getTarget_color(),
+                                                     getSingletonInstanceConfig().getBrick_color(), getSingletonInstanceConfig().getHall_color(), getSingletonInstanceConfig().getUndefined_color(), getSingletonInstanceConfig().getPlayer_color()));  :}
+                | COMILLA BOARD COMILLA DOS_PUNTOS L_CORCHETE configBoardArray:a1 R_CORCHETE  {: getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType()));  :}
+                | COMILLA BOXES COMILLA DOS_PUNTOS L_CORCHETE configBoxArray:a1 R_CORCHETE {: getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY()));  :}
+                | COMILLA TARGETS COMILLA DOS_PUNTOS L_CORCHETE configTargetArray:a1 R_CORCHETE{: getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :}
+                | COMILLA PLAYER COMILLA DOS_PUNTOS LLAVE_A configPlayer:a1 LLAVE_C    {: getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY())); :};
+
+configBoardArray ::= configBoardArray COMA LLAVE_A  configBoard  LLAVE_C
+                    | LLAVE_A  configBoard  LLAVE_C;
+
+configBoard ::= configBoard COMA posTB:a1  {: RESULT=a1; :}
+                |  posTB:a1  {: RESULT=a1; :};
+
+configBoxArray ::= configBoxArray COMA LLAVE_A configBox LLAVE_C
+                   | LLAVE_A configBox LLAVE_C;
+configBox ::= configBox COMA  posBox:a1 {: RESULT=a1; :}
+              |  posBox:a1
+{: RESULT=a1; :}
+;
+configTargetArray ::= configTargetArray COMA LLAVE_A configTarget LLAVE_C
+                    | LLAVE_A configTarget LLAVE_C;
+configTarget ::= configTarget COMA posT:a1  {: RESULT=a1; :}
+                |  posT:a1
+{: RESULT=a1; :}
+;
+
+configPlayer ::= configPlayer COMA posPlayer:a1  {: RESULT=a1; :}
+                |  posPlayer:a1
+{: RESULT=a1;:}
+;
+posT ::=  COMILLA POS_X COMILLA DOS_PUNTOS operacion1:a1
+{: getSingletonInstanceTarget().setPosX(a1.intValue()); :}
+
+        | COMILLA POS_Y COMILLA DOS_PUNTOS operacion1:a1
+{: getSingletonInstanceTarget().setPosY(a1.intValue()); :}
+;
+
+
+posBox ::=  COMILLA POS_X COMILLA DOS_PUNTOS operacion1:a1
+ {: getSingletonInstanceBox().setPosX(a1.intValue()); :}
+
+        | COMILLA POS_Y COMILLA DOS_PUNTOS operacion1:a1
+ {:   getSingletonInstanceBox().setPosY(a1.intValue()); :}
+;
+
+posPlayer ::=  COMILLA POS_X COMILLA DOS_PUNTOS operacion1:a1
+{: getSingletonInstancePlayer().setPosX(a1.intValue()); :}
+
+        | COMILLA POS_Y COMILLA DOS_PUNTOS operacion1:a1
+{:   getSingletonInstancePlayer().setPosY(a1.intValue()); :}
+;
+
+posTB ::=  COMILLA POS_X COMILLA DOS_PUNTOS operacion1:a1
+{:  getSingletonInstanceBoard().setPosX(a1.intValue()); :}
+
+         | COMILLA POS_Y COMILLA DOS_PUNTOS operacion1:a1
+{:  getSingletonInstanceBoard().setPosY(a1.intValue()); :}
+
+         | COMILLA TYPE COMILLA DOS_PUNTOS typeH:a1
+{:  getSingletonInstanceBoard().setType((Integer)a1); :}
+;
+
+typeH ::= COMILLA HALL:t1 COMILLA
+ {: RESULT= t1.getTokenType() ;:}
+
+         | COMILLA BRICK:t1 COMILLA
+{: RESULT=t1.getTokenType() ;:}
+;
+config ::= config COMA configPro
+           | configPro:a1 {: RESULT=a1;:};
+configPro ::= COMILLA BOX_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR:a1 COMILLA
+ {:  getSingletonInstanceConfig().setBox_color(a1.getLexeme());  :}
+
+              | COMILLA BOX_ON_TARGET_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR:a1 COMILLA
+{:  getSingletonInstanceConfig().setBox_on_target_color(a1.getLexeme());  :}
+
+              | COMILLA TARGET_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR:a1 COMILLA
+{:  getSingletonInstanceConfig().setTarget_color(a1.getLexeme());  :}
+
+              | COMILLA BRICK_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR:a1 COMILLA
+{:  getSingletonInstanceConfig().setBrick_color(a1.getLexeme());  :}
+
+              | COMILLA HALL_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR:a1 COMILLA
+{:  getSingletonInstanceConfig().setHall_color(a1.getLexeme());  :}
+
+              | COMILLA UNDEFINED_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR:a1 COMILLA
+{:  getSingletonInstanceConfig().setUndefined_color(a1.getLexeme());  :}
+
+              | COMILLA PLAYER_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR:a1 COMILLA
+{:  getSingletonInstanceConfig().setPlayer_color(a1.getLexeme());  :};
+
+/*operacion ::= operacion1:a1 {:RESULT=a1;:}
+              | COMILLA operacion1:a1 COMILLA {:RESULT=a1;:};*/
+
+///*operacion5 ::= L_PARENT operacion1:a1 R_PARENT
+//               | operacion1:a ;*/
+
+operacion1 ::=operacion1:a1 SUMA operacion1:a2 {:RESULT = a1 + a2 ; :}
+            | operacion1:a1 RESTA operacion1:a2 {:RESULT = a1 - a2 ; :}
+            | operacion2:a1 {:RESULT = a1 ; :};
+operacion2 ::= operacion2:a1 MULTIPLY operacion2:a2 {:RESULT = a1 * a2 ; :}
+             | operacion2:a1 DIVISION operacion2:a2 {:RESULT = a1 / a2 ; :}
+             | operacion3:a1 {:RESULT = a1 ; :} ;
+operacion3 ::= ENTERO:a1 {:RESULT = Double.parseDouble(a1.getLexeme()); :}
+               | operacion4:a1 {:RESULT =a1;:};
+operacion4 ::= L_PARENT operacion1:a1 R_PARENT {:RESULT =a1;:}
+               |COMILLA operacion1:a1 COMILLA {:RESULT =a1;:}
+               | CEIL L_PARENT operacion1:a1  R_PARENT {:RESULT = Math.ceil(a1);:}
+               | FLOOR L_PARENT operacion1:a1 R_PARENT {:RESULT = Math.floor(a1);:}
+               | DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :};

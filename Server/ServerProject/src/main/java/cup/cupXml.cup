@@ -2,7 +2,7 @@ package com.dani;
 import java_cup.runtime.*;
 import com.dani.LexXml;
 import java.util.ArrayList;
-import com.dani.objectXml.*;
+import com.dani.objects.*;
 
 class ParserXml;
 

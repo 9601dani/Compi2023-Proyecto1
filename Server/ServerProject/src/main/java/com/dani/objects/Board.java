@@ -1,4 +1,4 @@
-package com.dani.objectXml;
+package com.dani.objects;
 
 public class Board {
     private Integer posX;

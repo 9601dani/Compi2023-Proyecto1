@@ -1,7 +1,4 @@
-package com.dani.objectXml;
-
-import com.dani.objectXml.Board;
-import com.dani.objectXml.ConfigWorld;
+package com.dani.objects;
 
 import java.util.ArrayList;
 

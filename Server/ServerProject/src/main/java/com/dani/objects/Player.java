@@ -1,13 +1,13 @@
-package com.dani.objectXml;
+package com.dani.objects;
 
-public class Box {
+public class Player {
     private Integer posX;
     private Integer posY;
 
-    public Box() {
+    public Player() {
     }
 
-    public Box(Integer posX, Integer posY) {
+    public Player(Integer posX, Integer posY) {
         this.posX = posX;
         this.posY = posY;
     }
@@ -30,7 +30,7 @@ public class Box {
 
     @Override
     public String toString() {
-        return "Box{" +
+        return "Player{" +
                 "posX=" + posX +
                 ", posY=" + posY +
                 '}';

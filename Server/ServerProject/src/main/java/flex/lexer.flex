@@ -1,5 +1,6 @@
 package com.dani;
-import  com.dani.Token;import com.dani.TokenType.*;
+import java_cup.runtime.Symbol;
+import static com.dani.parserJson.ParserJsonSym.*;
 
 
 %%
@@ -8,8 +9,8 @@ import  com.dani.Token;import com.dani.TokenType.*;
 %unicode
 %line
 %column
-%type Token
-//%cup
+%type java_cup.runtime.Symbol
+%cup
 /*WORLDS= "worlds"
 WORLD="world"
 ALL="all"*/
@@ -47,208 +48,213 @@ palabraColor=([a-f0-9]{6} | [a-f0-9]{3})
 lineTerminator = \r|\n|\r\n
 whiteSpace     = {lineTerminator} | [ \t\f | " "]
 %{
-//     private Symbol token(int type, Object value) {
-//             return new Symbol(type, return new Token(value, type,  yycolumn + 1, yyline + 1));
-//     }
-//     private Symbol token(int type) {
-//             return new Symbol(type, return new Token(null, type, yycolumn + 1, yyline + 1));
-//     }
-        private Token methodWithToken(int type){
+     private Symbol token(int type, Object value) {
+      System.out.println("encontre : "+value.toString());
+             return new Symbol(type,  new Token(value.toString(), type,  yycolumn + 1, yyline + 1));
+     }
+
+     private Symbol token(int type) {
+      System.out.println("encontres : "+yytext());
+             return new Symbol(type,  new Token(yytext(), type, yycolumn + 1, yyline + 1));
+     }
+       /* private Token token(int type){
             Token tok= new Token(yytext(), type, yycolumn + 1, yyline + 1);
             System.out.printf(tok.toString());
             return tok;
-        }
+        }*/
 //return token(DECIMAL, yytext());
 
 %}
 %eofval{
-        return methodWithToken(TokenType.EOF);
-//    return new Token(yytext(), TokenType.EOF, yycolumn + 1, yyline + 1);
+        return token(EOF);
+//    return new Token(yytext(), EOF, yycolumn + 1, yyline + 1);
 %eofval}
 %eofclose
 %state RESERVED_WORDS
 %state COLORS
 %%
 <YYINITIAL>{
-//     ({digit}*){punto}({digit}* | {numberInteger}+) {return new Token(yytext(), TokenType.DEC, yycolumn + 1, yyline + 1);}
+//     ({digit}*){punto}({digit}* | {numberInteger}+) {return new Token(yytext(), DEC, yycolumn + 1, yyline + 1);}
 //     {numberInteger}({digit}*) {return token(NUM, yytext());}
     [{]
       {
-          return methodWithToken(TokenType.L_LLAVE);
+          return token(LLAVE_A);
       }
     [}]
       {
-          return methodWithToken(TokenType.R_LLAVE);
+          return token(LLAVE_C);
       }
     [:]
       {
-          return methodWithToken(TokenType.DOS_PUNTOS);
+          return token(DOS_PUNTOS);
       }
     [;]
       {
-          return methodWithToken(TokenType.PUNTO_COMA);
+          return token(PUNTO_COMA);
       }
     [,]
       {
-          return methodWithToken(TokenType.COMA);
+          return token(COMA);
       }
     [\[]
       {
-           return methodWithToken(TokenType.L_CORCHETE);
+           return token(L_CORCHETE);
       }
     [\]]
       {
-           return methodWithToken(TokenType.R_CORCHETE);
+           return token(R_CORCHETE);
       }
     {FLOOR}
       {
-           return methodWithToken(TokenType.FLOOR);
+           return token(FLOOR);
       }
     {CEIL}
       {
-          return methodWithToken(TokenType.CEIL);
+          return token(CEIL);
       }
     {number}
       {
-          return methodWithToken(TokenType.NUM);
+          return token(ENTERO);
       }
     {decimalNumber}
       {
-          return methodWithToken(TokenType.DECIMAL);
+          return token(DECIMAL);
       }
     {palabra}
       {
-          return methodWithToken(TokenType.PALABRA);
+          return token(PALABRA);
       }
     [\"]
       {
           yybegin(RESERVED_WORDS);
+          return token(COMILLA);
       }
     {whiteSpace}  {/*ignore*/}
     [^]
       {
-          return methodWithToken(TokenType.ERROR);
+          return token(ERROR);
       }
 }
 <RESERVED_WORDS>{
     [\"]
       {
           yybegin(YYINITIAL);
+          return token(COMILLA);
       }
     {number}
       {
-          return methodWithToken(TokenType.NUM);
+          return token(ENTERO);
       }
     {decimalNumber}
       {
-                return methodWithToken(TokenType.NUM);
+          return token(DECIMAL);
       }
     /*simbolos aritmeticos*/
     [-]
       {
-          return methodWithToken(TokenType.RESTA);
+          return token(RESTA);
       }
     [/]
       {
-          return methodWithToken(TokenType.DIVISION);
+          return token(DIVISION);
       }
     [*]
       {
-          return methodWithToken(TokenType.MULTIPLY);
+          return token(MULTIPLY);
       }
     [+]
       {
-          return methodWithToken(TokenType.SUMA);
+          return token(SUMA);
       }
     [(]
       {
-          return methodWithToken(TokenType.L_PARENT);
+          return token(L_PARENT);
       }
     [)]
       {
-          return methodWithToken(TokenType.R_PARENT);
+          return token(R_PARENT);
       }
     /*PALABRAS RESERVADAS*/
     {NAME}
       {
-          return methodWithToken(TokenType.NAME);
+          return token(NAME);
       }
     {ROWS}
       {
-          return methodWithToken(TokenType.ROWS);
+          return token(ROWS);
       }
 
     {COLS}
       {
-          return methodWithToken(TokenType.COLS);
+          return token(COLS);
       }
     {CONFIG}
       {
-          return methodWithToken(TokenType.CONFIG);
+          return token(CONFIG);
       }
     {BOX_COLOR}
       {
-          return methodWithToken(TokenType.BOX_COLOR);
+          return token(BOX_COLOR);
       }
     {BOX_ON_TARGET_COLOR}
       {
-          return methodWithToken(TokenType.BOX_ON_TARGET_COLOR);
+          return token(BOX_ON_TARGET_COLOR);
       }
     {TARGET_COLOR}
       {
-          return methodWithToken(TokenType.TARGET_COLOR);
+          return token(TARGET_COLOR);
       }
     {BRICK_COLOR}
       {
-          return methodWithToken(TokenType.BRICK_COLOR);
+          return token(BRICK_COLOR);
       }
     {HALL_COLOR}
       {
-          return methodWithToken(TokenType.HALL_COLOR);
+          return token(HALL_COLOR);
       }
     {UNDEFINED_COLOR}
       {
-          return methodWithToken(TokenType.UNDEFINED_COLOR);
+          return token(UNDEFINED_COLOR);
       }
     {PLAYER_COLOR}
       {
-          return methodWithToken(TokenType.PLAYER_COLOR);
+          return token(PLAYER_COLOR);
       }
     {BOARD}
       {
-          return methodWithToken(TokenType.BOARD);
+          return token(BOARD);
       }
     {POS_X}
       {
-          return methodWithToken(TokenType.POS_X);
+          return token(POS_X);
       }
     {POS_Y}
       {
-          return methodWithToken(TokenType.POS_Y);
+          return token(POS_Y);
       }
     {TYPE}
       {
-          return methodWithToken(TokenType.TYPE);
+          return token(TYPE);
       }
     {BRICK}
       {
-          return methodWithToken(TokenType.BRICK);
+          return token(BRICK);
       }
     {HALL}
       {
-          return methodWithToken(TokenType.HALL);
+          return token(HALL);
       }
     {BOXES}
       {
-          return methodWithToken(TokenType.BOXES);
+          return token(BOXES);
       }
     {TARGETS}
       {
-          return methodWithToken(TokenType.TARGETS);
+          return token(TARGETS);
       }
     {PLAYER}
       {
-          return methodWithToken(TokenType.PLAYER);
+          return token(PLAYER);
       }
     [#]
       {
@@ -256,21 +262,26 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
       }
     {palabra}
       {
-          return methodWithToken(TokenType.PALABRA);
+          return token(PALABRA);
       }
+      [,]
+            {
+                return token(COMA);
+            }
     {whiteSpace}  {/*ignore*/}
     [^]
       {
-          return methodWithToken(TokenType.ERROR);
+          return token(ERROR);
       }
 }
 <COLORS>{
-    [<]
+    [\"]
           {
               yybegin(YYINITIAL);
+              return token(COMILLA);
           }
     {palabraColor}
           {
-              return methodWithToken(TokenType.PALABRA);
+              return token(PALABRA_COLOR);
           }
 }
