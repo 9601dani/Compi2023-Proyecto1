@@ -24,7 +24,7 @@ public class Server {
     static ServerSocket ssk;
     static InputStreamReader isr;
     static BufferedReader br;*/
-private final String PATH= "src/main/resources/com/dani/server/xml.sokoban.xml";
+private final String PATH= "";
 
     public static void conec(){
         Executors.newFixedThreadPool(2).execute(()->{

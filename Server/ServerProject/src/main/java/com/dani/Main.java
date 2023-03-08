@@ -443,7 +443,7 @@ public class Main {
                 "  }\n" +
                 "}";
 
-       compileJson(testString4+","+testString5);
+        compileJson(testString4+","+testString5);
         compileJson(testString4);
         //compileXml(testString);
        /* LexXml lexer = new LexXml(new StringReader(testString));

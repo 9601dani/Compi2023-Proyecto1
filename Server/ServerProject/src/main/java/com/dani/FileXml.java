@@ -1,12 +1,9 @@
 package com.dani;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class FileXml {
-    private static final String PATH="src/main/resources/com/dani/server/xml/sokoban.xml";
+    private static final String PATH="src/main/resources/com.dani.server.xml/sokoban.xml";
     private static FileXml fileXml;
 
     public FileXml(){}
@@ -18,19 +15,12 @@ public class FileXml {
         }
         return fileXml;
     }
-
-    public void generateFileXml(String content){
-        File file = new File(PATH);
-        FileWriter writer = null;
-        try {
-            BufferedWriter bw;
-            writer = new FileWriter(file);
-            bw = new BufferedWriter(new FileWriter(String.valueOf(writer)));
-            bw.close(); //
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void generateFileXml(String content) throws IOException{
+       FileWriter writer = new FileWriter(getFileXml());
+       writer.write(content);
+       writer.close();
 
     }
+    private File getFileXml(){return new File(PATH);}
 
 }
