@@ -1,14 +1,25 @@
 package com.dani.objects;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.ArrayList;
 
+@JacksonXmlRootElement(namespace = "", localName = "world")
 public class World {
     private String name;
     private Integer rows;
     private Integer cols;
     private ConfigWorld config;
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlProperty(localName = "board")
     private ArrayList<Board> arrayBoard;
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlProperty(localName = "boxes")
     private ArrayList<Box> arrayBoxes;
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlProperty(localName = "targets")
     private ArrayList<Target> arrayTarget;
     private Player player;
     /*objeto de esta clase*/

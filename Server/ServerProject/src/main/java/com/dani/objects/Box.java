@@ -1,5 +1,8 @@
 package com.dani.objects;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
+@JacksonXmlRootElement(localName = "boxes")
 public class Box {
     private Integer posX;
     private Integer posY;

@@ -1,5 +1,7 @@
 package com.dani.objects;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 public class Board {
     private Integer posX;
     private Integer posY;
@@ -44,7 +46,7 @@ public class Board {
         return posY;
     }
 
-    public Integer getType() {
+    public Integer getType(){
         return type;
     }
 

@@ -78,10 +78,10 @@ parser code {:
 /*Gramatica cup para xml
 Gramatica cup para xml
 
-inic---> <?xml VERSION = "LITERAL" ENCONDING = "LITERAL" ?> <WORLDS> world <\WORLDS>
+inic---> <?xml VERSION = "LITERAL" ENCONDING = "LITERAL" ?> <WORLDS> WorldModel <\WORLDS>
 
-world----> world <world> atri <\world>
-		  | <world> atri <\world>
+WorldModel----> WorldModel <WorldModel> atri <\WorldModel>
+		  | <WorldModel> atri <\WorldModel>
 
 atri----> atri producWorld
 		| producWorld

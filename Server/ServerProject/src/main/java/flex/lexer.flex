@@ -12,7 +12,7 @@ import static com.dani.parserJson.ParserJsonSym.*;
 %type java_cup.runtime.Symbol
 %cup
 /*WORLDS= "worlds"
-WORLD="world"
+WORLD="WorldModel"
 ALL="all"*/
 NAME="name"
 ROWS="rows"
