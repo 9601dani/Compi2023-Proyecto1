@@ -20,22 +20,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val editor: EditText = findViewById(R.id.etInput)
-        val textView: TextView = findViewById(R.id.tvResult)
-        val compileButton: Button = findViewById(R.id.btnCompile)
 
+        val compileButton: Button = findViewById(R.id.compi_buttom)
+        val textResponse: TextView= findViewById(R.id.textResponse)
         compileButton.setOnClickListener(View.OnClickListener {
            /* Log.println(Log.INFO, TAG, "Compiling")*/
-            val input = editor.text.toString()
-            val output = this.compiler(input);
 
-            if (output != null) {
-                textView.text = output.toString()
-            } else {
-                textView.text = "Something went wrong"
-            }
+            /*val output = this.compiler(input);*/
+            createSocket()
+
         })
-        createSocket()
+
         /*backspaceButton.setOnClickListener(View.OnClickListener {
            *//* Log.println(Log.INFO, TAG, "Cleaning editor")*//*
             *//*editor.setText("")*//*
@@ -53,16 +48,19 @@ class MainActivity : AppCompatActivity() {
             println("Mov--> ${it.getInfo()}")
         }
     }
-    private fun createSocket(){
-        findViewById<Button>(R.id.btnClear).setOnClickListener{
+    private fun createSocket()  {
+        findViewById<Button>(R.id.compi_buttom).setOnClickListener{
             Log.d("Mensaje", "Conectandise al sevidor")
             Executors.newSingleThreadExecutor().execute{
+                val editor: EditText = findViewById(R.id.compileInputTxt)
                 val socket = Socket("192.168.0.33",5000)
                 val dataInput= DataInputStream(socket.getInputStream())
                 val dataOutputStream= DataOutputStream(socket.getOutputStream())
-                dataOutputStream.writeUTF("Enviando mensaje desde el cliente")
+                val input = editor.text.toString()
+                dataOutputStream.writeUTF(input)
                 val mensaje=dataInput.readUTF()
-                println(mensaje)
+               val txtResponse:TextView = findViewById(R.id.textResponse)
+                txtResponse.text=(mensaje)
             }
         }
 

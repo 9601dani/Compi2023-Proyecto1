@@ -18,7 +18,7 @@ parser code {:
                 worldSingleton = new World();
             }
             else{
-                System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase World");
+               /* System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase World");*/
             }
             return worldSingleton;
         }
@@ -29,7 +29,7 @@ parser code {:
                         boardSingleton = new Board();
                     }
                     else{
-                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Board");
+                        /*System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Board");*/
                     }
                     return boardSingleton;
                 }
@@ -39,7 +39,7 @@ parser code {:
                         boxSingleton = new Box();
                     }
                     else{
-                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Box");
+                        /*System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Box");*/
                     }
                         return boxSingleton;
                 }
@@ -49,7 +49,7 @@ parser code {:
                         targetSingleton = new Target();
                     }
                     else{
-                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Target");
+                       /* System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Target");*/
                     }
                     return targetSingleton;
                 }
@@ -59,7 +59,7 @@ parser code {:
                         playerSingleton = new Player();
                     }
                     else{
-                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Player");
+                       /* System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Player");*/
                     }
                     return playerSingleton;
                 }
@@ -69,7 +69,7 @@ parser code {:
                         configSingleton = new ConfigWorld();
                     }
                     else{
-                        System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase ConfigWorld");
+                        /*System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase ConfigWorld");*/
                     }
                     return configSingleton;
                 }

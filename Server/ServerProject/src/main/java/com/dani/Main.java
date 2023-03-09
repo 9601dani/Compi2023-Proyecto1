@@ -1,26 +1,14 @@
 package com.dani;
 
-import com.dani.objects.World;
-import com.dani.objects.WorldModel;
-import com.dani.objects.WorldsModel;
-import com.dani.parserJson.Lexer;
-import com.dani.parserJson.ParserJson;
-import com.dani.parserXml.LexXml;
-import com.dani.parserXml.ParserXml;
-
-import java.io.StringReader;
-import java.util.ArrayList;
-
-;
-import static com.dani.server.Server.compileJson;
+;import static com.dani.server.Server.*;
 
 public class Main {
     public static Double VERSION=  0.0;
     public static void main(String[] args) {
-/*        conec();*/
-        String testString="<?xml version=\"1.0\" encoding=\"UTF-1555\"?>" +
+        conec();
+        String testString="<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                 "<worlds>\n" +
-                "\t<WorldModel>\n" +
+                "\t<world>\n" +
                 "\t\t<name>tatoine</name>\n" +
                 "\t\t<rows>5</rows>\n" +
                 "\t\t<cols>4</cols>\n" +
@@ -153,7 +141,7 @@ public class Main {
                 "\t\t\t<posX>1</posX>\n" +
                 "\t\t\t<posY>1</posY>\n" +
                 "\t\t</player>\n" +
-                "\t</WorldModel>\n" +
+                "\t</world>\n" +
                 "</worlds>\n";
         String testString2="<worlds>\n" +
                 "\t<WorldModel>\n" +
@@ -442,9 +430,8 @@ public class Main {
                 "    \"posY\": \"(5 + 2) / (3 + 4)\"\n" +
                 "  }\n" +
                 "}";
-
-        compileJson(testString4+","+testString5);
-        compileJson(testString4);
+        /*compileJson(testString4+","+testString5);
+        compileJson(testString4);*/
         //compileXml(testString);
        /* LexXml lexer = new LexXml(new StringReader(testString));
         try{

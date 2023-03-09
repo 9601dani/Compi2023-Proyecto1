@@ -7,63 +7,43 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/etInput"
-        android:layout_width="0dp"
-        android:layout_height="500dp"
+        android:id="@+id/compileInputTxt"
+        android:layout_width="326dp"
+        android:layout_height="345dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:hint="Write your code here"
+        android:hint="@string/txt_view_editTxt"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvResult" />
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/compi_buttom"
+        android:layout_width="304dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#AFA761"
+        android:text="@string/txt_view_button_compilar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/compileInputTxt" />
 
     <TextView
-        android:id="@+id/tvResult"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:text="You can view the result here."
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etInput"
-        app:layout_constraintBottom_toTopOf="@+id/btnCompile" />
-
-    <Button
-        android:id="@+id/btnCompile"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="24dp"
-        android:background="@color/black"
-        android:text="Compile"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnClear"
+        android:id="@+id/textResponse"
+        android:layout_width="294dp"
+        android:layout_height="46dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvResult" />
-
-    <Button
-        android:id="@+id/btnClear"
-        android:layout_width="64dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/btnCompile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/compi_buttom"
+        app:layout_constraintVertical_bias="0.162" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

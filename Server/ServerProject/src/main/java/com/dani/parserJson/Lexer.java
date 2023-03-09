@@ -395,12 +395,12 @@ public class Lexer implements java_cup.runtime.Scanner {
 
   /* user code: */
      private Symbol token(int type, Object value) {
-      System.out.println("encontre : "+value.toString());
+      /*System.out.println("encontre : "+value.toString());*/
              return new Symbol(type,  new Token(value.toString(), type,  yycolumn + 1, yyline + 1));
      }
 
      private Symbol token(int type) {
-      System.out.println("encontres : "+yytext());
+      /*System.out.println("encontres : "+yytext());*/
              return new Symbol(type,  new Token(yytext(), type, yycolumn + 1, yyline + 1));
      }
        /* private Token token(int type){

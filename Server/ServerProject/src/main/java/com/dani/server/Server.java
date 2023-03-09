@@ -7,11 +7,7 @@ import com.dani.parserJson.Lexer;
 import com.dani.parserJson.ParserJson;
 import com.dani.parserXml.LexXml;
 import com.dani.parserXml.ParserXml;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -24,7 +20,6 @@ public class Server {
     static ServerSocket ssk;
     static InputStreamReader isr;
     static BufferedReader br;*/
-private final String PATH= "";
 
     public static void conec(){
         Executors.newFixedThreadPool(2).execute(()->{
@@ -35,17 +30,18 @@ private final String PATH= "";
             final int PUERTO=5000;
             try{
                 server = new ServerSocket(PUERTO);
-                System.out.println("Inicie servidor");
+               /* System.out.println("Inicie servidor");*/
                 while(true){
                     sc= server.accept();
-                    System.out.println("Cliente conectado");
+                    /*System.out.println("Cliente conectado");*/
                     in= new DataInputStream(sc.getInputStream());
                     out = new DataOutputStream(sc.getOutputStream());
                     String mensaje= in.readUTF();
+                    System.out.println("File recibido:");
                     System.out.println(mensaje);
-                    out.writeUTF("Hola mundo desde servidor");
+                    out.writeUTF(compileJson(mensaje));
                     sc.close();
-                    System.out.println("CLiente desconectado");
+                    /*System.out.println("Cliente desconectado");*/
                 }
             }catch (IOException e) {
                 throw new RuntimeException(e);
@@ -53,7 +49,7 @@ private final String PATH= "";
         });
 
     }
-    public static void compileJson(String testString){
+    public static String compileJson(String testString){
         ParserJson p = new ParserJson(new Lexer(new StringReader(testString)));
         try {
             System.out.println("voy a parserJson");
@@ -70,10 +66,12 @@ private final String PATH= "";
             }
             datXml+= new Converter().converObjectToXml(new WorldsModel(listToXml));
             System.out.printf(datXml);
+            return datXml;
         } catch (Exception e) {
             System.out.println("algo fallo en json");
             e.printStackTrace();
         }
+        return "HEMOS ENCONTRADO ERRORES";
     }
     public static void compileXml(String testString){
         ParserXml p = new ParserXml(new LexXml(new StringReader(testString)));

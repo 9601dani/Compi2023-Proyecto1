@@ -334,7 +334,7 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                                worldSingleton = new World();
                            }
                            else{
-                               System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase World");
+                              /* System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase World");*/
                            }
                            return worldSingleton;
                        }
@@ -345,7 +345,7 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                                        boardSingleton = new Board();
                                    }
                                    else{
-                                       System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Board");
+                                       /*System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Board");*/
                                    }
                                    return boardSingleton;
                                }
@@ -355,7 +355,7 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                                        boxSingleton = new Box();
                                    }
                                    else{
-                                       System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Box");
+                                      /* System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Box");*/
                                    }
                                        return boxSingleton;
                                }
@@ -365,7 +365,7 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                                        targetSingleton = new Target();
                                    }
                                    else{
-                                       System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Target");
+                                       /*System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Target");*/
                                    }
                                    return targetSingleton;
                                }
@@ -375,7 +375,7 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                                        playerSingleton = new Player();
                                    }
                                    else{
-                                       System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Player");
+                                       /*System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase Player");*/
                                    }
                                    return playerSingleton;
                                }
@@ -385,7 +385,7 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                                        configSingleton = new ConfigWorld();
                                    }
                                    else{
-                                       System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase ConfigWorld");
+                                       /*System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase ConfigWorld");*/
                                    }
                                    return configSingleton;
                                }
