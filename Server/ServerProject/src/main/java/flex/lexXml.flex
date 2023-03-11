@@ -13,7 +13,7 @@ XML="xml"
 VERSION="version"
 ENCODING="encoding"
 WORLDS= "worlds"
-WORLD="WorldModel"
+WORLD="world"
 ALL="all"
 NAME="name"
 ROWS="rows"
@@ -48,11 +48,11 @@ lineTerminator = \r|\n|\r\n
 whiteSpace     = {lineTerminator} | [ \t\f | " "]
 %{
     private Symbol token(int type, Object value) {
-     /*System.out.println("Encontre un: "+ type+" "+value.toString());*/
+     System.out.println("Encontre un: "+ type+" "+value.toString());
             return new Symbol(type, new Token(value.toString(), type,  yycolumn + 1, yyline + 1));
      }
      private Symbol token(int type) {
-      /*System.out.println("Encontre un: "+ yytext()+" "+type);*/
+      System.out.println("Encontre un: "+ yytext()+" "+type);
              return new Symbol(type, new Token(yytext(), type, yycolumn + 1, yyline + 1));
      }
 /*

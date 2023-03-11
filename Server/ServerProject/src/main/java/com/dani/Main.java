@@ -1,10 +1,14 @@
 package com.dani;
 
-;import static com.dani.server.Server.*;
+;import com.dani.layout.Request_response;
+
+import static com.dani.server.Server.*;
 
 public class Main {
     public static Double VERSION=  0.0;
     public static void main(String[] args) {
+        Request_response window= new Request_response();
+        window.show();
         conec();
         String testString="<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                 "<worlds>\n" +
@@ -144,7 +148,7 @@ public class Main {
                 "\t</world>\n" +
                 "</worlds>\n";
         String testString2="<worlds>\n" +
-                "\t<WorldModel>\n" +
+                "\t<world>\n" +
                 "\t\t<name>nombre1</name>\n" +
                 "\t\t<rows>4</rows>\n" +
                 "\t\t<cols>2</cols>\n" +
@@ -239,10 +243,10 @@ public class Main {
                 "\t\t\t<posX>24</posX>\n" +
                 "\t\t\t<posY>69</posY>\n" +
                 "\t\t</player>\n" +
-                "\t</WorldModel>\n" +
+                "\t</world>\n" +
                 "</worlds>";
         String testString3="<worlds>\n" +
-                "\t<WorldModel>\n" +
+                "\t<world>\n" +
                 "\t\t<name>nombre1</name>\n" +
                 "\t\t<rows>4</rows>\n" +
                 "\t\t<cols>2</cols>\n" +
@@ -289,10 +293,10 @@ public class Main {
                 "\t\t\t<posX>2</posX>\n" +
                 "\t\t\t<posY>60</posY>\n" +
                 "\t\t</player>\n" +
-                "\t</WorldModel>\n" +
+                "\t</world>\n" +
                  "</worlds>";
         //System.out.println(testString2);
-       String testString4=" {\n \"name\": \"nombrePrueba\",\n" +
+       String testString4=" {\n \"name\": \"nombrePrueba2\",\n" +
                "  \"cols\": 4,\n" +
                "  \"rows\": 0,\n" +
                 "  \"config\": {\n" +
@@ -430,9 +434,11 @@ public class Main {
                 "    \"posY\": \"(5 + 2) / (3 + 4)\"\n" +
                 "  }\n" +
                 "}";
-        /*compileJson(testString4+","+testString5);
-        compileJson(testString4);*/
-        //compileXml(testString);
+        /*compileJson("{\"worlds\":\"all\"}");*/
+        /*compileJson("{\"world\":\"nombrePrueba\"}");*/
+        compileJson(testString4);
+        /*compileJson(testString4);*/
+        /*compileXml(testString);*/
        /* LexXml lexer = new LexXml(new StringReader(testString));
         try{
             Token token= lexer.yylex();

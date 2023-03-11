@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun createSocket()  {
         findViewById<Button>(R.id.compi_buttom).setOnClickListener{
-            Log.d("Mensaje", "Conectandise al sevidor")
+            Log.d("Mensaje", "Conectandose al sevidor")
             Executors.newSingleThreadExecutor().execute{
                 val editor: EditText = findViewById(R.id.compileInputTxt)
                 val socket = Socket("192.168.0.33",5000)
@@ -59,12 +59,9 @@ class MainActivity : AppCompatActivity() {
                 val input = editor.text.toString()
                 dataOutputStream.writeUTF(input)
                 val mensaje=dataInput.readUTF()
-               val txtResponse:TextView = findViewById(R.id.textResponse)
+                val txtResponse:TextView = findViewById(R.id.textResponse)
                 txtResponse.text=(mensaje)
             }
         }
-
     }
-
-
 }

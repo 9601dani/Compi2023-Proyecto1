@@ -1,4 +1,4 @@
-package com.dani.objects;
+package com.dani.models;
 
 import java.io.Serializable;
 

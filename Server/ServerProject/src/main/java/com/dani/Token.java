@@ -27,12 +27,15 @@ public class Token {
     }
 
     @Override
-    public String toString() {
+  /*  public String toString() {
         return "Token{" +
                 "lexeme='" + lexeme + '\'' +
                 ", tokenType=" + tokenType +
                 ", column=" + column +
                 ", line=" + line +
                 '}' + "\n";
+    }*/
+    public String toString() {
+        return lexeme;
     }
 }

@@ -41,6 +41,10 @@ public class World {
         this.player = player;
     }
 
+    public World(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

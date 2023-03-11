@@ -27,6 +27,11 @@
       <posY>2</posY>
       <type>HALL</type>
     </board>
+    <board>
+      <posX>1</posX>
+      <posY>2</posY>
+      <type>HALL</type>
+    </board>
     <boxes>
       <posX>2</posX>
       <posY>2</posY>
@@ -35,6 +40,14 @@
       <posX>2</posX>
       <posY>2</posY>
     </boxes>
+    <boxes>
+      <posX>2</posX>
+      <posY>2</posY>
+    </boxes>
+    <targets>
+      <posX>3</posX>
+      <posY>2</posY>
+    </targets>
     <targets>
       <posX>3</posX>
       <posY>2</posY>
@@ -46,7 +59,7 @@
   </world>
   <world>
     <name>nombrePrueba2</name>
-    <rows>10</rows>
+    <rows>0</rows>
     <cols>4</cols>
     <config>
       <box_color>#ffff00</box_color>
@@ -71,6 +84,11 @@
       <posY>2</posY>
       <type>HALL</type>
     </board>
+    <board>
+      <posX>1</posX>
+      <posY>2</posY>
+      <type>HALL</type>
+    </board>
     <boxes>
       <posX>2</posX>
       <posY>2</posY>
@@ -79,6 +97,14 @@
       <posX>2</posX>
       <posY>2</posY>
     </boxes>
+    <boxes>
+      <posX>2</posX>
+      <posY>2</posY>
+    </boxes>
+    <targets>
+      <posX>3</posX>
+      <posY>2</posY>
+    </targets>
     <targets>
       <posX>3</posX>
       <posY>2</posY>

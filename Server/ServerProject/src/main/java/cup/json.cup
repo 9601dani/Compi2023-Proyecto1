@@ -1,13 +1,22 @@
 package com.dani;
 import java_cup.runtime.*;
 import com.dani.objects.*;
-
+import com.dani.server.Response;
+import com.dani.server.Response_E;
 import java.util.ArrayList;
 class ParserJson;
 
 parser code {:
                     public ParserJson(Lexer lexer){
                        super(lexer);
+                   }
+
+                   public void syntax_error(Symbol s){
+                    converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids().toString())));
+
+                   }
+                   public void unrecovered_syntax_error(Symbol s){
+                   converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids().toString())));
                    }
                    public static World worldSingleton;
                        public static World getSingletonInstanceWorld() {
@@ -69,7 +78,18 @@ parser code {:
                                        /*System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase ConfigWorld");*/
                                    }
                                    return configSingleton;
+                               }
+                          public static Response response;
+                               public static Response getSingletonInstanceResponse() {
+                                   if (response == null){
+                                       response = new Response();
+                                   }
+                                   else{
+                                       /* System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase World");*/
+                                   }
+                                   return response;
                                }:}
+
 /* gramatica txt
 inic ::= worldPro:a
                        {:
@@ -197,7 +217,7 @@ inic ::= worldPro:a
                   | DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :}; */
 terminal Token    ENTERO,HALL,BRICK,PALABRA,LITERAL,NAME,ROWS,COLS,CONFIG,BOARD,BOXES,TARGETS,PLAYER,DECIMAL,PLAYER_COLOR,ERROR,COMA,LLAVE_A,LLAVE_C,
                   POS_Y,POS_X, TYPE, BOX_COLOR, BOX_ON_TARGET_COLOR,TARGET_COLOR,BRICK_COLOR,HALL_COLOR,UNDEFINED_COLOR,COMILLA,PALABRA_COLOR,
-                  SUMA,RESTA,MULTIPLY,DIVISION,CEIL,FLOOR,DOS_PUNTOS,L_CORCHETE,R_CORCHETE, L_PARENT,R_PARENT,PUNTO_COMA;
+                  SUMA,RESTA,MULTIPLY,DIVISION,CEIL,FLOOR,DOS_PUNTOS,L_CORCHETE,R_CORCHETE, L_PARENT,R_PARENT,PUNTO_COMA,WORLDS,WORLD,ALL;
 nonterminal producWorld,config, configPlayer,posTB,posBox,posT,typeH,configPro,posPlayer,configBoard,configBoardArray,configBox,configBoxArray,configTarget,configTargetArray;
 nonterminal Double operacion1,operacion2,operacion3,operacion4;
          /*worldsA,worldsC,worldA,worldC,nameA,nameC,rowsA,rowsC,colsA,colsC,configA,configC,boardA,boardC,
@@ -205,14 +225,23 @@ nonterminal Double operacion1,operacion2,operacion3,operacion4;
          target_colorA,target_colorC,brick_colorA,brick_colorC,hall_colorA,hall_colorC,undefined_colorA,undefined_colorC,
          player_colorA,player_colorC,enco;*/
 nonterminal World atri;
-nonterminal ArrayList<World> worldPro,inic ;
+nonterminal ArrayList<World> worldPro;
+nonterminal Response inic;
 
 precedence left SUMA;
 precedence left RESTA ;
 precedence left MULTIPLY;
 precedence left DIVISION;
-start with inic;
-inic ::= worldPro:a {:RESULT=a;:};
+start with inic;  /*Response_E.REQUEST_ALL_WORLDS*/
+
+inic ::= LLAVE_A COMILLA WORLDS COMILLA DOS_PUNTOS COMILLA ALL:a COMILLA LLAVE_C {:RESULT=new Response(Response_E.REQUEST_ALL_WORLDS);
+                                                                           System.out.println("mandare todos los mundos");  :}
+        | LLAVE_A COMILLA WORLD COMILLA DOS_PUNTOS COMILLA PALABRA:a COMILLA LLAVE_C {:RESULT=new Response(Response_E.REQUEST_FOR_NAME,a.getLexeme());
+                                                                            System.out.println("mandare el mundo pedido " +a.getLexeme());  :}
+        |worldPro:a {:
+                    RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a);
+                     /*RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a);*/
+                        :};
 
 worldPro ::=  worldPro:n1 COMA LLAVE_A atri:a1 LLAVE_C
                 {:
@@ -237,7 +266,8 @@ producWorld ::= COMILLA NAME COMILLA DOS_PUNTOS COMILLA PALABRA:a1 COMILLA  {: g
                 | COMILLA BOARD COMILLA DOS_PUNTOS L_CORCHETE configBoardArray:a1 R_CORCHETE  {: getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType()));  :}
                 | COMILLA BOXES COMILLA DOS_PUNTOS L_CORCHETE configBoxArray:a1 R_CORCHETE {: getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY()));  :}
                 | COMILLA TARGETS COMILLA DOS_PUNTOS L_CORCHETE configTargetArray:a1 R_CORCHETE{: getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :}
-                | COMILLA PLAYER COMILLA DOS_PUNTOS LLAVE_A configPlayer:a1 LLAVE_C    {: getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY())); :};
+                | COMILLA PLAYER COMILLA DOS_PUNTOS LLAVE_A configPlayer:a1 LLAVE_C    {: getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY())); :}
+                /*|error:e{: syntax_error(); :} COMILLA*/;
 
 configBoardArray ::= configBoardArray COMA LLAVE_A  configBoard  LLAVE_C
                     | LLAVE_A  configBoard  LLAVE_C;

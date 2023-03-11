@@ -1,9 +1,9 @@
-package com.dani.objects;
+package com.dani.models;
 
+import com.dani.objects.*;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import com.dani.objects.BoardModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;

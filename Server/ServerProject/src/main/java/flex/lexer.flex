@@ -11,9 +11,9 @@ import static com.dani.parserJson.ParserJsonSym.*;
 %column
 %type java_cup.runtime.Symbol
 %cup
-/*WORLDS= "worlds"
-WORLD="WorldModel"
-ALL="all"*/
+WORLDS= "worlds"
+WORLD="world"
+ALL="all"
 NAME="name"
 ROWS="rows"
 FLOOR="FLOOR"
@@ -54,7 +54,7 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
      }
 
      private Symbol token(int type) {
-      /*System.out.println("encontres : "+yytext());*/
+     /* System.out.println("encontres : "+yytext());*/
              return new Symbol(type,  new Token(yytext(), type, yycolumn + 1, yyline + 1));
      }
        /* private Token token(int type){
@@ -175,6 +175,18 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
           return token(R_PARENT);
       }
     /*PALABRAS RESERVADAS*/
+      {WORLDS}
+       {
+          return token(WORLDS);
+      }
+      {WORLD}
+      {
+          return token(WORLD);
+      }
+      {ALL}
+      {
+          return token(ALL);
+      }
     {NAME}
       {
           return token(NAME);

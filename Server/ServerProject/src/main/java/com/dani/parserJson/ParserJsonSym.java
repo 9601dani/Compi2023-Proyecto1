@@ -10,6 +10,7 @@ public class ParserJsonSym {
   /* terminals */
   public static final int L_PARENT = 41;
   public static final int BRICK_COLOR = 27;
+  public static final int WORLDS = 44;
   public static final int L_CORCHETE = 39;
   public static final int ENTERO = 2;
   public static final int PALABRA_COLOR = 31;
@@ -41,11 +42,13 @@ public class ParserJsonSym {
   public static final int error = 1;
   public static final int COMILLA = 30;
   public static final int COMA = 18;
+  public static final int WORLD = 45;
   public static final int NAME = 7;
   public static final int ERROR = 17;
   public static final int COLS = 9;
   public static final int LITERAL = 6;
   public static final int BOXES = 12;
+  public static final int ALL = 46;
   public static final int CEIL = 36;
   public static final int DIVISION = 35;
   public static final int UNDEFINED_COLOR = 29;
@@ -96,7 +99,10 @@ public class ParserJsonSym {
   "R_CORCHETE",
   "L_PARENT",
   "R_PARENT",
-  "PUNTO_COMA"
+  "PUNTO_COMA",
+  "WORLDS",
+  "WORLD",
+  "ALL"
   };
 }
 
