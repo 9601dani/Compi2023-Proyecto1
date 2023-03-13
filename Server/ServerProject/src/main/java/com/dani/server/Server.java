@@ -2,13 +2,11 @@ package com.dani.server;
 
 import com.dani.FileXml;
 import com.dani.models.*;
-import com.dani.objects.Board;
 import com.dani.objects.World;
 import com.dani.parserJson.Lexer;
 import com.dani.parserJson.ParserJson;
 import com.dani.parserXml.LexXml;
 import com.dani.parserXml.ParserXml;
-import com.dani.verifications.VWorld;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -158,7 +156,7 @@ public class Server {
                     System.out.println("-->"+doc);
                     ArrayList<WorldsModel> listXml= new ArrayList<>();
                     ArrayList<WorldModel> listToXml= new ArrayList<>();
-                   /* if(doc!="" || doc!=null){
+                    if(doc!="" || doc!=null){
                         System.out.printf("aqui es el nulo");
                         ArrayList<World> wor=compileXml(new FileXml().readFile());
                         //WorldModel.forEach(System.out::println);
@@ -166,7 +164,7 @@ public class Server {
                             listToXml.add(new WorldModel(wor.get(i).getName(),wor.get(i).getRows(),wor.get(i).getCols(),wor.get(i).getConfig(),
                                     wor.get(i).getArrayBoard(),wor.get(i).getArrayBoxes(),wor.get(i).getArrayTarget(),wor.get(i).getPlayer()));
                         }
-                    }*/
+                    }
                     System.out.println(worldList.getWorld().size()+"--------------");
                     for (int i = 0; i < worldList.getWorld().size(); i++) {
                         /*String elemento = String.valueOf(worldList.getWorld().get(i));*/

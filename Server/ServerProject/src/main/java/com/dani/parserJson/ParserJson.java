@@ -348,12 +348,12 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                    }
 
                    public void syntax_error(Symbol s){
-                   /* converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids())));
-                    new Response(Response_E.NOTHING);*/
+                  /*  converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids())));*/
+                    new Response(Response_E.NOTHING);
                    }
                    public void unrecovered_syntax_error(Symbol s){
-                   /*converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids())));
-                   new Response(Response_E.NOTHING);*/
+                  /* converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids())));*/
+                   new Response(Response_E.NOTHING);
                    }
                    public static World worldSingleton;
                        public static World getSingletonInstanceWorld() {
@@ -661,7 +661,7 @@ class CUP$ParserJson$actions {
           case 16: // configBoardArray ::= configBoardArray COMA LLAVE_A configBoard LLAVE_C 
             {
               Object RESULT =null;
-
+		 getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType())); 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("configBoardArray",10, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -670,7 +670,7 @@ class CUP$ParserJson$actions {
           case 17: // configBoardArray ::= LLAVE_A configBoard LLAVE_C 
             {
               Object RESULT =null;
-
+		getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType())); 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("configBoardArray",10, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -682,7 +682,7 @@ class CUP$ParserJson$actions {
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-		 getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType())); 
+
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("configBoard",9, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -694,7 +694,7 @@ class CUP$ParserJson$actions {
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-		getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType())); 
+
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("configBoard",9, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -703,7 +703,7 @@ class CUP$ParserJson$actions {
           case 20: // configBoxArray ::= configBoxArray COMA LLAVE_A configBox LLAVE_C 
             {
               Object RESULT =null;
-
+		  getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY())); 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("configBoxArray",12, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -712,7 +712,7 @@ class CUP$ParserJson$actions {
           case 21: // configBoxArray ::= LLAVE_A configBox LLAVE_C 
             {
               Object RESULT =null;
-
+		  getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY())); 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("configBoxArray",12, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -724,7 +724,7 @@ class CUP$ParserJson$actions {
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-		  getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY())); 
+
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("configBox",11, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -736,7 +736,7 @@ class CUP$ParserJson$actions {
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-		  getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY())); 
+
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("configBox",11, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -745,7 +745,7 @@ class CUP$ParserJson$actions {
           case 24: // configTargetArray ::= configTargetArray COMA LLAVE_A configTarget LLAVE_C 
             {
               Object RESULT =null;
-
+		 getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("configTargetArray",14, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -754,7 +754,7 @@ class CUP$ParserJson$actions {
           case 25: // configTargetArray ::= LLAVE_A configTarget LLAVE_C 
             {
               Object RESULT =null;
-
+		getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("configTargetArray",14, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -766,7 +766,7 @@ class CUP$ParserJson$actions {
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-		 getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); 
+
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("configTarget",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -778,7 +778,7 @@ class CUP$ParserJson$actions {
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-		getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); 
+
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("configTarget",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;

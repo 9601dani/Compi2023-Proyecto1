@@ -551,12 +551,12 @@ public class Main {
                 "    {\n" +
                 "      \"posX\": \"5-4*1\",\n" +
                 "      \"posY\": \"1\",\n" +
-                "      \"type\": \"HALL\"\n" +
+                "      \"type\": \"BRICK\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"posX\": 1,\n" +
                 "      \"posY\": \"10/5\",\n" +
-                "      \"type\": \"HALL\"\n" +
+                "      \"type\": \"BRICK\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"posX\": \"10/2-4\",\n" +
@@ -571,12 +571,12 @@ public class Main {
                 "    {\n" +
                 "      \"posX\": 2,\n" +
                 "      \"posY\": \"1*1\",\n" +
-                "      \"type\": \"HALL\"\n" +
+                "      \"type\": \"BRICK\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"posX\": 2,\n" +
                 "      \"posY\": \"10/5\",\n" +
-                " \"type\": \"HALL\"\n" +
+                "      \"type\": \"BRICK\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"posX\": 2,\n" +
@@ -611,7 +611,7 @@ public class Main {
                 "      \"posX\": 1,\n" +
                 "      \"posY\": \"50-25*2+2\"\n" +
                 "    },{\n" +
-                "      \"posX\": 2,\n" +
+                "      \"posX\": 1,\n" +
                 "      \"posY\": 2\n" +
                 "    }\n" +
                 "  ],\n" +
@@ -620,8 +620,7 @@ public class Main {
                 "      \"posX\": 2,\n" +
                 "      \"posY\": 2\n" +
                 "    }\n" +
-                "  ]\n" +
-                "}";
+                "  ]\n }";
         /*compileJson("{\"worlds\":\"all\"}");*/
         /*compileJson("{\"world\":\"nombrePrueba\"}");*/
         /*compileJson(testString5);*/

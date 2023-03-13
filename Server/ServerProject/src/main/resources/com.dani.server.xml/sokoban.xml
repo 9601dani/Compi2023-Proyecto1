@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <worlds>
   <world>
-    <name>ta_1</name>
+    <name>ta_2</name>
     <rows>4</rows>
     <cols>4</cols>
     <config>
       <box_color>#123ff4</box_color>
-      <box_on_target_color/>
+      <box_on_target_color>#123ff4</box_on_target_color>
       <target_color>#09ffff</target_color>
-      <brick_color/>
-      <hall_color/>
-      <undefined_color/>
+      <brick_color>#123ff4</brick_color>
+      <hall_color>#123ff4</hall_color>
+      <undefined_color>#123ff4</undefined_color>
       <player_color>#ffff01</player_color>
     </config>
     <player>
@@ -19,263 +19,385 @@
     </player>
     <board>
       <posX>0</posX>
-      <posY/>
-      <type/>
-    </board>
-    <board>
-      <posX>0</posX>
       <posY>0</posY>
-      <type/>
-    </board>
-    <board>
-      <posX>0</posX>
-      <posY>0</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>0</posX>
-      <posY>0</posY>
-      <type>4</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>0</posX>
       <posY>1</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>0</posX>
-      <posY>1</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>0</posX>
-      <posY>1</posY>
-      <type>4</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>0</posX>
       <posY>2</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>0</posX>
-      <posY>2</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>0</posX>
-      <posY>2</posY>
-      <type>4</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>0</posX>
       <posY>3</posY>
-      <type>4</type>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>1</posX>
+      <posY>0</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>1</posX>
+      <posY>1</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>1</posX>
+      <posY>2</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>1</posX>
+      <posY>3</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>2</posX>
+      <posY>0</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>2</posX>
+      <posY>1</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>2</posX>
+      <posY>2</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>2</posX>
+      <posY>3</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>3</posX>
+      <posY>0</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>3</posX>
+      <posY>1</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>3</posX>
+      <posY>2</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>3</posX>
+      <posY>3</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>0</posX>
+      <posY>0</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>0</posX>
+      <posY>1</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>0</posX>
+      <posY>2</posY>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>0</posX>
       <posY>3</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>1</posX>
-      <posY>3</posY>
-      <type>4</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>1</posX>
       <posY>0</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>1</posX>
-      <posY>0</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>1</posX>
-      <posY>0</posY>
-      <type>4</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>1</posX>
       <posY>1</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>1</posX>
-      <posY>1</posY>
-      <type>3</type>
-    </board>
-    <board>
-      <posX>1</posX>
-      <posY>1</posY>
-      <type>3</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>1</posX>
       <posY>2</posY>
-      <type>3</type>
-    </board>
-    <board>
-      <posX>1</posX>
-      <posY>2</posY>
-      <type>3</type>
-    </board>
-    <board>
-      <posX>1</posX>
-      <posY>2</posY>
-      <type>3</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>1</posX>
       <posY>3</posY>
-      <type>3</type>
-    </board>
-    <board>
-      <posX>1</posX>
-      <posY>3</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>2</posX>
-      <posY>3</posY>
-      <type>4</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>2</posX>
       <posY>0</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>2</posX>
-      <posY>0</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>2</posX>
-      <posY>0</posY>
-      <type>4</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>2</posX>
       <posY>1</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>2</posX>
-      <posY>1</posY>
-      <type>3</type>
-    </board>
-    <board>
-      <posX>2</posX>
-      <posY>1</posY>
-      <type>3</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>2</posX>
       <posY>2</posY>
-      <type>3</type>
-    </board>
-    <board>
-      <posX>2</posX>
-      <posY>2</posY>
-      <type>3</type>
-    </board>
-    <board>
-      <posX>2</posX>
-      <posY>2</posY>
-      <type>3</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>2</posX>
       <posY>3</posY>
-      <type>3</type>
-    </board>
-    <board>
-      <posX>2</posX>
-      <posY>3</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>3</posX>
-      <posY>3</posY>
-      <type>4</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>3</posX>
       <posY>0</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>3</posX>
-      <posY>0</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>3</posX>
-      <posY>0</posY>
-      <type>4</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>3</posX>
       <posY>1</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>3</posX>
-      <posY>1</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>3</posX>
-      <posY>1</posY>
-      <type>4</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>3</posX>
       <posY>2</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>3</posX>
-      <posY>2</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>3</posX>
-      <posY>2</posY>
-      <type>4</type>
+      <type>BRICK</type>
     </board>
     <board>
       <posX>3</posX>
       <posY>3</posY>
-      <type>4</type>
-    </board>
-    <board>
-      <posX>3</posX>
-      <posY>3</posY>
-      <type>4</type>
+      <type>BRICK</type>
     </board>
     <boxes>
       <posX>1</posX>
-      <posY/>
+      <posY>2</posY>
+    </boxes>
+    <boxes>
+      <posX>1</posX>
+      <posY>2</posY>
     </boxes>
     <boxes>
       <posX>1</posX>
       <posY>2</posY>
     </boxes>
     <boxes>
-      <posX>2</posX>
-      <posY>2</posY>
-    </boxes>
-    <boxes>
-      <posX>2</posX>
+      <posX>1</posX>
       <posY>2</posY>
     </boxes>
     <targets>
       <posX>2</posX>
-      <posY/>
+      <posY>2</posY>
+    </targets>
+    <targets>
+      <posX>2</posX>
+      <posY>2</posY>
+    </targets>
+  </world>
+  <world>
+    <name>ta_1</name>
+    <rows>4</rows>
+    <cols>4</cols>
+    <config>
+      <box_color>#123ff4</box_color>
+      <box_on_target_color>#123ff4</box_on_target_color>
+      <target_color>#09ffff</target_color>
+      <brick_color>#123ff4</brick_color>
+      <hall_color>#123ff4</hall_color>
+      <undefined_color>#123ff4</undefined_color>
+      <player_color>#ffff01</player_color>
+    </config>
+    <player>
+      <posX>0</posX>
+      <posY>1</posY>
+    </player>
+    <board>
+      <posX>0</posX>
+      <posY>0</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>0</posX>
+      <posY>1</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>0</posX>
+      <posY>2</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>0</posX>
+      <posY>3</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>1</posX>
+      <posY>0</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>1</posX>
+      <posY>1</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>1</posX>
+      <posY>2</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>1</posX>
+      <posY>3</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>2</posX>
+      <posY>0</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>2</posX>
+      <posY>1</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>2</posX>
+      <posY>2</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>2</posX>
+      <posY>3</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>3</posX>
+      <posY>0</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>3</posX>
+      <posY>1</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>3</posX>
+      <posY>2</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>3</posX>
+      <posY>3</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>0</posX>
+      <posY>0</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>0</posX>
+      <posY>1</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>0</posX>
+      <posY>2</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>0</posX>
+      <posY>3</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>1</posX>
+      <posY>0</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>1</posX>
+      <posY>1</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>1</posX>
+      <posY>2</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>1</posX>
+      <posY>3</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>2</posX>
+      <posY>0</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>2</posX>
+      <posY>1</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>2</posX>
+      <posY>2</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>2</posX>
+      <posY>3</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>3</posX>
+      <posY>0</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>3</posX>
+      <posY>1</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>3</posX>
+      <posY>2</posY>
+      <type>BRICK</type>
+    </board>
+    <board>
+      <posX>3</posX>
+      <posY>3</posY>
+      <type>BRICK</type>
+    </board>
+    <boxes>
+      <posX>1</posX>
+      <posY>2</posY>
+    </boxes>
+    <boxes>
+      <posX>1</posX>
+      <posY>2</posY>
+    </boxes>
+    <boxes>
+      <posX>1</posX>
+      <posY>2</posY>
+    </boxes>
+    <boxes>
+      <posX>1</posX>
+      <posY>2</posY>
+    </boxes>
+    <targets>
+      <posX>2</posX>
+      <posY>2</posY>
     </targets>
     <targets>
       <posX>2</posX>
