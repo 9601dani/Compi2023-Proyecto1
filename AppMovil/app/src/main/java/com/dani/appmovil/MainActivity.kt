@@ -7,14 +7,20 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.dani.appmovil.Objects.LexerMov
-import com.dani.appmovil.Objects.Motion
-import com.dani.appmovil.Objects.ParserMov
+import com.dani.appmovil.objects.LexerMov
+import com.dani.appmovil.objects.Motion
+import com.dani.appmovil.objects.ParserMov
+import com.dani.appmovil.objectsWorld.World
+import com.dani.appmovil.parserXml.LexXml
+import com.dani.appmovil.parserXml.ParserXml
 import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.io.StringReader
 import java.net.Socket
 import java.util.concurrent.Executors
+import java.net.InetAddress
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,19 +55,52 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun createSocket()  {
-        findViewById<Button>(R.id.compi_buttom).setOnClickListener{
-            Log.d("Mensaje", "Conectandose al sevidor")
-            Executors.newSingleThreadExecutor().execute{
-                val editor: EditText = findViewById(R.id.compileInputTxt)
-                val socket = Socket("192.168.0.33",5000)
-                val dataInput= DataInputStream(socket.getInputStream())
-                val dataOutputStream= DataOutputStream(socket.getOutputStream())
-                val input = editor.text.toString()
-                dataOutputStream.writeUTF(input)
-                val mensaje=dataInput.readUTF()
-                val txtResponse:TextView = findViewById(R.id.textResponse)
-                txtResponse.text=(mensaje)
+        try{
+            findViewById<Button>(R.id.compi_buttom).setOnClickListener{
+                Log.d("Mensaje", "Conectandose al sevidor")
+                Executors.newSingleThreadExecutor().execute{
+                    val editor: EditText = findViewById(R.id.compileInputTxt)
+                    println(InetAddress.getLocalHost())
+                    val socket = Socket("192.168.0.33",5000)
+
+                    val dataInput= DataInputStream(socket.getInputStream())
+                    val dataOutputStream= DataOutputStream(socket.getOutputStream())
+                    val input = editor.text.toString()
+                    dataOutputStream.writeUTF(input)
+                    val mensaje=dataInput.readUTF()
+                    val txtResponse:TextView = findViewById(R.id.textResponse)
+                   txtResponse.text=(mensaje)
+                    println("RECIBI ESTO: "+mensaje)
+                   /* val arrayWorld= compilerXml(mensaje)*/
+                    /*arrayWorld.forEach{
+                        println("Mov--> ${it.getInfo()}")
+                    }*/
+                }
             }
+        }catch (e: java.lang.Exception){
+            println("sin conexion")}
+
+    }
+    fun compilerXml(input: String): ArrayList<World> {
+        println("SI SI SI ")
+        val txtResponse:TextView = findViewById(R.id.textResponse)
+        val lexer =  LexXml(StringReader(input))
+        val pa= ParserXml(lexer);
+        val parser = pa.parse().value as ArrayList<World>
+        val str= ArrayList<String>()
+        if(parser.get(0).arrayBoard.size<1){
+            parser.forEach{
+                println("word ${it.getInfo()}")
+                str.add(it.getNames());
+            }
+
+
+            txtResponse.text=(str.toString())
+        }else{
+            txtResponse.text= parser.toString()
         }
+
+        return parser
+
     }
 }

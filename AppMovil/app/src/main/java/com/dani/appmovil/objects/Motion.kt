@@ -1,6 +1,6 @@
-package com.dani.appmovil.Objects
+package com.dani.appmovil.objects
 
-class Motion (val directMov:Int, val value:Int, val movePush: Boolean){
+data class Motion (val directMov:Int, val value:Int, val movePush: Boolean){
 
     fun getInfo(): String {
         return "type: ${this.directMov}, value: ${this.value}, is push?: ${this.movePush}\n"

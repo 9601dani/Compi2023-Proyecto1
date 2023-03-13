@@ -1,6 +1,4 @@
-package com.dani.appmovil.Objects
-
-import java.io.StringReader
+package com.dani.appmovil.objects
 
 class ParserHandle {
     fun compile (input: String) {

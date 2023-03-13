@@ -1,4 +1,4 @@
-package com.dani.appmovil.Objects
+package com.dani.appmovil.objects
 
 class TokenType {
     companion object{

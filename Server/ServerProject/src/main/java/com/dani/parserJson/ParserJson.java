@@ -353,12 +353,13 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                    }
 
                    public void syntax_error(Symbol s){
-                    converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids().toString())));
-
+                    converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids())));
+                       new Response(Response_E.NOTHING);
                    }
                    public void unrecovered_syntax_error(Symbol s){
-                   converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),(s.right+1),(s.left+1),"SINTACTICO","SE ESPERABA "+expected_token_ids().toString())));
-                   }
+                   converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),(s.right+1),(s.left+1),"SINTACTICO","SE ESPERABA "+expected_token_ids())));
+                       new Response(Response_E.NOTHING);
+                    }
                    public static World worldSingleton;
                        public static World getSingletonInstanceWorld() {
                            if (worldSingleton == null){

@@ -1,6 +1,6 @@
-package com.dani.appmovil.Objects;
+package com.dani.appmovil.objects;
 import java_cup.runtime.Symbol;
-import static com.dani.appmovil.Objects.ParserMovSym.*;
+import static com.dani.appmovil.objects.ParserMovSym.*;
 %%
 %public
 %class LexerMov

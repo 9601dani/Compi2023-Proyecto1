@@ -12,12 +12,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-import static com.dani.Main.VERSION;
+import static com.dani.Main.*;
 
 public class Converter {
-
+public static String MESSAGE_ERROR="";
     private FileXml file;
-    public  String converObjectToXml (WorldsModel worlds) throws IOException {
+    public  String converObjectToXml (WorldsModel worlds,boolean escribir) throws IOException {
             XmlMapper xmlMapper = new XmlMapper();
             xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
            /* String nombreArchivo = "xmlArch.xml";
@@ -25,7 +25,7 @@ public class Converter {
             File arch= new File(ubicacion+nombreArchivo);
             xmlMapper.writeValue(archivoXml ,World.class);
         FileOutputStream fos = new FileOutputStream(arch);*/
-        VERSION++;
+        if(escribir==true){VERSION++;}
         String xml = "<?xml version=\""+VERSION+"\" encoding=\"UTF-8\"?>\n";
         try {
             xml += xmlMapper.writeValueAsString(worlds);
@@ -35,13 +35,17 @@ public class Converter {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        file= new FileXml();
-        file.generateFileXml(xml);
+        if(escribir==true){
+            file= new FileXml();
+            file.generateFileXml(xml);
+        }
+
 
        // System.out.println(xml);
         return xml;
     }
     public  static String converObjectToXmlError (Error error) {
+        SIHAYERROR=true;
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
            /* String nombreArchivo = "xmlArch.xml";
@@ -59,10 +63,12 @@ public class Converter {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-         System.out.println(xml);
+        MESSAGE_ERROR=xml;
+         System.out.println(MESSAGE_ERROR);
         return xml;
     }
     public  String converObjectToXmlRequestWorld (NameWorld worlds) throws IOException {
+
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
            /* String nombreArchivo = "xmlArch.xml";
@@ -70,8 +76,8 @@ public class Converter {
             File arch= new File(ubicacion+nombreArchivo);
             xmlMapper.writeValue(archivoXml ,World.class);
         FileOutputStream fos = new FileOutputStream(arch);*/
-        VERSION++;
-        String xml = "<?xml version=\""+VERSION+"\" encoding=\"UTF-8\"?>\n";
+        VERSIONES++;
+        String xml = "<?xml version=\""+VERSIONES+"\" encoding=\"UTF-8\"?>\n";
         try {
             xml += xmlMapper.writeValueAsString(worlds);
             //System.out.println();
@@ -81,6 +87,7 @@ public class Converter {
             throw new RuntimeException(e);
         }
         // System.out.println(xml);
+
         return xml;
     }
 }

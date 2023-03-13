@@ -1,15 +1,13 @@
 package com.dani.appmovil.server
 
+import android.content.ContentValues.TAG
 import android.util.Log
-import android.widget.Button
-import com.dani.appmovil.R
-import java.io.DataInputStream
-import java.io.DataOutputStream
-import java.net.Socket
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
+import java.net.Inet4Address
+import java.net.InetAddress
+import java.net.NetworkInterface
+import java.util.*
 
-class ConexServer {
+class ConexServer() {
 
 
 
