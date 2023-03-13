@@ -264,29 +264,29 @@ producWorld ::= COMILLA NAME COMILLA DOS_PUNTOS COMILLA PALABRA:a1 COMILLA  {: g
                 | COMILLA COLS COMILLA DOS_PUNTOS  operacion1:a1   {: getSingletonInstanceWorld().setCols(a1.intValue()); :}
                 | COMILLA CONFIG COMILLA DOS_PUNTOS LLAVE_A config:a1 LLAVE_C   {: getSingletonInstanceWorld().setConfig(new ConfigWorld(getSingletonInstanceConfig().getBox_color(),getSingletonInstanceConfig().getBox_on_target_color(),getSingletonInstanceConfig().getTarget_color(),
                                                      getSingletonInstanceConfig().getBrick_color(), getSingletonInstanceConfig().getHall_color(), getSingletonInstanceConfig().getUndefined_color(), getSingletonInstanceConfig().getPlayer_color()));  :}
-                | COMILLA BOARD COMILLA DOS_PUNTOS L_CORCHETE configBoardArray:a1 R_CORCHETE  {: getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType()));  :}
-                | COMILLA BOXES COMILLA DOS_PUNTOS L_CORCHETE configBoxArray:a1 R_CORCHETE {: getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY()));  :}
-                | COMILLA TARGETS COMILLA DOS_PUNTOS L_CORCHETE configTargetArray:a1 R_CORCHETE{: getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :}
+                | COMILLA BOARD COMILLA DOS_PUNTOS L_CORCHETE configBoardArray:a1 R_CORCHETE  {:   :}
+                | COMILLA BOXES COMILLA DOS_PUNTOS L_CORCHETE configBoxArray:a1 R_CORCHETE {:  :}
+                | COMILLA TARGETS COMILLA DOS_PUNTOS L_CORCHETE configTargetArray:a1 R_CORCHETE{:  :}
                 | COMILLA PLAYER COMILLA DOS_PUNTOS LLAVE_A configPlayer:a1 LLAVE_C    {: getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY())); :}
                 /*|error:e{: syntax_error(); :} COMILLA*/;
 
 configBoardArray ::= configBoardArray COMA LLAVE_A  configBoard  LLAVE_C
                     | LLAVE_A  configBoard  LLAVE_C;
 
-configBoard ::= configBoard COMA posTB:a1  {: RESULT=a1; :}
-                |  posTB:a1  {: RESULT=a1; :};
+configBoard ::= configBoard COMA posTB:a1  {: getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType())); :}
+                |  posTB:a1  {:getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType())); :};
 
 configBoxArray ::= configBoxArray COMA LLAVE_A configBox LLAVE_C
                    | LLAVE_A configBox LLAVE_C;
-configBox ::= configBox COMA  posBox:a1 {: RESULT=a1; :}
+configBox ::= configBox COMA  posBox:a1 {:  getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY())); :}
               |  posBox:a1
-{: RESULT=a1; :}
+{:  getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY())); :}
 ;
 configTargetArray ::= configTargetArray COMA LLAVE_A configTarget LLAVE_C
                     | LLAVE_A configTarget LLAVE_C;
-configTarget ::= configTarget COMA posT:a1  {: RESULT=a1; :}
+configTarget ::= configTarget COMA posT:a1  {: getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :}
                 |  posT:a1
-{: RESULT=a1; :}
+{:getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :}
 ;
 
 configPlayer ::= configPlayer COMA posPlayer:a1  {: RESULT=a1; :}

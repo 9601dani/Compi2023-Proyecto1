@@ -25,9 +25,9 @@ public class World {
     /*objeto de esta clase*/
 
     public World() {
-        arrayBoard= new ArrayList<Board>();
-        arrayBoxes= new ArrayList<Box>();
-        arrayTarget= new ArrayList<Target>();
+        arrayBoard= new ArrayList<>();
+        arrayBoxes= new ArrayList<>();
+        arrayTarget= new ArrayList<>();
     }
 
     public World(String name, Integer rows, Integer cols, ConfigWorld config, ArrayList<Board> arrayBoard, ArrayList<Box> arrayBoxes, ArrayList<Target> arrayTarget, Player player) {

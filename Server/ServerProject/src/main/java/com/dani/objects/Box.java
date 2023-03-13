@@ -33,7 +33,7 @@ public class Box {
 
     @Override
     public String toString() {
-        return "Box{" +
+        return "{" +
                 "posX=" + posX +
                 ", posY=" + posY +
                 '}';

@@ -5,21 +5,21 @@ import java.io.Serializable;
 public class BoardModel implements Serializable {
     private Integer posX;
     private Integer posY;
-    private String type;
+    private Integer type;
 
     public BoardModel(Integer posX, Integer posY, Integer type) {
         this.posX = posX;
         this.posY = posY;
-        this.type = getType(type);
+        this.type = type;
     }
-    public String getType(Integer T) {
+  /*  public String getType(Integer T) {
         if(T==3){
             return "HALL";
         }else if(T==4){
             return "BRICK";
         }
         return "F";
-    }
+    }*/
 
     public BoardModel() {
     }
@@ -40,11 +40,11 @@ public class BoardModel implements Serializable {
         this.posY = posY;
     }
 
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 }

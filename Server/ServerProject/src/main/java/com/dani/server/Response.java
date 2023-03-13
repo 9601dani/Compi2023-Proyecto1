@@ -17,7 +17,7 @@ public class Response {
     public Response(Response_E typeRes, ArrayList<World> world) {
         this.typeRes = typeRes;
         this.world = world;
-        this.name=null;
+        this.name=name;
     }
 
     public Response(Response_E typeRes, String name) {

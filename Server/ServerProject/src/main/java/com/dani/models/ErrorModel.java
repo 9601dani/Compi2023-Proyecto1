@@ -3,7 +3,6 @@ package com.dani.models;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-@JacksonXmlRootElement(namespace = "", localName = "err")
 public class ErrorModel {
 
     private String lexema;

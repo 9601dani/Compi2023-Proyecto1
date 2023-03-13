@@ -33,7 +33,7 @@ public class Target {
 
     @Override
     public String toString() {
-        return "Target{" +
+        return "{" +
                 "posX=" + posX +
                 ", posY=" + posY +
                 '}';

@@ -1,15 +1,14 @@
 package com.dani.server;
 
 import com.dani.FileXml;
-import com.dani.models.NameWorld;
-import com.dani.models.WorldModelName;
+import com.dani.models.*;
+import com.dani.objects.Board;
 import com.dani.objects.World;
-import com.dani.models.WorldModel;
-import com.dani.models.WorldsModel;
 import com.dani.parserJson.Lexer;
 import com.dani.parserJson.ParserJson;
 import com.dani.parserXml.LexXml;
 import com.dani.parserXml.ParserXml;
+import com.dani.verifications.VWorld;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -92,7 +91,8 @@ public class Server {
         String datXml="";
         try {
             System.out.println("voy a parserJson:" + testString);
-            Response worldList = (Response) p.parse().value;
+            Response worldList =(Response) p.parse().value;
+            /*aqui va codigo sublime text*/
             if(SIHAYERROR==true){
                 SIHAYERROR=false;
                 datXml=MESSAGE_ERROR;
@@ -151,23 +151,25 @@ public class Server {
                     }catch(Exception e) {}
                     System.out.println("REGRESARE POR NOMBRE");
                 } else if (worldList.getTypeRes()== Response_E.REQUEST_NEW_WORLD) {
+                    System.out.println("sooooo\n"+ worldList.getWorld().toString());
                     System.out.println("algo aqui si");
                     System.out.println("-->");
                     String doc=new FileXml().readFile();
                     System.out.println("-->"+doc);
                     ArrayList<WorldsModel> listXml= new ArrayList<>();
                     ArrayList<WorldModel> listToXml= new ArrayList<>();
-                    if(doc!=""){
+                   /* if(doc!="" || doc!=null){
+                        System.out.printf("aqui es el nulo");
                         ArrayList<World> wor=compileXml(new FileXml().readFile());
-
                         //WorldModel.forEach(System.out::println);
                         for(int i=0; i<wor.size();i++){
                             listToXml.add(new WorldModel(wor.get(i).getName(),wor.get(i).getRows(),wor.get(i).getCols(),wor.get(i).getConfig(),
                                     wor.get(i).getArrayBoard(),wor.get(i).getArrayBoxes(),wor.get(i).getArrayTarget(),wor.get(i).getPlayer()));
                         }
-                    }
+                    }*/
+                    System.out.println(worldList.getWorld().size()+"--------------");
                     for (int i = 0; i < worldList.getWorld().size(); i++) {
-                        String elemento = String.valueOf(worldList.getWorld().get(i));
+                        /*String elemento = String.valueOf(worldList.getWorld().get(i));*/
                         if(VerificarWorld(listToXml,new WorldModel(worldList.getWorld().get(i).getName(),worldList.getWorld().get(i).getRows(),worldList.getWorld().get(i).getCols(),worldList.getWorld().get(i).getConfig(),
                                 worldList.getWorld().get(i).getArrayBoard(),worldList.getWorld().get(i).getArrayBoxes(),worldList.getWorld().get(i).getArrayTarget(),worldList.getWorld().get(i).getPlayer()))==false){
                             listToXml.add(new WorldModel(worldList.getWorld().get(i).getName(),worldList.getWorld().get(i).getRows(),worldList.getWorld().get(i).getCols(),worldList.getWorld().get(i).getConfig(),
@@ -176,8 +178,31 @@ public class Server {
                         /*converObjectToXml(worldList.get(i));*/
                     }
                     /*AQUI GUARDO EL MUNDO EN XML*/
-                    if(listXml.get(listXml.size()-1).getArrayWorld().size()<1){
-                        datXml+= new Converter().converObjectToXml(new WorldsModel(listToXml),true);
+                    boolean ms=false;
+                    /*VWorld veri= new VWorld();
+                    for(int i=0;i<listToXml.size();i++){
+                        if(veri.verificarWorldNo(new World(worldList.getWorld().get(i).getName(),worldList.getWorld().get(i).getRows(),worldList.getWorld().get(i).getCols()
+                                ,worldList.getWorld().get(i).getConfig(),worldList.getWorld().get(i).getArrayBoard(),worldList.getWorld().get(i).getArrayBoxes(),
+                                worldList.getWorld().get(i).getArrayTarget(),worldList.getWorld().get(i).getPlayer()) )==true){
+                            ms=true;
+                            break;
+                        }else{
+
+                        }
+                    }*/
+                    System.out.println("--> mostrare");
+                    System.out.println(listToXml);
+                    if(ms==true){
+                        System.out.println("si hay error en verrificaciones");
+                        return "HAY ERRORES EN VERIFICACIONES";
+                    }else{
+                        System.out.println("no hay error\n"+listToXml.toString());
+                        datXml+=new Converter().converObjectToXml(new WorldsModel(listToXml),true);
+                        /*if(listXml.get(listXml.size()).getArrayWorld().size()<1){
+                            datXml+= new Converter().converObjectToXml(new WorldsModel(listToXml),true);
+                        }else{
+                            datXml+= new Converter().converObjectToXml(new WorldsModel(listToXml),true);
+                        }*/
                     }
 
                 }
@@ -185,13 +210,30 @@ public class Server {
                 //System.out.printf(datXml);
                 return datXml;
             }
-
         } catch (Exception e) {
-            /*System.out.println("algo fallo en json");
-            e.printStackTrace();*/
+            /*System.out.println("algo fallo en json");*/
+            e.printStackTrace();
             /*enviarMensaje(datXml);*/
             return datXml;
         }
+
+    }
+   /* public static ArrayList<Board> parsearABoard(ArrayList<BoardModel> boardModel){
+        ArrayList<Board> dvArray= new ArrayList<>();
+        System.out.println(boardModel.size()+"size board");
+        for(int i=0; i<boardModel.size();i++){
+            dvArray.add(new Board(boardModel.get(i).getPosX(),boardModel.get(i).getPosY(),mandarType(boardModel.get(i).getType())));
+            System.out.println("pasando boards");
+        }
+        return dvArray;
+    }*/
+    public static Integer  mandarType(String st){
+        if(st.equals("HALL")){
+            return 4;
+        }else if(st.equals("BRICK")){
+            return 3;
+        }
+        return 0;
 
     }
     public static ArrayList<World> compileXml(String testString){

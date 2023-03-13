@@ -298,7 +298,7 @@ public class Main {
                 "\t</world>\n" +
                  "</worlds>";
         //System.out.println(testString2);
-       String testString4=" {\n \"name\": \"nombrePrueba\",\n" +
+       String testString4=" {\n \"name\": \"nombrePrueba3\",\n" +
                "  \"cols\": 4,\n" +
                "  \"rows\": 0,\n" +
                 "  \"config\": {\n" +
@@ -336,6 +336,10 @@ public class Main {
                 "      \"posY\": \"3 * 2 - 5\",\n" +
                 "      \"type\": \"HALL\"\n" +
                 "    },\n" +
+               "{\"posX\": \"3\",\n" +
+               "      \"posY\": \"2\",\n" +
+               "      \"type\": \"HALL\"\n" +
+               "    },\n" +
                 "    {\n" +
                 "      \"posX\": 1,\n" +
                 "      \"posY\": \"2 * 1\",\n" +
@@ -349,7 +353,7 @@ public class Main {
                 "    },\n" +
                 "    {\n" +
                 "      \"posX\": 2,\n" +
-                "      \"posY\": \"1 + 1\"\n" +
+                "      \"posY\": \"1+1\"\n" +
                 "    }\n" +
                 "  ],\n" +
                 "  \"targets\": [\n" +
@@ -367,79 +371,261 @@ public class Main {
                 "    \"posY\": \"(5 + 2) / (3 + 4)\"\n" +
                 "  }\n" +
                 "}";
-        String testString5=" {\n \"name\": \"nombrePrueba2\",\n" +
-                "  \"cols\": 4,\n" +
-                "  \"rows\": 10,\n" +
+       String testString6="{\n" +
+               "   \"name\": \"tatoine\",\n" +
+               "   \"rows\": \"5 * 5 - 20\",\n" +
+               "   \"cols\": \"10 / 5 + 2\",\n" +
+               "   \"config\": {\n" +
+               "       \"box_color\": \"#ffff00\",\n" +
+               "       \"box_on_target_color\": \"#fe0002\",\n" +
+               "       \"target_color\": \"#d6fe0a\",\n" +
+               "       \"brick_color\": \"#bdbebf\",\n" +
+               "       \"hall_color\": \"#0001ff\",\n" +
+               "       \"undefined_color\": \"#303030\",\n" +
+               "       \"player_color\": \"#ff00f7\"\n" +
+               "   },\n" +
+               "   \"board\": [\n" +
+               "       {\n" +
+               "           \"posX\": 0,\n" +
+               "           \"posY\": \"2 - 2\",\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 0,\n" +
+               "           \"posY\": \"3 / 3\",\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 0,\n" +
+               "           \"posY\": \"2 * 1\",\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 0,\n" +
+               "           \"posY\": \"9 / 3 * 1\",\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 0,\n" +
+               "           \"posY\": \"10 / 2 - 1\",\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": \"2 / 2\",\n" +
+               "           \"posY\": 0,\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": \"10 - 3 * 3\",\n" +
+               "           \"posY\": \"3 * 2 - 5\",\n" +
+               "           \"type\": \"HALL\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 1,\n" +
+               "           \"posY\": \"2 * 1\",\n" +
+               "           \"type\": \"HALL\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 1,\n" +
+               "           \"posY\": \"12 / 4 * 1\",\n" +
+               "           \"type\": \"HALL\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": \"17 - 4 * 4\",\n" +
+               "           \"posY\": \"10 / 2 - 1\",\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": \"2 / 2 + 1\",\n" +
+               "           \"posY\": 0,\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": \"10 - 2 * 4\",\n" +
+               "           \"posY\": \"3 * 2 - 5\",\n" +
+               "           \"type\": \"HALL\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 2,\n" +
+               "           \"posY\": \"2 * 1\",\n" +
+               "           \"type\": \"HALL\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 2,\n" +
+               "           \"posY\": \"12 / 4 * 1\",\n" +
+               "           \"type\": \"HALL\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": \"20 - 6 * 3\",\n" +
+               "           \"posY\": \"10 / 2 - 1\",\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 3,\n" +
+               "           \"posY\": 0,\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 3,\n" +
+               "           \"posY\": \"5 / 5 * 6 - 5\",\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 3,\n" +
+               "           \"posY\": \"2 * 1\",\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": \"9 / 3\",\n" +
+               "           \"posY\": \"9 / 3 * 1\",\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 3,\n" +
+               "           \"posY\": \"10 / 2 - 1\",\n" +
+               "           \"type\": \"BRICK\"\n" +
+               "       }\n" +
+               "   ],\n" +
+               "   \"boxes\": [\n" +
+               "       {\n" +
+               "           \"posX\": 2,\n" +
+               "           \"posY\": 1\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": 2,\n" +
+               "           \"posY\": \"1 + 1\"\n" +
+               "       }\n" +
+               "   ],\n" +
+               "   \"targets\": [\n" +
+               "       {\n" +
+               "           \"posX\": \"4 / 2 + 1\",\n" +
+               "           \"posY\": 1\n" +
+               "       },\n" +
+               "       {\n" +
+               "           \"posX\": \"4 / 2 + 1\",\n" +
+               "           \"posY\": \"1 * 1 + 1\"\n" +
+               "       }\n" +
+               "   ],\n" +
+               "   \"player\": {\n" +
+               "       \"posX\": 1,\n" +
+               "       \"posY\": \"(5 + 2) / (3 + 4)\"\n" +
+               "   }\n" +
+               "}";
+        String testString5="{\n" +
+                "  \"name\": \"ta_1\",\n" +
                 "  \"config\": {\n" +
-                "    \"box_color\": \"#ffff00\",\n" +
-                "    \"box_on_target_color\": \"#fe0002\",\n" +
-                "    \"target_color\": \"#d6fe0a\",\n" +
-                "    \"brick_color\": \"#bdbebf\",\n" +
-                "    \"hall_color\": \"#0001ff\",\n" +
-                "    \"undefined_color\": \"#303030\",\n" +
-                "    \"player_color\": \"#ff00f7\"\n" +
+                "    \"box_color\": \"#123ff4\",\n" +
+                "    \"target_color\": \"#09ffff\",\n" +
+                "    \"player_color\": \"#ffff01\"\n" +
+                "  },\n" +
+                "  \"player\":  {\n" +
+                "    \"posX\": \"5*0\",\n" +
+                "    \"posY\": 1\n" +
                 "  },\n" +
                 "  \"board\": [\n" +
                 "    {\n" +
                 "      \"posX\": 0,\n" +
-                "      \"posY\": \"2 * 1\",\n" +
+                "      \"posY\": \"2*5 - 10\",\n" +
                 "      \"type\": \"BRICK\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"posX\": 0,\n" +
-                "      \"posY\": \"9 / 3 * 1\",\n" +
+                "      \"posY\": \"1\",\n" +
                 "      \"type\": \"BRICK\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"posX\": 0,\n" +
-                "      \"posY\": \"10 / 2 - 1\",\n" +
+                "      \"posY\": \"10/5\",\n" +
                 "      \"type\": \"BRICK\"\n" +
                 "    },\n" +
                 "    {\n" +
-                "      \"posX\": \"2 / 2\",\n" +
-                "      \"posY\": 0,\n" +
+                "      \"posX\": 0,\n" +
+                "      \"posY\": 3,\n" +
                 "      \"type\": \"BRICK\"\n" +
                 "    },\n" +
                 "    {\n" +
-                "      \"posX\": \"10 - 3 * 3\",\n" +
-                "      \"posY\": \"3 * 2 - 5\",\n" +
+                "      \"posX\": \"0+1\",\n" +
+                "      \"posY\": \"2*5 - 10\",\n" +
+                "      \"type\": \"BRICK\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"posX\": \"5-4*1\",\n" +
+                "      \"posY\": \"1\",\n" +
                 "      \"type\": \"HALL\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"posX\": 1,\n" +
-                "      \"posY\": \"2 * 1\",\n" +
+                "      \"posY\": \"10/5\",\n" +
                 "      \"type\": \"HALL\"\n" +
-                "    }\n" +
-                "  ],\n" +
-                "  \"boxes\": [\n" +
+                "    },\n" +
                 "    {\n" +
-                "      \"posX\": 2,\n" +
-                "      \"posY\": 1\n" +
+                "      \"posX\": \"10/2-4\",\n" +
+                "      \"posY\": 3,\n" +
+                "      \"type\": \"BRICK\"\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"posX\": 2,\n" +
-                "      \"posY\": \"1 + 1\"\n" +
+                "      \"posY\": \"2*5 - 10\",\n" +
+                "      \"type\": \"BRICK\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"posX\": 2,\n" +
+                "      \"posY\": \"1*1\",\n" +
+                "      \"type\": \"HALL\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"posX\": 2,\n" +
+                "      \"posY\": \"10/5\",\n" +
+                " \"type\": \"HALL\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"posX\": 2,\n" +
+                "      \"posY\": 3,\n" +
+                "      \"type\": \"BRICK\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"posX\": 3,\n" +
+                "      \"posY\": 0,\n" +
+                "      \"type\": \"BRICK\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"posX\": \"4*1-1\",\n" +
+                "      \"posY\": \"1\",\n" +
+                "      \"type\": \"BRICK\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"posX\": 3,\n" +
+                "      \"posY\": \"20-15-3\",\n" +
+                "      \"type\": \"BRICK\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"posX\": 3,\n" +
+                "      \"posY\": \"3/1\",\n" +
+                "      \"type\": \"BRICK\"\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"rows\": \"2*2\",\n" +
+                "  \"cols\": \"16/8*2\",\n" +
+                "  \"boxes\": [\n" +
+                "    {\n" +
+                "      \"posX\": 1,\n" +
+                "      \"posY\": \"50-25*2+2\"\n" +
+                "    },{\n" +
+                "      \"posX\": 2,\n" +
+                "      \"posY\": 2\n" +
                 "    }\n" +
                 "  ],\n" +
                 "  \"targets\": [\n" +
                 "    {\n" +
-                "      \"posX\": \"4 / 2 + 1\",\n" +
-                "      \"posY\": 1\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"posX\": \"4 / 2 + 1\",\n" +
-                "      \"posY\": \"1 * 1 + 1\"\n" +
+                "      \"posX\": 2,\n" +
+                "      \"posY\": 2\n" +
                 "    }\n" +
-                "  ],\n" +
-                "  \"player\": {\n" +
-                "    \"posX\": 1,\n" +
-                "    \"posY\": \"(5 + 2) / (3 + 4)\"\n" +
-                "  }\n" +
+                "  ]\n" +
                 "}";
         /*compileJson("{\"worlds\":\"all\"}");*/
         /*compileJson("{\"world\":\"nombrePrueba\"}");*/
         /*compileJson(testString5);*/
-        /*compileJson(testString4);*/
+        compileJson(testString5);
         /*compileXml(testString);*/
        /* LexXml lexer = new LexXml(new StringReader(testString));
         try{

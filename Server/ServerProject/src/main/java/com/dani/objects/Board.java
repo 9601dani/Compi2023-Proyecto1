@@ -52,7 +52,7 @@ public class Board {
 
     @Override
     public String toString() {
-        return "Board{" +
+        return "{" +
                 "posX=" + posX +
                 ", posY=" + posY +
                 ", type=" + type +
