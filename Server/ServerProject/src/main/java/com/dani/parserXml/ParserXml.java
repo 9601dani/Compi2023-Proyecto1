@@ -6,6 +6,7 @@
 package com.dani.parserXml;
 
 import com.dani.Token;
+
 import java.util.ArrayList;
 import com.dani.objects.*;
 
@@ -464,6 +465,7 @@ class CUP$ParserXml$actions {
                                                                getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer());
                 n1.add(a1);
                 RESULT=n1;
+                getSingletonInstanceWorld().clean();
                 
               CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldPro",54, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
             }
@@ -480,7 +482,7 @@ class CUP$ParserXml$actions {
              RESULT= new ArrayList<World>();
              RESULT.add(new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
                                      getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer()));
-                                                                                                  
+                                                               getSingletonInstanceWorld().clean();
               CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldPro",54, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
             }
           return CUP$ParserXml$result;
@@ -559,7 +561,8 @@ class CUP$ParserXml$actions {
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
 		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType()));  
+		 getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType()));
+                                                    getSingletonInstanceBoard().clean();
               CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
             }
           return CUP$ParserXml$result;
@@ -571,7 +574,8 @@ class CUP$ParserXml$actions {
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
 		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY()));  
+		 getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY()));
+                                                       getSingletonInstanceBox().clean(); 
               CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
             }
           return CUP$ParserXml$result;
@@ -583,7 +587,8 @@ class CUP$ParserXml$actions {
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
 		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); 
+		 getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY()));
+                                                        getSingletonInstanceBoard().clean();
               CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
             }
           return CUP$ParserXml$result;

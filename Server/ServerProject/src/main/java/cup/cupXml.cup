@@ -1,6 +1,5 @@
 package com.dani;
 import java_cup.runtime.*;
-import com.dani.LexXml;
 import java.util.ArrayList;
 import com.dani.objects.*;
 
@@ -161,12 +160,13 @@ worldPro ::=  worldPro:n1 worldA atri:a1 worldC
                                                                getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer());
                 n1.add(a1);
                 RESULT=n1;
+                getSingletonInstanceWorld().clean();
                 :}
             | worldA atri:a1 worldC {:
              RESULT= new ArrayList<World>();
              RESULT.add(new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
                                      getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer()));
-                                                                                                  :};
+                                                               getSingletonInstanceWorld().clean();:};
 atri ::= atri producWorld  {:RESULT= getSingletonInstanceWorld(); :}
         | producWorld  {:RESULT= getSingletonInstanceWorld(); :};
 
@@ -175,10 +175,16 @@ producWorld ::= nameA PALABRA:a1 nameC        {: getSingletonInstanceWorld().set
                 | colsA ENTERO:a1 colsC       {: getSingletonInstanceWorld().setCols(Integer.parseInt(a1.getLexeme())); :}
                 | configA config:a1 configC          {: getSingletonInstanceWorld().setConfig(new ConfigWorld(getSingletonInstanceConfig().getBox_color(),getSingletonInstanceConfig().getBox_on_target_color(),getSingletonInstanceConfig().getTarget_color(),
                                                      getSingletonInstanceConfig().getBrick_color(), getSingletonInstanceConfig().getHall_color(), getSingletonInstanceConfig().getUndefined_color(), getSingletonInstanceConfig().getPlayer_color()));  :}
-                | boardA configBoard:a1 boardC    {: getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType()));  :}
-                | boxA configBox:a1 boxC          {: getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY()));  :}
-                | targetA configTarget:a1 targetC {: getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :}
-                | playerA configPlayer:a1 playerC    {: getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY())); :};
+                | boardA configBoard:a1 boardC    {: getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType()));
+                                                    getSingletonInstanceBoard().clean();:}
+
+                | boxA configBox:a1 boxC          {: getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY()));
+                                                       getSingletonInstanceBox().clean(); :}
+                | targetA configTarget:a1 targetC {: getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY()));
+                                                        getSingletonInstanceBoard().clean();:}
+                | playerA configPlayer:a1 playerC    {: getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY()));
+                                                    getSingletonInstancePlayer().clean(); :};
+
 configBoard ::= configBoard posTB:a1 {: RESULT=a1; :}
                 | posTB:a1 {: RESULT=a1; :};
 configBox ::= configBox posBox:a1 {: RESULT=a1; :}

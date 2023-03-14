@@ -47,4 +47,13 @@ public class BoardModel implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "posX=" + posX +
+                ", posY=" + posY +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

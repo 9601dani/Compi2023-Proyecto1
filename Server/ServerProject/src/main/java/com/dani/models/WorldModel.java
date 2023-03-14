@@ -115,4 +115,18 @@ public class WorldModel implements Serializable {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "name='" + name + '\'' +
+                ", rows=" + rows +
+                ", cols=" + cols +
+                ", config=" + config +
+                ", board=" + board +
+                ", boxes=" + boxes +
+                ", targets=" + targets +
+                ", player=" + player +
+                '}';
+    }
 }

@@ -58,4 +58,10 @@ public class Board {
                 ", type=" + type +
                 '}';
     }
+    public void clean(){
+        this.posX=null;
+        this.posY=null;
+        this.type=null;
+
+    }
 }

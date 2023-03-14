@@ -38,4 +38,9 @@ public class Box {
                 ", posY=" + posY +
                 '}';
     }
+    public void clean(){
+        this.posX=null;
+        this.posY=null;
+
+    }
 }

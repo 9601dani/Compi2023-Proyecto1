@@ -512,7 +512,7 @@ public class Main {
                "   }\n" +
                "}";
         String testString5="{\n" +
-                "  \"name\": \"ta_1\",\n" +
+                "  \"name\": \"ta_15\",\n" +
                 "  \"config\": {\n" +
                 "    \"box_color\": \"#123ff4\",\n" +
                 "    \"target_color\": \"#09ffff\",\n" +

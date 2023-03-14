@@ -90,4 +90,14 @@ public class ConfigWorld {
                 ", player_color='" + player_color + '\'' +
                 '}';
     }
+    public void clean(){
+        this.box_color=null;
+        this.box_on_target_color=null;
+        this.target_color=null;
+        this.brick_color=null;
+        this.hall_color=null;
+        this.undefined_color=null;
+        this.player_color=null;
+
+    }
 }

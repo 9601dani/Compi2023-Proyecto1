@@ -38,4 +38,8 @@ public class Target {
                 ", posY=" + posY +
                 '}';
     }
+    public void clean (){
+        this.posX=null;
+        this.posY=null;
+    }
 }

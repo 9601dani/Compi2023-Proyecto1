@@ -91,4 +91,28 @@ public class VWorld {
             }
             return false;
     }
+    public static void configDefecto(ConfigWorld config){
+        if(config.getBox_color()!=null){}else{
+            config.setBox_color("ffff00");
+        }
+        if(config.getBox_on_target_color()!=null){}else{
+            config.setBox_on_target_color("fe0002");
+        }
+        if( config.getTarget_color()!=null){}else{
+            config.setTarget_color("d6fe0a");
+        }
+        if(config.getBrick_color()!=null){}else{
+            config.setBrick_color("bdbebf");
+        }
+        if(config.getHall_color()!=null){}else{
+            config.setHall_color("0001ff");
+        }
+        if(config.getUndefined_color()!=null){}else{
+            config.setUndefined_color("303030");
+        }
+        if(config.getPlayer_color()!=null){}else{
+            config.setPlayer_color("ff00f7");
+        }
+    }
+
 }

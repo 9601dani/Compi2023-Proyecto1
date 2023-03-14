@@ -6,11 +6,15 @@
 package com.dani.parserJson;
 
 import com.dani.Token;
+import com.dani.models.Error;
+import com.dani.models.ErrorModel;
 import java_cup.runtime.*;
 import com.dani.objects.*;
 import com.dani.server.Response;
 import com.dani.server.Response_E;
 import java.util.ArrayList;
+
+import static com.dani.server.Converter.converObjectToXmlError;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -348,11 +352,11 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                    }
 
                    public void syntax_error(Symbol s){
-                  /*  converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids())));*/
+                    converObjectToXmlError(new Error(new ErrorModel( s.value.toString(),s.right,s.left+1,"SINTACTICO","SE ESPERABA")));
                     new Response(Response_E.NOTHING);
                    }
                    public void unrecovered_syntax_error(Symbol s){
-                  /* converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids())));*/
+                   converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids())));
                    new Response(Response_E.NOTHING);
                    }
                    public static World worldSingleton;

@@ -32,4 +32,14 @@ public class FileXml {
     }
     private File getFileXml(){return new File(PATH);}
 
+    public static FileXml xmlFile;
+    public FileXml getSingletonInstanceFile() {
+        if (xmlFile == null){
+            xmlFile = new FileXml();
+        }
+        else{
+            /* System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase World");*/
+        }
+        return xmlFile;
+    }
 }

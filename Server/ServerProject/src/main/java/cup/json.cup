@@ -4,6 +4,8 @@ import com.dani.objects.*;
 import com.dani.server.Response;
 import com.dani.server.Response_E;
 import java.util.ArrayList;
+import com.dani.models.Error;
+import com.dani.models.ErrorModel;
 class ParserJson;
 
 parser code {:

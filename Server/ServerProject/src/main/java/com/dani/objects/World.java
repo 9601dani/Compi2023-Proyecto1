@@ -122,4 +122,14 @@ public class World {
                 ", player=" + player +
                 '}';
     }
+    public void clean(){
+        this.name=null;
+        this.rows=null;
+        this.cols=null;
+        this.config=null;
+        this.arrayBoard=new ArrayList<>();
+        this.arrayBoxes=new ArrayList<>();
+        this.arrayTarget=new ArrayList<>();
+        this.player=null;
+    }
 }

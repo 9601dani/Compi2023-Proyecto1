@@ -35,4 +35,8 @@ public class Player {
                 ", posY=" + posY +
                 '}';
     }
+    public void clean (){
+        this.posX=null;
+        this.posY=null;
+    }
 }
