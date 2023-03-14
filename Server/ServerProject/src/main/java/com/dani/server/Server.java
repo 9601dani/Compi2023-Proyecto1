@@ -7,6 +7,7 @@ import com.dani.parserJson.Lexer;
 import com.dani.parserJson.ParserJson;
 import com.dani.parserXml.LexXml;
 import com.dani.parserXml.ParserXml;
+import com.dani.verifications.VWorld;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -177,17 +178,17 @@ public class Server {
                     }
                     /*AQUI GUARDO EL MUNDO EN XML*/
                     boolean ms=false;
-                    /*VWorld veri= new VWorld();
-                    for(int i=0;i<listToXml.size();i++){
-                        if(veri.verificarWorldNo(new World(worldList.getWorld().get(i).getName(),worldList.getWorld().get(i).getRows(),worldList.getWorld().get(i).getCols()
-                                ,worldList.getWorld().get(i).getConfig(),worldList.getWorld().get(i).getArrayBoard(),worldList.getWorld().get(i).getArrayBoxes(),
-                                worldList.getWorld().get(i).getArrayTarget(),worldList.getWorld().get(i).getPlayer()) )==true){
+                    VWorld veri= new VWorld();
+
+                        if(veri.verificarWorldNo(new World(worldList.getWorld().get(0).getName(),worldList.getWorld().get(0).getRows(),worldList.getWorld().get(0).getCols()
+                                ,worldList.getWorld().get(0).getConfig(),worldList.getWorld().get(0).getArrayBoard(),worldList.getWorld().get(0).getArrayBoxes(),
+                                worldList.getWorld().get(0).getArrayTarget(),worldList.getWorld().get(0).getPlayer()) )==true){
                             ms=true;
-                            break;
+
                         }else{
 
                         }
-                    }*/
+
                     /*AQUI EL ERROR............................*/
                     System.out.println("--> mostrare");
                     for(int i=0; i<listToXml.size();i++){
@@ -241,10 +242,15 @@ public class Server {
     public static ArrayList<World> compileXml(String testString){
         ParserXml p = new ParserXml(new LexXml(new StringReader(testString)));
         try {
-            System.out.println("voy a parser");
-            ArrayList<World>  world = (ArrayList<World>) p.parse().value;
-            world.forEach(System.out::println);
-            return world;
+            if(testString.equals("")){
+                return new ArrayList<World>();
+            }else{
+                System.out.println("voy a parser");
+                ArrayList<World>  world = (ArrayList<World>) p.parse().value;
+                world.forEach(System.out::println);
+                return world;
+            }
+
 
         } catch (Exception e) {
             System.out.println("algo fallo");

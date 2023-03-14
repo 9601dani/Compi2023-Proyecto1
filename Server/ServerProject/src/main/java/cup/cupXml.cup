@@ -181,7 +181,7 @@ producWorld ::= nameA PALABRA:a1 nameC        {: getSingletonInstanceWorld().set
                 | boxA configBox:a1 boxC          {: getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY()));
                                                        getSingletonInstanceBox().clean(); :}
                 | targetA configTarget:a1 targetC {: getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY()));
-                                                        getSingletonInstanceBoard().clean();:}
+                                                        getSingletonInstanceTarget().clean();:}
                 | playerA configPlayer:a1 playerC    {: getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY()));
                                                     getSingletonInstancePlayer().clean(); :};
 

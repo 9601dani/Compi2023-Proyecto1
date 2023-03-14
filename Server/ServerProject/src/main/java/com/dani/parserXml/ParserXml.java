@@ -588,7 +588,7 @@ class CUP$ParserXml$actions {
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
 		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
 		 getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY()));
-                                                        getSingletonInstanceBoard().clean();
+                                                        getSingletonInstanceTarget().clean();
               CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
             }
           return CUP$ParserXml$result;
@@ -600,7 +600,8 @@ class CUP$ParserXml$actions {
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
 		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
 		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY())); 
+		 getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY()));
+                                                    getSingletonInstancePlayer().clean(); 
               CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
             }
           return CUP$ParserXml$result;

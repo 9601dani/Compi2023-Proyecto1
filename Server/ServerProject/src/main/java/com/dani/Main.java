@@ -372,7 +372,7 @@ public class Main {
                 "  }\n" +
                 "}";
        String testString6="{\n" +
-               "   \"name\": \"tatoine\",\n" +
+               "   \"name\": \"tatoine2\",\n" +
                "   \"rows\": \"5 * 5 - 20\",\n" +
                "   \"cols\": \"10 / 5 + 2\",\n" +
                "   \"config\": {\n" +
@@ -512,7 +512,7 @@ public class Main {
                "   }\n" +
                "}";
         String testString5="{\n" +
-                "  \"name\": \"ta_15\",\n" +
+                "  \"name\": \"ta_20\",\n" +
                 "  \"config\": {\n" +
                 "    \"box_color\": \"#123ff4\",\n" +
                 "    \"target_color\": \"#09ffff\",\n" +
@@ -612,13 +612,13 @@ public class Main {
                 "      \"posY\": \"50-25*2+2\"\n" +
                 "    },{\n" +
                 "      \"posX\": 1,\n" +
-                "      \"posY\": 2\n" +
+                "      \"posY\": 3\n" +
                 "    }\n" +
                 "  ],\n" +
                 "  \"targets\": [\n" +
                 "    {\n" +
                 "      \"posX\": 2,\n" +
-                "      \"posY\": 2\n" +
+                "      \"posY\": 1\n" +
                 "    }\n" +
                 "  ]\n }";
         /*compileJson("{\"worlds\":\"all\"}");*/
