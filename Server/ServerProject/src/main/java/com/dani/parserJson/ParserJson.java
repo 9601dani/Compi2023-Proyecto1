@@ -6,15 +6,15 @@
 package com.dani.parserJson;
 
 import com.dani.Token;
-import com.dani.models.Error;
 import com.dani.models.ErrorModel;
+import com.dani.models.ErrorType;
 import java_cup.runtime.*;
 import com.dani.objects.*;
 import com.dani.server.Response;
 import com.dani.server.Response_E;
 import java.util.ArrayList;
 
-import static com.dani.server.Converter.converObjectToXmlError;
+import static com.dani.Main.erroForClient;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -351,14 +351,81 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                        super(lexer);
                    }
 
-                   public void syntax_error(Symbol s){
-                    converObjectToXmlError(new Error(new ErrorModel( s.value.toString(),s.right,s.left+1,"SINTACTICO","SE ESPERABA")));
+                   public Symbol scan() throws Exception {
+                               Symbol symbol = this.getScanner().next_token();
+                               if (symbol == null) {
+                                   return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
+                               }
+
+                               while(symbol != null && symbol.sym == ParserJsonSym.SYM) {
+                                   this.report_expected_token_ids();
+                                   System.out.println("Ingorando: " + symbol.value.toString());
+                                   Token token = (Token) symbol.value;
+                                   erroForClient.add(new ErrorModel(token.getLexeme(),token.getLine(),token.getColumn(), ErrorType.LEXICO,"No existe esta cadena en el lenguaje"));
+                                   symbol = this.getScanner().next_token();
+                               }
+
+                               if (symbol == null) {
+                                   return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
+                               }
+
+                               return symbol;
+                       }
+                       public void syntax_error(Symbol cur_token) {
+                               Token token = (Token) cur_token.value;
+
+                               if (cur_token.sym == ParserJsonSym.EOF) {
+                       //          String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
+                                   String er = "Simbolo inesperado";
+                                   erroForClient.add(new ErrorModel("Fin del archivo", token.getLine(),token.getColumn(), ErrorType.SINTACTICO,er));
+                                   System.out.println(er);
+                               } else {
+                                   String er = "Simbolo inesperado";
+                                   erroForClient.add(new ErrorModel(token.getLexeme(), token.getLine(), token.getColumn(),ErrorType.SINTACTICO,er));
+
+                                   System.out.println(er);
+                               }
+                           }
+
+                           public void unrecovered_syntax_error(Symbol cur_token) {
+                               if (cur_token.sym == ParserJsonSym.EOF) {
+                                   Token tok = (Token) cur_token.value;
+                                   String er = "No se puede recuperar el error, ya no hay mas tokens";
+                                   erroForClient.add(new ErrorModel("FIN ARCHIVO", tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
+                                   System.out.println(er);
+                               } else {
+                                   Token tok = (Token) cur_token.value;
+                                   //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
+                                   String er = "no se puede recuperar el error";
+                                   erroForClient.add(new ErrorModel(tok.getLexeme(), tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
+                                   System.out.println(er);
+                               }
+                           }
+                                       /*public Symbol scan() throws Exception{
+                                           Symbol sym= this.getScanner().next_token();
+                                           if(sym == null){
+                                               return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
+                                           }
+                                           while(sym != null && sym.sym== parse().SYM){
+                                               this.report_expected_token_ids();
+                                               System.out.println("ignorando : "+ sym.value.toString());
+                                               sym= this.getScanner().next_token();
+                                           }
+                                           if(sym== null){
+                                               return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
+                                           }
+                                           return sym;
+                                       }*/
+
+                   /*public void syntax_error(Symbol s){
+
+                    converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids())));
                     new Response(Response_E.NOTHING);
                    }
                    public void unrecovered_syntax_error(Symbol s){
                    converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids())));
                    new Response(Response_E.NOTHING);
-                   }
+                   }*/
                    public static World worldSingleton;
                        public static World getSingletonInstanceWorld() {
                            if (worldSingleton == null){
@@ -476,7 +543,7 @@ class CUP$ParserJson$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
 		Token a = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
-		RESULT=new Response(Response_E.REQUEST_ALL_WORLDS);
+		RESULT=new Response(Response_E.REQUEST_ALL_WORLDS,null,null,null);
                                                                            System.out.println("mandare todos los mundos");  
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("inic",21, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
@@ -489,7 +556,7 @@ class CUP$ParserJson$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
 		Token a = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
-		RESULT=new Response(Response_E.REQUEST_FOR_NAME,a.getLexeme());
+		RESULT=new Response(Response_E.REQUEST_FOR_NAME,null,a.getLexeme(),null);
                                                                             System.out.println("mandare el mundo pedido " +a.getLexeme());  
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("inic",21, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
@@ -503,7 +570,7 @@ class CUP$ParserJson$actions {
 		int aright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		ArrayList<World> a = (ArrayList<World>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
 		
-                    RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a);
+                    RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a,null,null);
                      /*RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a);*/
                         
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("inic",21, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);

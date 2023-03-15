@@ -39,6 +39,7 @@ public class ParserJsonSym {
   public static final int PLAYER = 14;
   public static final int DECIMAL = 15;
   public static final int PALABRA = 5;
+  public static final int SYM = 47;
   public static final int error = 1;
   public static final int COMILLA = 30;
   public static final int COMA = 18;
@@ -102,7 +103,8 @@ public class ParserJsonSym {
   "PUNTO_COMA",
   "WORLDS",
   "WORLD",
-  "ALL"
+  "ALL",
+  "SYM"
   };
 }
 

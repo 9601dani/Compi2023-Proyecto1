@@ -26,6 +26,34 @@ public class Token {
         return tokenType;
     }
 
+    public Object getGetTokenType() {
+        return getTokenType;
+    }
+
+    public void setGetTokenType(Object getTokenType) {
+        this.getTokenType = getTokenType;
+    }
+
+    public void setTokenType(int tokenType) {
+        this.tokenType = tokenType;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    public int getLine() {
+        return line;
+    }
+
+    public void setLine(int line) {
+        this.line = line;
+    }
+
     @Override
   /*  public String toString() {
         return "Token{" +
@@ -35,6 +63,7 @@ public class Token {
                 ", line=" + line +
                 '}' + "\n";
     }*/
+
     public String toString() {
         return lexeme;
     }

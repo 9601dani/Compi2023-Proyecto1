@@ -1,5 +1,6 @@
 package com.dani.server;
 
+import com.dani.models.Error;
 import com.dani.objects.World;
 
 import java.util.ArrayList;
@@ -8,7 +9,16 @@ public class Response {
         private Response_E typeRes;
         private ArrayList<World> world;
         private String name;
-    public Response(Response_E typeRes) {
+        private Error errs;
+
+    public Response(Response_E typeRes, ArrayList<World> world, String name, Error errs) {
+        this.typeRes = typeRes;
+        this.world = world;
+        this.name = name;
+        this.errs = errs;
+    }
+
+        /*    public Response(Response_E typeRes) {
         this.typeRes = typeRes;
         this.world= new ArrayList<>();
         this.name=null;
@@ -24,7 +34,7 @@ public class Response {
         this.typeRes = typeRes;
         this.world =  new ArrayList<>();
         this.name = name;
-    }
+    }*/
 
     public String getName() {
         return name;

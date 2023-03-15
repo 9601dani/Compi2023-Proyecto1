@@ -6,7 +6,6 @@ import com.dani.objects.World;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.dani.server.Server.compileXml;
 
 public class mainVerify {
    /* public static void main(String[] args) {

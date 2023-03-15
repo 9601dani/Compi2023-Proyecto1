@@ -164,7 +164,7 @@ erroPro::= erroPro errorA findErro:a1 errorC
             {:
             RESULT = new ArrayList<World>();
             RESULT.add(new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
-                                                 getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer()));
+                                                 getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer()eso));
                                                                                                               :};
             /*RESULT.add(new)*/
 findErro::= lexemaA TOKENERROR lexemaC

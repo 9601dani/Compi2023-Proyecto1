@@ -71,8 +71,8 @@ public static String MESSAGE_ERROR="";
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        MESSAGE_ERROR=xml;
-         System.out.println(MESSAGE_ERROR);
+        /*MESSAGE_ERROR=xml;
+         System.out.println(MESSAGE_ERROR);*/
         return xml;
     }
     public  String converObjectToXmlRequestWorld (NameWorld worlds) throws IOException {

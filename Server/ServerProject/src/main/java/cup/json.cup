@@ -4,23 +4,90 @@ import com.dani.objects.*;
 import com.dani.server.Response;
 import com.dani.server.Response_E;
 import java.util.ArrayList;
-import com.dani.models.Error;
-import com.dani.models.ErrorModel;
+import com.dani.models.Error.*;
+import static com.dani.Main.erroForClient;
 class ParserJson;
 
 parser code {:
                     public ParserJson(Lexer lexer){
                        super(lexer);
                    }
+                                      }
+                   public Symbol scan() throws Exception {
+                               Symbol symbol = this.getScanner().next_token();
+                               if (symbol == null) {
+                                   return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
+                               }
 
-                   public void syntax_error(Symbol s){
+                               while(symbol != null && symbol.sym == ParserJsonSym.SYM) {
+                                   this.report_expected_token_ids();
+                                   System.out.println("Ingorando: " + symbol.value.toString());
+                                   Token token = (Token) symbol.value;
+                                   erroForClient.add(new ErrorModel(token.getLexeme(),token.getLine(),token.getColumn(), ErrorType.LEXICO,"No existe esta cadena en el lenguaje"));
+                                   symbol = this.getScanner().next_token();
+                               }
+
+                               if (symbol == null) {
+                                   return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
+                               }
+
+                               return symbol;
+                       }
+                       public void syntax_error(Symbol cur_token) {
+                               Token token = (Token) cur_token.value;
+
+                               if (cur_token.sym ==ParserJsonSym.EOF) {
+                       //          String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
+                                   String er = "Simbolo inesperado";
+                                   erroForClient.add(new ErrorModel("Fin del archivo", token.getLine(),token.getColumn(), ErrorType.SINTACTICO,er));
+                                   System.out.println(er);
+                               } else {
+                                   String er = "Simbolo inesperado";
+                                   erroForClient.add(new ErrorModel(token.getLexeme(), token.getLine(), token.getColumn(),ErrorType.SINTACTICO,er));
+
+                                   System.out.println(er);
+                               }
+                           }
+
+                           public void unrecovered_syntax_error(Symbol cur_token) {
+                               if (cur_token.sym == ParserJsonSym.EOF) {
+                                   Token tok = (Token) cur_token.value;
+                                   String er = "No se puede recuperar el error, ya no hay mas tokens";
+                                   erroForClient.add(new ErrorModel("FIN ARCHIVO", tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
+                                   System.out.println(er);
+                               } else {
+                                   Token tok = (Token) cur_token.value;
+                                   //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
+                                   String er = "no se puede recuperar el error";
+                                   erroForClient.add(new ErrorModel(tok.getValue(), tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
+                                   System.out.println(er);
+                               }
+                           }
+                                       /*public Symbol scan() throws Exception{
+                                           Symbol sym= this.getScanner().next_token();
+                                           if(sym == null){
+                                               return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
+                                           }
+                                           while(sym != null && sym.sym== parse().SYM){
+                                               this.report_expected_token_ids();
+                                               System.out.println("ignorando : "+ sym.value.toString());
+                                               sym= this.getScanner().next_token();
+                                           }
+                                           if(sym== null){
+                                               return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
+                                           }
+                                           return sym;
+                                       }*/
+
+                   /*public void syntax_error(Symbol s){
+
                     converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids())));
                     new Response(Response_E.NOTHING);
                    }
                    public void unrecovered_syntax_error(Symbol s){
                    converObjectToXmlError(new Error(new ErrorModel(s.value.toString(),s.right+1,s.left+1,"SINTACTICO","SE ESPERABA "+expected_token_ids())));
                    new Response(Response_E.NOTHING);
-                   }
+                   }*/
                    public static World worldSingleton;
                        public static World getSingletonInstanceWorld() {
                            if (worldSingleton == null){
@@ -220,7 +287,7 @@ inic ::= worldPro:a
                   | DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :}; */
 terminal Token    ENTERO,HALL,BRICK,PALABRA,LITERAL,NAME,ROWS,COLS,CONFIG,BOARD,BOXES,TARGETS,PLAYER,DECIMAL,PLAYER_COLOR,ERROR,COMA,LLAVE_A,LLAVE_C,
                   POS_Y,POS_X, TYPE, BOX_COLOR, BOX_ON_TARGET_COLOR,TARGET_COLOR,BRICK_COLOR,HALL_COLOR,UNDEFINED_COLOR,COMILLA,PALABRA_COLOR,
-                  SUMA,RESTA,MULTIPLY,DIVISION,CEIL,FLOOR,DOS_PUNTOS,L_CORCHETE,R_CORCHETE, L_PARENT,R_PARENT,PUNTO_COMA,WORLDS,WORLD,ALL;
+                  SUMA,RESTA,MULTIPLY,DIVISION,CEIL,FLOOR,DOS_PUNTOS,L_CORCHETE,R_CORCHETE, L_PARENT,R_PARENT,PUNTO_COMA,WORLDS,WORLD,ALL,SYM;
 nonterminal producWorld,config, configPlayer,posTB,posBox,posT,typeH,configPro,posPlayer,configBoard,configBoardArray,configBox,configBoxArray,configTarget,configTargetArray;
 nonterminal Double operacion1,operacion2,operacion3,operacion4;
          /*worldsA,worldsC,worldA,worldC,nameA,nameC,rowsA,rowsC,colsA,colsC,configA,configC,boardA,boardC,
@@ -237,12 +304,12 @@ precedence left MULTIPLY;
 precedence left DIVISION;
 start with inic;  /*Response_E.REQUEST_ALL_WORLDS*/
 
-inic ::= LLAVE_A COMILLA WORLDS COMILLA DOS_PUNTOS COMILLA ALL:a COMILLA LLAVE_C {:RESULT=new Response(Response_E.REQUEST_ALL_WORLDS);
+inic ::= LLAVE_A COMILLA WORLDS COMILLA DOS_PUNTOS COMILLA ALL:a COMILLA LLAVE_C {:RESULT=new Response(Response_E.REQUEST_ALL_WORLDS,null,null,null);
                                                                            System.out.println("mandare todos los mundos");  :}
-        | LLAVE_A COMILLA WORLD COMILLA DOS_PUNTOS COMILLA PALABRA:a COMILLA LLAVE_C {:RESULT=new Response(Response_E.REQUEST_FOR_NAME,a.getLexeme());
+        | LLAVE_A COMILLA WORLD COMILLA DOS_PUNTOS COMILLA PALABRA:a COMILLA LLAVE_C {:RESULT=new Response(Response_E.REQUEST_FOR_NAME,null,a.getLexeme(),null);
                                                                             System.out.println("mandare el mundo pedido " +a.getLexeme());  :}
         |worldPro:a {:
-                    RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a);
+                    RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a,null,null);
                      /*RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a);*/
                         :};
 

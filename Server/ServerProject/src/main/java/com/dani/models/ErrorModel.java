@@ -2,16 +2,14 @@ package com.dani.models;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-
 public class ErrorModel {
-
     private String lexema;
     private int line;
     private int column;
-    private String type;
+    private ErrorType type;
     private String description;
 
-    public ErrorModel(String lexema, int line, int column, String type, String descripcion) {
+    public ErrorModel(String lexema, int line, int column, ErrorType type, String descripcion) {
         this.lexema = lexema;
         this.line = line;
         this.column = column;
@@ -43,11 +41,11 @@ public class ErrorModel {
         this.column = column;
     }
 
-    public String getType() {
+    public ErrorType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ErrorType type) {
         this.type = type;
     }
 

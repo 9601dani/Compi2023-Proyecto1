@@ -47,6 +47,7 @@ palabra=[a-zA-Z_][a-zA-z][a-zA-z0-9]*
 palabraColor=([a-f0-9]{6} | [a-f0-9]{3})
 lineTerminator = \r|\n|\r\n
 whiteSpace     = {lineTerminator} | [ \t\f | " "]
+SYM= [&!@#!$%_<>\|:'¡\?!·]+
 %{
      private Symbol token(int type, Object value) {
       /*System.out.println("encontre : "+value.toString());*/
@@ -129,6 +130,10 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
           yybegin(RESERVED_WORDS);
           return token(COMILLA);
       }
+       {SYM}
+             {
+                  return token(SYM);
+             }
     {whiteSpace}  {/*ignore*/}
     [^]
       {
@@ -280,6 +285,10 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
             {
                 return token(COMA);
             }
+      {SYM}
+      {
+          return token(SYM);
+      }
     {whiteSpace}  {/*ignore*/}
     [^]
       {
@@ -295,5 +304,13 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
     {palabraColor}
           {
               return token(PALABRA_COLOR);
+          }
+          {SYM}
+                {
+                    return token(SYM);
+                }
+    [^]
+          {
+              return token(ERROR);
           }
 }

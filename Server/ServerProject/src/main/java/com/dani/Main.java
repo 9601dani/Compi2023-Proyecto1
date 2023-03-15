@@ -1,6 +1,9 @@
 package com.dani;
 
 ;import com.dani.layout.Request_response;
+import com.dani.models.ErrorModel;
+
+import java.util.ArrayList;
 
 import static com.dani.server.Server.*;
 
@@ -8,7 +11,9 @@ public class Main {
     public static Double VERSION=  0.0;
     public static Double VERSIONES=  0.0;
     public static boolean SIHAYERROR=false;
+    public static ArrayList<ErrorModel> erroForClient;
     public static void main(String[] args) {
+
         Request_response window= new Request_response();
         window.show();
         conec();
@@ -624,7 +629,7 @@ public class Main {
         /*compileJson("{\"worlds\":\"all\"}");*/
         /*compileJson("{\"world\":\"nombrePrueba\"}");*/
         /*compileJson(testString5);*/
-        compileJson(testString5);
+        /*compileJson(testString5);*/
         /*compileXml(testString);*/
        /* LexXml lexer = new LexXml(new StringReader(testString));
         try{

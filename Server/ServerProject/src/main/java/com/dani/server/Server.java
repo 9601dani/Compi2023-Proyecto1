@@ -2,12 +2,12 @@ package com.dani.server;
 
 import com.dani.FileXml;
 import com.dani.models.*;
+import com.dani.models.Error;
 import com.dani.objects.World;
 import com.dani.parserJson.Lexer;
 import com.dani.parserJson.ParserJson;
-import com.dani.parserXml.LexXml;
-import com.dani.parserXml.ParserXml;
 import com.dani.verifications.VWorld;
+import java_cup.runtime.Scanner;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -16,10 +16,14 @@ import java.util.ArrayList;
 import java.util.concurrent.Executors;
 
 import static com.dani.Main.SIHAYERROR;
+import static com.dani.Main.erroForClient;
 import static com.dani.layout.Request_response.txt_to_android;
 import static com.dani.layout.Request_response.txt_to_server;
+import static com.dani.parserJson.ParserHandleJson.compileJsonHandle;
 import static com.dani.parserJson.ParserJson.getSingletonInstanceResponse;
+import static com.dani.parserXml.HandleParserXml.compileXml;
 import static com.dani.server.Converter.MESSAGE_ERROR;
+import static com.dani.server.Converter.converObjectToXmlError;
 import static com.dani.verifications.VWorld.configDefecto;
 
 
@@ -64,7 +68,7 @@ public class Server {
         });
 
     }
-    public static void enviarMensaje(String mensaje){
+/*    public static void enviarMensaje(String mensaje){
         Executors.newFixedThreadPool(2).execute(()->{
             ServerSocket server;
             Socket sc = null;
@@ -73,7 +77,7 @@ public class Server {
             final int PUERTO=5000;
             try{
                 server = new ServerSocket(PUERTO);
-                /* System.out.println("Inicie servidor");*/
+                *//* System.out.println("Inicie servidor");*//*
                 while(true){
                     sc.close();
                     out = new DataOutputStream(sc.getOutputStream());
@@ -85,20 +89,14 @@ public class Server {
                 throw new RuntimeException(e);
             }
         });
-    }
+    }*/
     public static String compileJson(String testString){
-        ParserJson p = new ParserJson(new Lexer(new StringReader(testString)));
+        ParserJson p = new ParserJson((Scanner) new Lexer(new StringReader(testString)));
+
         String datXml="";
         try {
-            System.out.println("voy a parserJson:" + testString);
-            Response worldList =(Response) p.parse().value;
-            /*aqui va codigo sublime text*/
-            if(SIHAYERROR==true){
-                SIHAYERROR=false;
-                datXml=MESSAGE_ERROR;
-                return datXml;
-            }else{
-                System.out.println(getSingletonInstanceResponse().getTypeRes());
+           Response worldList= compileJsonHandle(testString);
+            if(!erroForClient.isEmpty()){
                 if(getSingletonInstanceResponse()==null){
                     datXml+="HAY ERRORES";
                 }else if(worldList.getTypeRes()== Response_E.REQUEST_ALL_WORLDS){
@@ -157,60 +155,64 @@ public class Server {
                     ArrayList<WorldsModel> listXml= new ArrayList<>();
                     ArrayList<WorldModel> listToXml= new ArrayList<>();
                     System.out.println(doc);
-                        ArrayList<World> wor=compileXml(doc);
-                        //WorldModel.forEach(System.out::println);
-                        for(int i=0; i<wor.size();i++){
-                            listToXml.add(new WorldModel(wor.get(i).getName(),wor.get(i).getRows(),wor.get(i).getCols(),wor.get(i).getConfig(),
-                                    wor.get(i).getArrayBoard(),wor.get(i).getArrayBoxes(),wor.get(i).getArrayTarget(),wor.get(i).getPlayer()));
-                            System.out.println(i+". "+ wor.get(i).getArrayBoard());
-                        }
+                    ArrayList<World> wor=compileXml(doc);
+                    //WorldModel.forEach(System.out::println);
+                    for(int i=0; i<wor.size();i++){
+                        listToXml.add(new WorldModel(wor.get(i).getName(),wor.get(i).getRows(),wor.get(i).getCols(),wor.get(i).getConfig(),
+                                wor.get(i).getArrayBoard(),wor.get(i).getArrayBoxes(),wor.get(i).getArrayTarget(),wor.get(i).getPlayer()));
+                        System.out.println(i+". "+ wor.get(i).getArrayBoard());
+                    }
                     System.out.println("WORLDLIST--> "+ worldList.getWorld().size());
+                    boolean ms=false;
                     for (int i=0; i < worldList.getWorld().size(); i++) {
                         /*String elemento = String.valueOf(worldList.getWorld().get(i));*/
                         WorldModel wm=new  WorldModel(worldList.getWorld().get(i).getName(),worldList.getWorld().get(0).getRows(),worldList.getWorld().get(0).getCols(),worldList.getWorld().get(0).getConfig(),
                                 worldList.getWorld().get(0).getArrayBoard(),worldList.getWorld().get(0).getArrayBoxes(),worldList.getWorld().get(0).getArrayTarget(),worldList.getWorld().get(0).getPlayer());
                         if(VerificarWorld(listToXml,wm)==false){
                             listToXml.add(wm);
+                        }else{
+                            ms=true;
                         }
                         /*new WorldModel(worldList.getWorld().get(i).getName(),worldList.getWorld().get(i).getRows(),worldList.getWorld().get(i).getCols(),worldList.getWorld().get(i).getConfig(),
                                     worldList.getWorld().get(i).getArrayBoard(),worldList.getWorld().get(i).getArrayBoxes(),worldList.getWorld().get(i).getArrayTarget(),worldList.getWorld().get(i).getPlayer())*/
                         /*converObjectToXml(worldList.get(i));*/
                     }
-                    /*AQUI GUARDO EL MUNDO EN XML*/
-                    boolean ms=false;
-                    VWorld veri= new VWorld();
+                    if(ms==false){
+                        VWorld veri= new VWorld();
 
                         if(veri.verificarWorldNo(new World(worldList.getWorld().get(0).getName(),worldList.getWorld().get(0).getRows(),worldList.getWorld().get(0).getCols()
                                 ,worldList.getWorld().get(0).getConfig(),worldList.getWorld().get(0).getArrayBoard(),worldList.getWorld().get(0).getArrayBoxes(),
                                 worldList.getWorld().get(0).getArrayTarget(),worldList.getWorld().get(0).getPlayer()) )==true){
                             ms=true;
-
-                        }else{
-
                         }
 
-                    /*AQUI EL ERROR............................*/
-                    System.out.println("--> mostrare");
-                    for(int i=0; i<listToXml.size();i++){
-                        System.out.println(i+". "+ listToXml.get(i).getBoard());
-                    }
-                    if(ms==true){
-                        System.out.println("si hay error en verrificaciones");
-                        return "HAY ERRORES EN VERIFICACIONES";
-                    }else{
-                        System.out.println("no hay error\n"+listToXml.toString());
-                        configDefecto(listToXml.get(listToXml.size()-1).getConfig());
-                        datXml+=new Converter().converObjectToXml(new WorldsModel(listToXml),true);
+                        /*AQUI EL ERROR............................*/
+                        System.out.println("--> mostrare");
+                        for(int i=0; i<listToXml.size();i++){
+                            System.out.println(i+". "+ listToXml.get(i).getBoard());
+                        }
+                        if(ms==true){
+                            System.out.println("si hay error en verrificaciones");
+                            return "HAY ERRORES EN VERIFICACIONES";
+                        }else{
+                            System.out.println("no hay error\n"+listToXml.toString());
+                            configDefecto(listToXml.get(listToXml.size()-1).getConfig());
+                            datXml+=new Converter().converObjectToXml(new WorldsModel(listToXml),true);
                         /*if(listXml.get(listXml.size()).getArrayWorld().size()<1){
                             datXml+= new Converter().converObjectToXml(new WorldsModel(listToXml),true);
                         }else{
                             datXml+= new Converter().converObjectToXml(new WorldsModel(listToXml),true);
                         }*/
+                        }
                     }
-
                 }
                 // datXml+= new Converter().converObjectToXml(new WorldsModel(listToXml));
                 //System.out.printf(datXml);
+                return datXml;
+            }else{
+                /*aqui si hay errores*/
+                datXml=converObjectToXmlError(new Error(erroForClient));
+                erroForClient=new ArrayList<>();
                 return datXml;
             }
         } catch (Exception e) {
@@ -239,25 +241,7 @@ public class Server {
         return 0;
 
     }
-    public static ArrayList<World> compileXml(String testString){
-        ParserXml p = new ParserXml(new LexXml(new StringReader(testString)));
-        try {
-            if(testString.equals("")){
-                return new ArrayList<World>();
-            }else{
-                System.out.println("voy a parser");
-                ArrayList<World>  world = (ArrayList<World>) p.parse().value;
-                world.forEach(System.out::println);
-                return world;
-            }
 
-
-        } catch (Exception e) {
-            System.out.println("algo fallo");
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public static boolean VerificarWorld(ArrayList<WorldModel> arregloExistente,WorldModel nuevoMundo){
         boolean exist=false;
