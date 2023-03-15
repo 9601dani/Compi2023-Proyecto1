@@ -5,14 +5,12 @@ import com.dani.server.Response;
 import com.dani.server.Response_E;
 import java.util.ArrayList;
 import com.dani.models.Error.*;
-import static com.dani.Main.erroForClient;
 class ParserJson;
 
 parser code {:
                     public ParserJson(Lexer lexer){
                        super(lexer);
                    }
-                                      }
                    public Symbol scan() throws Exception {
                                Symbol symbol = this.getScanner().next_token();
                                if (symbol == null) {
@@ -59,7 +57,7 @@ parser code {:
                                    Token tok = (Token) cur_token.value;
                                    //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
                                    String er = "no se puede recuperar el error";
-                                   erroForClient.add(new ErrorModel(tok.getValue(), tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
+                                   erroForClient.add(new ErrorModel(tok.getLexeme(), tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
                                    System.out.println(er);
                                }
                            }
@@ -157,8 +155,7 @@ parser code {:
                                    else{
                                        /* System.out.println("No se puede crear el objeto  porque ya existe un objeto de la clase World");*/
                                    }
-                                   return response;
-                               }:}
+                                   return response;}:}
 
 /* gramatica txt
 inic ::= worldPro:a
@@ -290,10 +287,6 @@ terminal Token    ENTERO,HALL,BRICK,PALABRA,LITERAL,NAME,ROWS,COLS,CONFIG,BOARD,
                   SUMA,RESTA,MULTIPLY,DIVISION,CEIL,FLOOR,DOS_PUNTOS,L_CORCHETE,R_CORCHETE, L_PARENT,R_PARENT,PUNTO_COMA,WORLDS,WORLD,ALL,SYM;
 nonterminal producWorld,config, configPlayer,posTB,posBox,posT,typeH,configPro,posPlayer,configBoard,configBoardArray,configBox,configBoxArray,configTarget,configTargetArray;
 nonterminal Double operacion1,operacion2,operacion3,operacion4;
-         /*worldsA,worldsC,worldA,worldC,nameA,nameC,rowsA,rowsC,colsA,colsC,configA,configC,boardA,boardC,
-         boxA,boxC,targetA,targetC,playerA,playerC,posX_A,posX_C,posY_A,posY_C, typeA,typeC,box_colorA,box_colorC,box_on_target_colorA,box_on_target_colorC,
-         target_colorA,target_colorC,brick_colorA,brick_colorC,hall_colorA,hall_colorC,undefined_colorA,undefined_colorC,
-         player_colorA,player_colorC,enco;*/
 nonterminal World atri;
 nonterminal ArrayList<World> worldPro;
 nonterminal Response inic;
@@ -302,7 +295,7 @@ precedence left SUMA;
 precedence left RESTA ;
 precedence left MULTIPLY;
 precedence left DIVISION;
-start with inic;  /*Response_E.REQUEST_ALL_WORLDS*/
+start with inic;
 
 inic ::= LLAVE_A COMILLA WORLDS COMILLA DOS_PUNTOS COMILLA ALL:a COMILLA LLAVE_C {:RESULT=new Response(Response_E.REQUEST_ALL_WORLDS,null,null,null);
                                                                            System.out.println("mandare todos los mundos");  :}
@@ -311,8 +304,11 @@ inic ::= LLAVE_A COMILLA WORLDS COMILLA DOS_PUNTOS COMILLA ALL:a COMILLA LLAVE_C
         |worldPro:a {:
                     RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a,null,null);
                      /*RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a);*/
-                        :};
-
+                        :}
+        | error LLAVE_A
+        | error LLAVE_C
+        | error DOS_PUNTOS
+        | error COMILLA;
 worldPro ::=  worldPro:n1 COMA LLAVE_A atri:a1 LLAVE_C
                 {:
                 a1=new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),

@@ -1,7 +1,6 @@
-package com.dani.server;
+package com.dani.objects;
 
 import com.dani.models.Error;
-import com.dani.objects.World;
 
 import java.util.ArrayList;
 
@@ -16,6 +15,7 @@ public class Response {
         this.world = world;
         this.name = name;
         this.errs = errs;
+
     }
 
         /*    public Response(Response_E typeRes) {

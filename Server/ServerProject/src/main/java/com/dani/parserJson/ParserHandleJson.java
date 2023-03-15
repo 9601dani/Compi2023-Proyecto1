@@ -1,6 +1,6 @@
 package com.dani.parserJson;
 
-import com.dani.server.Response;
+import com.dani.objects.Response;
 import java_cup.runtime.Symbol;
 
 import java.io.StringReader;

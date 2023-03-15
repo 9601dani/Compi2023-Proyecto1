@@ -174,7 +174,8 @@ producWorld ::= nameA PALABRA:a1 nameC        {: getSingletonInstanceWorld().set
                 | rowsA ENTERO:a1 rowsC       {: getSingletonInstanceWorld().setRows(Integer.parseInt(a1.getLexeme())); :}
                 | colsA ENTERO:a1 colsC       {: getSingletonInstanceWorld().setCols(Integer.parseInt(a1.getLexeme())); :}
                 | configA config:a1 configC          {: getSingletonInstanceWorld().setConfig(new ConfigWorld(getSingletonInstanceConfig().getBox_color(),getSingletonInstanceConfig().getBox_on_target_color(),getSingletonInstanceConfig().getTarget_color(),
-                                                     getSingletonInstanceConfig().getBrick_color(), getSingletonInstanceConfig().getHall_color(), getSingletonInstanceConfig().getUndefined_color(), getSingletonInstanceConfig().getPlayer_color()));  :}
+                                                     getSingletonInstanceConfig().getBrick_color(), getSingletonInstanceConfig().getHall_color(), getSingletonInstanceConfig().getUndefined_color(), getSingletonInstanceConfig().getPlayer_color()));
+                                                      getSingletonInstanceConfig().clean();:}
                 | boardA configBoard:a1 boardC    {: getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType()));
                                                     getSingletonInstanceBoard().clean();:}
 

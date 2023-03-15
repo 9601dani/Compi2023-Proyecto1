@@ -11,7 +11,7 @@ public class Main {
     public static Double VERSION=  0.0;
     public static Double VERSIONES=  0.0;
     public static boolean SIHAYERROR=false;
-    public static ArrayList<ErrorModel> erroForClient;
+    public static ArrayList<ErrorModel> erroForClient= new ArrayList<>();
     public static void main(String[] args) {
 
         Request_response window= new Request_response();

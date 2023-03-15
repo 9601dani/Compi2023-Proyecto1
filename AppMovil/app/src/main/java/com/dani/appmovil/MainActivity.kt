@@ -69,12 +69,29 @@ class MainActivity : AppCompatActivity() {
                     dataOutputStream.writeUTF(input)
                     val mensaje=dataInput.readUTF()
                     val txtResponse:TextView = findViewById(R.id.textResponse)
-                   txtResponse.text=(mensaje)
+
                     println("RECIBI ESTO: "+mensaje)
-                   /* val arrayWorld= compilerXml(mensaje)*/
+                    var arrayWorld= compilerXml(mensaje)
                     /*arrayWorld.forEach{
                         println("Mov--> ${it.getInfo()}")
                     }*/
+                    var str=false
+
+                    for(i in 0..arrayWorld.size-1){
+                        if(!arrayWorld.get(i).errArray.isEmpty()){
+                            str=true;
+                        }
+                    }
+                    if(str==false){
+                        var strnS="";
+                        for(i in 0..arrayWorld.size-1){
+                            strnS+=arrayWorld.get(i).getNames()+" "
+                        }
+                        txtResponse.text=(strnS)
+
+                    }else{
+                        println("es array de errores")
+                    }
                 }
             }
         }catch (e: java.lang.Exception){
@@ -87,18 +104,16 @@ class MainActivity : AppCompatActivity() {
         val lexer =  LexXml(StringReader(input))
         val pa= ParserXml(lexer);
         val parser = pa.parse().value as ArrayList<World>
-        val str= ArrayList<String>()
+       /* val str= ArrayList<String>()
         if(parser.get(0).arrayBoard.size<1){
             parser.forEach{
                 println("word ${it.getInfo()}")
                 str.add(it.getNames());
             }
-
-
             txtResponse.text=(str.toString())
         }else{
             txtResponse.text= parser.toString()
-        }
+        }*/
 
         return parser
 

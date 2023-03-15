@@ -7,7 +7,7 @@ import com.dani.appmovil.objectsWorld.World
 import java.io.StringReader
 
 class ParserHandle {
-    public fun compilerXml(input: String) {
+    public  fun compilerXml(input: String) {
         println("SI SI SI ")
         val lexer =  LexXml(StringReader(input))
         val pa= ParserXml(lexer);

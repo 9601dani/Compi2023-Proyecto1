@@ -3,6 +3,8 @@ package com.dani.server;
 import com.dani.FileXml;
 import com.dani.models.*;
 import com.dani.models.Error;
+import com.dani.objects.Response;
+import com.dani.objects.Response_E;
 import com.dani.objects.World;
 import com.dani.parserJson.Lexer;
 import com.dani.parserJson.ParserJson;
@@ -15,14 +17,12 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 
-import static com.dani.Main.SIHAYERROR;
 import static com.dani.Main.erroForClient;
 import static com.dani.layout.Request_response.txt_to_android;
 import static com.dani.layout.Request_response.txt_to_server;
 import static com.dani.parserJson.ParserHandleJson.compileJsonHandle;
 import static com.dani.parserJson.ParserJson.getSingletonInstanceResponse;
 import static com.dani.parserXml.HandleParserXml.compileXml;
-import static com.dani.server.Converter.MESSAGE_ERROR;
 import static com.dani.server.Converter.converObjectToXmlError;
 import static com.dani.verifications.VWorld.configDefecto;
 
@@ -96,26 +96,32 @@ public class Server {
         String datXml="";
         try {
            Response worldList= compileJsonHandle(testString);
-            if(!erroForClient.isEmpty()){
+            if(erroForClient.isEmpty()){
                 if(getSingletonInstanceResponse()==null){
                     datXml+="HAY ERRORES";
                 }else if(worldList.getTypeRes()== Response_E.REQUEST_ALL_WORLDS){
                     try{
                         System.out.println(new FileXml().readFile());
                         ArrayList<World> wor=compileXml(new FileXml().readFile());
-
-                        if(wor==null){
-                            System.out.println("NO HAY MUNDOS");
-                        }else{
-                            ArrayList<String> arrayNames= new ArrayList<>();
-                            for (int i = 0; i < wor.size(); i++) {
-                                /* String elemento = String.valueOf(worldList.getWorld().get(i));*/
-                                arrayNames.add(new String(wor.get(i).getName()));
+                        if(erroForClient.isEmpty()){
+                            if(wor==null){
+                                System.out.println("NO HAY MUNDOS");
+                            }else{
+                                ArrayList<String> arrayNames= new ArrayList<>();
+                                for (int i = 0; i < wor.size(); i++) {
+                                    /* String elemento = String.valueOf(worldList.getWorld().get(i));*/
+                                    arrayNames.add(new String(wor.get(i).getName()));
+                                }
+                                datXml= new Converter().converObjectToXmlRequestWorld(new NameWorld(arrayNames));
+                                System.out.println("esto genere :\n"+datXml);
+                                return datXml;
                             }
-                            datXml= new Converter().converObjectToXmlRequestWorld(new NameWorld(arrayNames));
-                            System.out.println("esto genere :\n"+datXml);
+                        }else{
+                            datXml=converObjectToXmlError(new Error(erroForClient));
+                            erroForClient=new ArrayList<>();
                             return datXml;
                         }
+
                     }catch(Exception e) {}
                 }else if(worldList.getTypeRes()== Response_E.REQUEST_FOR_NAME){
                     /*AQUI REGRESO EL MUNDO PARA JUGAR*/
@@ -123,8 +129,12 @@ public class Server {
                         System.out.println(new FileXml().readFile());
                         ArrayList<World> wor=compileXml(new FileXml().readFile());
 
-                        if(wor==null){
+                        if(wor.isEmpty()){
                             System.out.println("NO HAY MUNDOS");
+                            erroForClient.add(new ErrorModel("",0,0,ErrorType.OTHER,"ACTUALMENTE NO HAY MUNDOS"));
+                            datXml=converObjectToXmlError(new Error(erroForClient));
+                            erroForClient=new ArrayList<>();
+                            return datXml;
                         }else{
                             ArrayList<WorldModel> listToXml= new ArrayList<>();
                             for (int i = 0; i < wor.size(); i++) {
@@ -135,15 +145,21 @@ public class Server {
                             }
                             ArrayList<WorldModel> listToXmlRequest= new ArrayList<>();
                             for(int i=0;i <listToXml.size();i++){
-
                                 if(listToXml.get(i).getName().equals(worldList.getName())){
                                     listToXmlRequest.add(listToXml.get(i));
-                                    WorldsModel arrayToRequest= new WorldsModel(listToXmlRequest);
-                                    datXml=  new Converter().converObjectToXml(arrayToRequest,false);
                                 }
                             }
-
+                            if(!listToXmlRequest.isEmpty()){
+                                WorldsModel arrayToRequest= new WorldsModel(listToXmlRequest);
+                                datXml=  new Converter().converObjectToXml(arrayToRequest,false);
+                            }
                             System.out.println("esto genere :\n"+datXml);
+                            if(datXml.equals("")){
+                                erroForClient.add(new ErrorModel("",0,0,ErrorType.OTHER,"no existe el mudndo"));
+                                datXml=converObjectToXmlError(new Error(erroForClient));
+                                erroForClient=new ArrayList<>();
+                                return datXml;
+                            }
                             return datXml;
                         }
                     }catch(Exception e) {}
@@ -210,6 +226,7 @@ public class Server {
                 //System.out.printf(datXml);
                 return datXml;
             }else{
+                System.out.println("el array de errores es nulo");
                 /*aqui si hay errores*/
                 datXml=converObjectToXmlError(new Error(erroForClient));
                 erroForClient=new ArrayList<>();

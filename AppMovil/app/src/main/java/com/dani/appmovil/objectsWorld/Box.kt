@@ -5,5 +5,8 @@ data class Box(var posX:Integer?, var posY:Integer?) {
     override fun toString(): String {
         return "Box(posX=$posX, posY=$posY)"
     }
-
+    fun clean(){
+        this.posX=null
+        this.posY=null
+    }
 }

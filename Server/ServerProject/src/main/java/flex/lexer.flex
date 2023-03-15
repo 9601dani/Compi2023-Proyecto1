@@ -47,7 +47,7 @@ palabra=[a-zA-Z_][a-zA-z][a-zA-z0-9]*
 palabraColor=([a-f0-9]{6} | [a-f0-9]{3})
 lineTerminator = \r|\n|\r\n
 whiteSpace     = {lineTerminator} | [ \t\f | " "]
-SYM= [&!@#!$%_<>\|:'¡\?!·]+
+SYM= [&!@*¨~!$%_<>\|:'¡\?!·]+
 %{
      private Symbol token(int type, Object value) {
       /*System.out.println("encontre : "+value.toString());*/

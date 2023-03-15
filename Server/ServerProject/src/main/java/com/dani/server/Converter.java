@@ -27,11 +27,11 @@ public static String MESSAGE_ERROR="";
             File arch= new File(ubicacion+nombreArchivo);
             xmlMapper.writeValue(archivoXml ,World.class);
         FileOutputStream fos = new FileOutputStream(arch);*/
-        if(escribir==true){
+        if(erroForClient.isEmpty()){
             XmlMapper xmlMapper = new XmlMapper();
             xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
             VERSION++;
-             xml = "<?xml version=\""+VERSION+"\" encoding=\"UTF-8\"?>\n";
+            xml = "<?xml version=\""+VERSION+"\" encoding=\"UTF-8\"?>\n";
             try {
                 xml += xmlMapper.writeValueAsString(worlds);
                 //System.out.println();
@@ -39,13 +39,16 @@ public static String MESSAGE_ERROR="";
             fos.close();*/
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
-            }}
-
+            }
+        }
         if(escribir==true){
             file= new FileXml();
             file.generateFileXml(xml);
             /*System.out.println("---------------------------------");
             System.out.println(xml);*/
+        }else{
+            System.out.println(xml);
+            return xml;
         }
 
 
