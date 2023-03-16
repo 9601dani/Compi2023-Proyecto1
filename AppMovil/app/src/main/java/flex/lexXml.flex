@@ -15,7 +15,7 @@ ERR="error"
 LEXEMA="lexema"
 LINEA="line"
 COLUMNA="column"
-DESCRIPTION="description"
+DESCRIPCION="descripcion"
 /**/
 XML="xml"
 VERSION="version"
@@ -54,6 +54,7 @@ palabraColor=([a-f0-9]{6} | [a-f0-9]{3})
 literal = ({letter})* \- ({number}|{decimalNumber}) | {number} | {decimalNumber}
 lineTerminator = \r|\n|\r\n
 whiteSpace     = {lineTerminator} | [ \t\f | " "]
+SYM= [&!@*¨~!$%_\|:'¡!·]+
 %{
     private Symbol token(int type, Object value) {
      System.out.println("Encontre un: "+ type+" "+value.toString());
@@ -78,7 +79,7 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
 //    return new Token(yytext(), EOF, yycolumn + 1, yyline + 1);
 %eofval}
 %eofclose
-%state LITERALS, COLORS
+%state COLORS
 
 %%
 <YYINITIAL>{
@@ -86,7 +87,6 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
 //     {numberInteger}({digit}*) {return token(NUM, yytext());}
 [\"]
             {
-                  yybegin(LITERALS);
                   return token(SIG_COMILLAS);
             }
     [<]
@@ -102,14 +102,8 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
           return token(DIVISION);
      }
 
-    {number}
-      {
-          return token(ENTERO);
-      }
-    {decimalNumber}
-      {
-          return token(DECIMAL);
-      }
+
+
        /*ERRORS*/
        {ERRORS}
        {
@@ -131,9 +125,9 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
        {
                 return token(COLUMNA);
        }
-       {DESCRIPTION}
+       {DESCRIPCION}
        {
-                return token(DESCRIPTION);
+                return token(DESCRIPCION);
        }
       /*palabras reservadas*/
            {ALL}
@@ -241,6 +235,19 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
             {
                 return token(PLAYER);
             }
+             {number}
+                       {
+                           return token(ENTERO);
+                       }
+                     {decimalNumber}
+                       {
+                           return token(DECIMAL);
+                       }
+                 {literal}
+                       {
+
+                           return token(LITERAL);
+                       }
             [=]
             {
                 return token(SIG_IGUAL);
@@ -254,7 +261,10 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
             {
                          yybegin(COLORS);
             }
-
+            {SYM}
+                         {
+                              return token(SYM);
+                         }
 
           {palabra}
             {
@@ -265,22 +275,6 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
             {
                 return token(ERROR);
             }
-}
-<LITERALS>{
-    [\"]
-          {
-              yybegin(YYINITIAL);
-              return token(SIG_COMILLAS);
-          }
-    {literal}
-      {
-
-          return token(LITERAL);
-      }
-
-      {whiteSpace}  {/*ignore*/}
-
-    [^] {return token(ERROR);}
 }
 <COLORS>{
     [\<]

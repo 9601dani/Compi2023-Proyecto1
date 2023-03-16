@@ -46,6 +46,7 @@ palabraColor=([a-f0-9]{6} | [a-f0-9]{3})
 literal = ({letter})* \- ({number}|{decimalNumber}) | {number} | {decimalNumber}
 lineTerminator = \r|\n|\r\n
 whiteSpace     = {lineTerminator} | [ \t\f | " "]
+SYM= [&!@*¨~!$%_<>\|:'¡\?!·]+
 %{
     private Symbol token(int type, Object value) {
      System.out.println("Encontre un: "+ type+" "+value.toString());
@@ -102,7 +103,10 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
       {
           return token(DECIMAL);
       }
-
+          {SYM}
+          {
+              return token(SYM);
+          }
       /*palabras reservadas*/
            {ALL}
           {
@@ -245,6 +249,10 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
 
           return token(LITERAL);
       }
+            {SYM}
+            {
+                return token(SYM);
+            }
 
       {whiteSpace}  {/*ignore*/}
 

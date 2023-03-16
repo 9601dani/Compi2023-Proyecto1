@@ -133,7 +133,7 @@ configPro---> <box_color>  palabraColor </box_color>
 /
 
 /*Simbolos terminales*/
-terminal Token ENTERO,HALL,BRICK,PALABRA,VERSION,LITERAL,ENCODING,DIVISION,ERRORS,ERR,DESCRIPTION,
+terminal Token ENTERO,HALL,BRICK,PALABRA,VERSION,LITERAL,ENCODING,DIVISION,ERRORS,ERR,DESCRIPCION,SYM,
          WORLDS, WORLD,NAME,ROWS,COLS,CONFIG,BOARD,BOXES,TARGETS,PLAYER,LEXEMA,LINEA,COLUMNA,TOKENERROR,
          POS_Y,POS_X, TYPE, BOX_COLOR, BOX_ON_TARGET_COLOR,TARGET_COLOR,BRICK_COLOR,HALL_COLOR,UNDEFINED_COLOR,PLAYER_COLOR;
 terminal Token SIG_IGUAL,XML,INTERROGACION,DECIMAL,SIGNO_A,SIGNO_C,SIG_COMILLAS,ALL,ERROR;
@@ -142,7 +142,8 @@ nonterminal producWorld,config, configPlayer,posTB,posBox,posT,typeH,configPro,p
          boxA,boxC,targetA,targetC,playerA,playerC,posX_A,posX_C,posY_A,posY_C, typeA,typeC,box_colorA,box_colorC,box_on_target_colorA,box_on_target_colorC,
          target_colorA,target_colorC,brick_colorA,brick_colorC,hall_colorA,hall_colorC,undefined_colorA,undefined_colorC,
          player_colorA,player_colorC,enco,errorsA,errorsC,errorA,errorC,lexemaA,lexemaC,lineaA,lineaC,columnA,columnC,descriptionA,descriptionC;
-nonterminal findErro;
+nonterminal findErro, proLine;
+nonterminal proErr;
 nonterminal  configBoard;
 nonterminal  configBox;
 nonterminal  configTarget;
@@ -157,7 +158,7 @@ inic ::= enco worldsA worldPro:a worldsC
                     {:
                         RESULT=a;
                     :};
-enco ::= SIGNO_A INTERROGACION XML VERSION SIG_IGUAL SIG_COMILLAS LITERAL SIG_COMILLAS ENCODING SIG_IGUAL SIG_COMILLAS LITERAL SIG_COMILLAS INTERROGACION SIGNO_C;
+enco ::= SIGNO_A INTERROGACION XML VERSION SIG_IGUAL SIG_COMILLAS DECIMAL SIG_COMILLAS ENCODING SIG_IGUAL SIG_COMILLAS LITERAL SIG_COMILLAS INTERROGACION SIGNO_C;
 
 erroPro::= erroPro:n1 errorA findErro:a1 errorC
              {:
@@ -176,14 +177,57 @@ erroPro::= erroPro:n1 errorA findErro:a1 errorC
             getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer(),getSingletonInstanceWorld().getErrArray()));
                                                  getSingletonInstanceWorld().clean();                                                              :};
             /*RESULT.add(new)*/
-findErro::= lexemaA LITERAL:a1 lexemaC
-             lineaA ENTERO:a2 lineaC
-             columnA ENTERO:a3 lineaC
+findErro::= lexemaA proErr:a1 lexemaC
+             lineaA proLine:a2 lineaC
+             columnA proLine:a3 columnC
              typeA PALABRA:a4 typeC
-             descriptionA descripPro:a descriptionC {:getSingletonInstanceWorld().getErrArray().add(new AError(a1.getLexeme(),Integer.parseInt(a2.getLexeme()) ,Integer.parseInt(a3.getLexeme()),a4.getLexeme(),(String) a));:};
+             descriptionA descripPro:a5 descriptionC {:getSingletonInstanceWorld().getErrArray().add(new AError(a1.toString(),Integer.parseInt( a2.toString()) ,Integer.parseInt(a3.toString()),a4.getLexeme(), a5.toString()));:};
 descripPro::=descripPro PALABRA:a {:RESULT= a+" ";:}
             | PALABRA:a {:RESULT= a;:} ;
 
+proLine::= ENTERO:a1 {:RESULT=Integer.parseInt(a1.getLexeme());:}
+           | LITERAL:a1 {:RESULT=Integer.parseInt(a1.getLexeme());:};
+
+proErr::= LITERAL:a1{:RESULT= a1.getLexeme(); :}
+         |SIG_COMILLAS:a1 {:RESULT= a1.getLexeme();:}
+         |SYM:a1{:RESULT= a1.getLexeme();:}
+         |PALABRA:a1{:RESULT= a1.getLexeme();:}
+         |WORLDS:a1{:RESULT = a1.getLexeme();:}
+         |VERSION:a1{:RESULT = a1.getLexeme();:}
+         |HALL:a1{:RESULT = a1.getLexeme();:}
+         |BRICK:a1{:RESULT = a1.getLexeme();:}
+         | ENCODING:a1{:RESULT = a1.getLexeme();:}
+         | DIVISION:a1{:RESULT = a1.getLexeme();:}
+         |ERRORS:a1{:RESULT = a1.getLexeme();:}
+         |ERR:a1{:RESULT = a1.getLexeme();:}
+         | WORLD:a1{:RESULT = a1.getLexeme();:}
+         | NAME:a1{:RESULT = a1.getLexeme();:}
+         | ROWS:a1{:RESULT = a1.getLexeme();:}
+         | COLS:a1{:RESULT = a1.getLexeme();:}
+         | CONFIG :a1{:RESULT = a1.getLexeme();:}
+         | BOARD:a1{:RESULT = a1.getLexeme();:}
+         |BOXES:a1{:RESULT = a1.getLexeme();:}
+         | TARGETS:a1{:RESULT = a1.getLexeme();:}
+         | PLAYER:a1{:RESULT = a1.getLexeme();:}
+         |LEXEMA:a1{:RESULT = a1.getLexeme();:}
+         | LINEA :a1{:RESULT = a1.getLexeme();:}
+         |COLUMNA:a1{:RESULT = a1.getLexeme();:}
+         |POS_X:a1{:RESULT = a1.getLexeme();:}
+         |POS_Y:a1{:RESULT = a1.getLexeme();:}
+         |TYPE:a1{:RESULT = a1.getLexeme();:}
+         | BOX_COLOR:a1{:RESULT = a1.getLexeme();:}
+         | BOX_ON_TARGET_COLOR:a1{:RESULT = a1.getLexeme();:}
+         | TARGET_COLOR:a1{:RESULT = a1.getLexeme();:}
+         | BRICK_COLOR:a1{:RESULT = a1.getLexeme();:}
+         | HALL_COLOR:a1{:RESULT = a1.getLexeme();:}
+         | UNDEFINED_COLOR:a1{:RESULT = a1.getLexeme();:}
+         | SIG_IGUAL:a1{:RESULT = a1.getLexeme();:}
+         | XML:a1{:RESULT = a1.getLexeme();:}
+         | INTERROGACION:a1{:RESULT = a1.getLexeme();:}
+         |DECIMAL:a1{:RESULT = a1.getLexeme();:}
+         |SIGNO_A:a1{:RESULT = a1.getLexeme();:}
+         |SIGNO_C:a1{:RESULT = a1.getLexeme();:}
+         |ALL:a1{:RESULT = a1.getLexeme();:};
 
 worldPro ::=  worldPro:n1 worldA atri:a1 worldC
                 {:
@@ -316,8 +360,8 @@ lineaA::= SIGNO_A LINEA SIGNO_C;
 lineaC::= SIGNO_A DIVISION LINEA SIGNO_C;
 columnA::= SIGNO_A COLUMNA SIGNO_C;
 columnC::= SIGNO_A DIVISION COLUMNA SIGNO_C;
-descriptionA::= SIGNO_A DESCRIPTION SIGNO_C;
-descriptionC::= SIGNO_A DIVISION DESCRIPTION SIGNO_C;
+descriptionA::= SIGNO_A DESCRIPCION SIGNO_C;
+descriptionC::= SIGNO_A DIVISION DESCRIPCION SIGNO_C;
 /*XML WORLDS*/
 worldsA::= SIGNO_A WORLDS SIGNO_C;
 worldsC::= SIGNO_A DIVISION WORLDS SIGNO_C;

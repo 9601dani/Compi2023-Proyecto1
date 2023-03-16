@@ -21,7 +21,7 @@ parser code {:
                                    this.report_expected_token_ids();
                                    System.out.println("Ingorando: " + symbol.value.toString());
                                    Token token = (Token) symbol.value;
-                                   erroForClient.add(new ErrorModel(token.getLexeme(),token.getLine(),token.getColumn(), ErrorType.LEXICO,"No existe esta cadena en el lenguaje"));
+                                   erroForClient.add(new ErrorModel(token.getLexeme(),token.getLine(),token.getColumn(), ErrorType.LEXICO,"No_existe_esta_cadena_en_el_lenguaje"));
                                    symbol = this.getScanner().next_token();
                                }
 
@@ -36,11 +36,11 @@ parser code {:
 
                                if (cur_token.sym ==ParserJsonSym.EOF) {
                        //          String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
-                                   String er = "Simbolo inesperado";
-                                   erroForClient.add(new ErrorModel("Fin del archivo", token.getLine(),token.getColumn(), ErrorType.SINTACTICO,er));
+                                   String er = "Simbolo_inesperado";
+                                   erroForClient.add(new ErrorModel("Fin_del_archivo", token.getLine(),token.getColumn(), ErrorType.SINTACTICO,er));
                                    System.out.println(er);
                                } else {
-                                   String er = "Simbolo inesperado";
+                                   String er = "Simbolo_inesperado";
                                    erroForClient.add(new ErrorModel(token.getLexeme(), token.getLine(), token.getColumn(),ErrorType.SINTACTICO,er));
 
                                    System.out.println(er);
@@ -50,13 +50,13 @@ parser code {:
                            public void unrecovered_syntax_error(Symbol cur_token) {
                                if (cur_token.sym == ParserJsonSym.EOF) {
                                    Token tok = (Token) cur_token.value;
-                                   String er = "No se puede recuperar el error, ya no hay mas tokens";
-                                   erroForClient.add(new ErrorModel("FIN ARCHIVO", tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
+                                   String er = "No_se_puede_recuperar_el_error_ya_no_hay_mas_tokens";
+                                   erroForClient.add(new ErrorModel("FIN_ARCHIVO", tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
                                    System.out.println(er);
                                } else {
                                    Token tok = (Token) cur_token.value;
                                    //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
-                                   String er = "no se puede recuperar el error";
+                                   String er = "no_se_puede_recuperar_el_error";
                                    erroForClient.add(new ErrorModel(tok.getLexeme(), tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
                                    System.out.println(er);
                                }

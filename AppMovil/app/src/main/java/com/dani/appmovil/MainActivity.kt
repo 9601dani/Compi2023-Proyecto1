@@ -90,7 +90,11 @@ class MainActivity : AppCompatActivity() {
                         txtResponse.text=(strnS)
 
                     }else{
-                        println("es array de errores")
+                        var sr=""
+                        for(i in 0..arrayWorld.size-1){
+                            sr+=arrayWorld.get(i).errArray.get(i).toString()+" "
+                        }
+                        txtResponse.text=(sr)
                     }
                 }
             }

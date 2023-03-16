@@ -8,10 +8,9 @@ package com.dani.parserJson;
 import com.dani.Token;
 import com.dani.models.ErrorModel;
 import com.dani.models.ErrorType;
-import java_cup.runtime.*;
 import com.dani.objects.*;
-import com.dani.objects.Response;
-import com.dani.objects.Response_E;
+import java_cup.runtime.Symbol;
+
 import java.util.ArrayList;
 
 import static com.dani.Main.erroForClient;
@@ -380,11 +379,11 @@ public class ParserJson extends java_cup.runtime.lr_parser {
 
                                if (cur_token.sym ==ParserJsonSym.EOF) {
                        //          String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
-                                   String er = "Simbolo inesperado";
-                                   erroForClient.add(new ErrorModel("Fin del archivo", token.getLine(),token.getColumn(), ErrorType.SINTACTICO,er));
+                                   String er = "Simbolo_inesperado";
+                                   erroForClient.add(new ErrorModel("Fin_del_archivo", token.getLine(),token.getColumn(), ErrorType.SINTACTICO,er));
                                    System.out.println(er);
                                } else {
-                                   String er = "Simbolo inesperado";
+                                   String er = "Simbolo_inesperado";
                                    erroForClient.add(new ErrorModel(token.getLexeme(), token.getLine(), token.getColumn(),ErrorType.SINTACTICO,er));
 
                                    System.out.println(er);
@@ -394,13 +393,13 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                            public void unrecovered_syntax_error(Symbol cur_token) {
                                if (cur_token.sym == ParserJsonSym.EOF) {
                                    Token tok = (Token) cur_token.value;
-                                   String er = "No se puede recuperar el error, ya no hay mas tokens";
-                                   erroForClient.add(new ErrorModel("EOF", tok.getLine()-1, tok.getColumn(), ErrorType.SINTACTICO, er));
+                                   String er = "No_se_puede_recuperar_el_error_ya_no_hay_mas_tokens";
+                                   erroForClient.add(new ErrorModel("FIN_ARCHIVO", tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
                                    System.out.println(er);
                                } else {
                                    Token tok = (Token) cur_token.value;
                                    //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
-                                   String er = "el error no se puede recuperar";
+                                   String er = "no_se_puede_recuperar_el_error";
                                    erroForClient.add(new ErrorModel(tok.getLexeme(), tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
                                    System.out.println(er);
                                }
