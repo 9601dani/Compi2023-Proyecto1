@@ -10,11 +10,12 @@ data  class Token(val lexeme: String?, val tokenType: Int, val column: Int, val 
     }
 
     fun getInfo(): String {
-        return "value: ${this.lexeme}, type: ${this.tokenType}, line: ${this.line}, column: ${this.column}\n"
+        return " ${this.lexeme}"
     }
 
     override fun toString(): String {
-        return "lexeme=$lexeme, tokenType=$tokenType"
+        return "Token(lexeme=$lexeme, tokenType=$tokenType, column=$column, line=$line, TAG='$TAG')"
     }
+
 
 }

@@ -53,13 +53,23 @@ public class Server {
                     txt_to_server.setText("Recibiendo: \n"+mensaje);
                     String response=compileJson(mensaje);
                     txt_to_android.setText("Enviando a cliente: \n "+ response);
+                    String yesErr="";
                     if(response==""){
-                        erroForClient.add(new ErrorModel("WORLD", 0,0, ErrorType.SINTACTICO,"Hay_errores_sintacticos"));
-                        String yesErr="";
-                        yesErr=Converter.converObjectToXmlError(new Error(erroForClient));
-                        out.writeUTF(yesErr);
-                        erroForClient= new ArrayList<>();
-                        txt_to_android.setText("Enviando a cliente: \n "+ yesErr);
+                        if(!erroForClient.isEmpty()){
+                            yesErr=Converter.converObjectToXmlError(new Error(erroForClient));
+                            out.writeUTF(yesErr);
+                            erroForClient= new ArrayList<>();
+                            txt_to_android.setText("Enviando a cliente: \n "+ yesErr);
+                        }else{
+                            erroForClient.add(new ErrorModel("WORLD", 0,0, ErrorType.SINTACTICO,"Hay_errores_sintacticos"));
+                            yesErr=Converter.converObjectToXmlError(new Error(erroForClient));
+                            out.writeUTF(yesErr);
+                            erroForClient= new ArrayList<>();
+                            txt_to_android.setText("Enviando a cliente: \n "+ yesErr);
+                        }
+
+
+
                         sc.close();
                     }else{
                         out.writeUTF(response);

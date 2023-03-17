@@ -16,13 +16,13 @@
         android:theme="@style/Theme.AppMovil"
         tools:targetApi="31">
         <activity
+            android:name=".models.NamesA"
+            android:exported="false" />
+        <activity
             android:name=".PaintPanel"
             android:exported="false" />
         <activity
-            android:name=".ErroresA"
-            android:exported="false" />
-        <activity
-            android:name=".Only_Names"
+            android:name=".models.ErroresA"
             android:exported="false" />
         <activity
             android:name=".TableroJuego"

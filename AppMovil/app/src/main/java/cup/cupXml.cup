@@ -167,7 +167,6 @@ erroPro::= erroPro:n1 errorA findErro:a1 errorC
                              getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer(),getSingletonInstanceWorld().getErrArray());
               n1.add((World)a1);
               RESULT=n1;
-               getSingletonInstanceWorld().clean();
              :}
             |errorA findErro:a1 errorC
             {:
@@ -182,8 +181,8 @@ findErro::= lexemaA proErr:a1 lexemaC
              columnA proLine:a3 columnC
              typeA PALABRA:a4 typeC
              descriptionA descripPro:a5 descriptionC {:getSingletonInstanceWorld().getErrArray().add(new AError(a1.toString(),Integer.parseInt( a2.toString()) ,Integer.parseInt(a3.toString()),a4.getLexeme(), a5.toString()));:};
-descripPro::=descripPro PALABRA:a {:RESULT= a+" ";:}
-            | PALABRA:a {:RESULT= a;:} ;
+descripPro::=descripPro PALABRA:a {:RESULT= a.getInfo();:}
+            | PALABRA:a {:RESULT= a.getInfo();:} ;
 
 proLine::= ENTERO:a1 {:RESULT=Integer.parseInt(a1.getLexeme());:}
            | LITERAL:a1 {:RESULT=Integer.parseInt(a1.getLexeme());:};
@@ -199,6 +198,7 @@ proErr::= LITERAL:a1{:RESULT= a1.getLexeme(); :}
          | ENCODING:a1{:RESULT = a1.getLexeme();:}
          | DIVISION:a1{:RESULT = a1.getLexeme();:}
          |ERRORS:a1{:RESULT = a1.getLexeme();:}
+         |ERROR:a1{:RESULT = a1.getLexeme();:}
          |ERR:a1{:RESULT = a1.getLexeme();:}
          | WORLD:a1{:RESULT = a1.getLexeme();:}
          | NAME:a1{:RESULT = a1.getLexeme();:}

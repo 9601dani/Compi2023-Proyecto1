@@ -5,6 +5,6 @@
     <string name="response_server">Respuesta del servidor</string>
     <!--ventanas-->
     <string name="string_error">AQUI SON LOS ERRORES</string>
-    <string name="string_names_worlds">AQUI ESTAN LOS NOMBRES DE MUNDOS</string>
+    <string name="string_names_worlds">NOMBRES DE LOS MUNDOS:</string>
     <string name="string_paint_world">AQUI PINTARE EL MUNDO</string>
 </resources>

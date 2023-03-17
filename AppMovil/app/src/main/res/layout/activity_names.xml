@@ -4,38 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".models.ErroresA">
+    tools:context=".Only_Names">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="190dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/string_error"
+        android:id="@+id/textView2"
+        android:layout_width="267dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/string_names_worlds"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/botonBackMain"
-        android:layout_width="128dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="36dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableErr" />
-
     <TableLayout
-        android:id="@+id/tableErr"
-        android:layout_width="383dp"
-        android:layout_height="541dp"
-        android:layout_marginTop="28dp"
+        android:id="@+id/tableNames"
+        android:layout_width="380dp"
+        android:layout_height="643dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <TableRow
             android:layout_width="match_parent"

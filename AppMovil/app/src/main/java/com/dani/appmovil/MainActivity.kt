@@ -6,8 +6,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.dani.appmovil.models.ErroresA
+import com.dani.appmovil.models.NamesA
 import com.dani.appmovil.objects.LexerMov
 import com.dani.appmovil.objects.Motion
 import com.dani.appmovil.objects.ParserMov
@@ -21,7 +22,6 @@ import java.io.StringReader
 import java.net.Socket
 import java.util.concurrent.Executors
 import java.net.InetAddress
-import java.util.*
 import kotlin.collections.ArrayList
 public var opcion:String="";
 class MainActivity : AppCompatActivity() {
@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val compileButton: Button = findViewById(R.id.compi_buttom)
-        val textResponse: TextView= findViewById(R.id.textResponse)
         compileButton.setOnClickListener(View.OnClickListener {
            /* Log.println(Log.INFO, TAG, "Compiling")*/
 
@@ -70,7 +69,6 @@ class MainActivity : AppCompatActivity() {
                     val input = editor.text.toString()
                     dataOutputStream.writeUTF(input)
                     val mensaje=dataInput.readUTF()
-                    val txtResponse:TextView = findViewById(R.id.textResponse)
 
                     println("RECIBI ESTO: "+mensaje)
                     var arrayWorld= compilerXml(mensaje)
@@ -113,8 +111,6 @@ class MainActivity : AppCompatActivity() {
 
     }
     fun compilerXml(input: String): ArrayList<World> {
-        println("SI SI SI ")
-        val txtResponse:TextView = findViewById(R.id.textResponse)
         val lexer =  LexXml(StringReader(input))
         val pa= ParserXml(lexer);
         val parser = pa.parse().value as ArrayList<World>
@@ -142,7 +138,7 @@ class MainActivity : AppCompatActivity() {
                startActivity(intent)
             }
             "ONLY_NAMES"->{
-                val intent= Intent(this, Only_Names::class.java)
+                val intent= Intent(this, NamesA::class.java)
                 intent.putExtra("response",arr)
                 startActivity(intent)
             }
@@ -150,6 +146,7 @@ class MainActivity : AppCompatActivity() {
                 val intent= Intent(this, ErroresA:: class.java)
                 intent.putExtra("response",arr)
                 startActivity(intent)
+                arrayWorl.get(0).clean();
             }
         }
     }

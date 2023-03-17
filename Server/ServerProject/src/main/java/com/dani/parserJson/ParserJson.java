@@ -480,16 +480,12 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                                    Token tok = (Token) cur_token.value;
                                    String er = "No_se_puede_recuperar_el_error_ya_no_hay_mas_tokens";
                                    erroForClient.add(new ErrorModel("FIN_ARCHIVO", tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
-                                   Converter.converObjectToXmlError(new Error(erroForClient));
-                                   erroForClient=new ArrayList();
                                    System.out.println(er);
                                } else {
                                    Token tok = (Token) cur_token.value;
                                    //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
                                    String er = "no_se_puede_recuperar_el_error";
                                    erroForClient.add(new ErrorModel(tok.getLexeme(), tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
-                                   Converter.converObjectToXmlError(new Error(erroForClient));
-                                    erroForClient=new ArrayList();
                                    System.out.println(er);
                                }
                            }
