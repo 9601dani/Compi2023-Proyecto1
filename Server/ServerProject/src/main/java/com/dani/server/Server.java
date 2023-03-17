@@ -18,8 +18,10 @@ import java.util.ArrayList;
 import java.util.concurrent.Executors;
 
 import static com.dani.Main.erroForClient;
+import static com.dani.Main.reportOperaciones;
 import static com.dani.layout.Request_response.txt_to_android;
 import static com.dani.layout.Request_response.txt_to_server;
+import com.dani.layout.Request_response;
 import static com.dani.parserJson.ParserHandleJson.compileJsonHandle;
 import static com.dani.parserJson.ParserJson.getSingletonInstanceResponse;
 import static com.dani.parserXml.HandleParserXml.compileXml;
@@ -50,22 +52,22 @@ public class Server {
                     in= new DataInputStream(sc.getInputStream());
                     out = new DataOutputStream(sc.getOutputStream());
                     String mensaje= in.readUTF();
-                    txt_to_server.setText("Recibiendo: \n"+mensaje);
+                    txt_to_android.setText("Recibiendo: \n"+mensaje);
                     String response=compileJson(mensaje);
-                    txt_to_android.setText("Enviando a cliente: \n "+ response);
+                    txt_to_server.setText("Enviando a cliente: \n "+ response);
                     String yesErr="";
                     if(response==""){
                         if(!erroForClient.isEmpty()){
                             yesErr=Converter.converObjectToXmlError(new Error(erroForClient));
                             out.writeUTF(yesErr);
                             erroForClient= new ArrayList<>();
-                            txt_to_android.setText("Enviando a cliente: \n "+ yesErr);
+                            txt_to_server.setText("Enviando a cliente: \n "+ yesErr);
                         }else{
                             erroForClient.add(new ErrorModel("WORLD", 0,0, ErrorType.SINTACTICO,"Hay_errores_sintacticos"));
                             yesErr=Converter.converObjectToXmlError(new Error(erroForClient));
                             out.writeUTF(yesErr);
                             erroForClient= new ArrayList<>();
-                            txt_to_android.setText("Enviando a cliente: \n "+ yesErr);
+                            txt_to_server.setText("Enviando a cliente: \n "+ yesErr);
                         }
 
 
@@ -111,7 +113,14 @@ public class Server {
 
         String datXml="";
         try {
+
            Response worldList= compileJsonHandle(testString);
+            if(!reportOperaciones.isEmpty()){
+                /*activo boton*/
+                Request_response.jButton1.setEnabled(true);
+            }else{
+
+            }
             if(erroForClient.isEmpty()){
                 if(getSingletonInstanceResponse()==null){
                     datXml+="HAY ERRORES";

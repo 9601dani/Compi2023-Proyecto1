@@ -2,9 +2,11 @@ package com.dani;
 
 ;import com.dani.layout.Request_response;
 import com.dani.models.ErrorModel;
+import com.dani.objectsReport.ReportOperaciones;
 
 import java.util.ArrayList;
 
+import static com.dani.layout.Request_response.*;
 import static com.dani.server.Server.*;
 
 public class Main {
@@ -12,10 +14,12 @@ public class Main {
     public static Double VERSIONES=  0.0;
     public static boolean SIHAYERROR=false;
     public static ArrayList<ErrorModel> erroForClient= new ArrayList<>();
+    public static ArrayList<ReportOperaciones> reportOperaciones = new ArrayList<>();
     public static void main(String[] args) {
 
         Request_response window= new Request_response();
         window.show();
+        jButton1.setEnabled(false);
         conec();
         String testString="<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                 "<worlds>\n" +

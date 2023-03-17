@@ -411,899 +411,979 @@ class CUP$ParserXml$actions {
       java_cup.runtime.Symbol CUP$ParserXml$result;
 
       /* select the action based on the action number */
-      switch (CUP$ParserXml$act_num)
-        {
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 0: // $START ::= inic EOF 
-            {
-              Object RESULT =null;
-		int start_valleft = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int start_valright = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		ArrayList<World> start_val = (ArrayList<World>)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		RESULT = start_val;
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("$START",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          /* ACCEPT */
-          CUP$ParserXml$parser.done_parsing();
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 1: // inic ::= enco worldsA worldPro worldsC 
-            {
-              ArrayList<World> RESULT =null;
-		int aleft = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int aright = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		ArrayList<World> a = (ArrayList<World>)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		
-                       RESULT=a;
-                    
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("inic",55, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // enco ::= SIGNO_A INTERROGACION XML VERSION SIG_IGUAL SIG_COMILLAS LITERAL SIG_COMILLAS ENCODING SIG_IGUAL SIG_COMILLAS LITERAL SIG_COMILLAS INTERROGACION SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("enco",49, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-14)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // worldPro ::= worldPro worldA atri worldC 
-            {
-              ArrayList<World> RESULT =null;
-		int n1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)).left;
-		int n1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)).right;
-		ArrayList<World> n1 = (ArrayList<World>)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)).value;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		World a1 = (World)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		
-                a1=new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
-                                                               getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer());
-                n1.add(a1);
-                RESULT=n1;
-                getSingletonInstanceWorld().clean();
-                
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldPro",54, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // worldPro ::= worldA atri worldC 
-            {
-              ArrayList<World> RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		World a1 = (World)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		
-             RESULT= new ArrayList<World>();
-             RESULT.add(new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
-                                     getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer()));
-                                                               getSingletonInstanceWorld().clean();
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldPro",54, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // atri ::= atri producWorld 
-            {
-              World RESULT =null;
-		RESULT= getSingletonInstanceWorld(); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("atri",53, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // atri ::= producWorld 
-            {
-              World RESULT =null;
-		RESULT= getSingletonInstanceWorld(); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("atri",53, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // producWorld ::= nameA PALABRA nameC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceWorld().setName(a1.getLexeme());
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // producWorld ::= rowsA ENTERO rowsC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceWorld().setRows(Integer.parseInt(a1.getLexeme())); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // producWorld ::= colsA ENTERO colsC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceWorld().setCols(Integer.parseInt(a1.getLexeme())); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // producWorld ::= configA config configC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceWorld().setConfig(new ConfigWorld(getSingletonInstanceConfig().getBox_color(),getSingletonInstanceConfig().getBox_on_target_color(),getSingletonInstanceConfig().getTarget_color(),
-                                                     getSingletonInstanceConfig().getBrick_color(), getSingletonInstanceConfig().getHall_color(), getSingletonInstanceConfig().getUndefined_color(), getSingletonInstanceConfig().getPlayer_color()));  
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // producWorld ::= boardA configBoard boardC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType()));
-                                                    getSingletonInstanceBoard().clean();
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // producWorld ::= boxA configBox boxC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY()));
-                                                       getSingletonInstanceBox().clean(); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // producWorld ::= targetA configTarget targetC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY()));
-                                                        getSingletonInstanceTarget().clean();
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // producWorld ::= playerA configPlayer playerC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY()));
-                                                    getSingletonInstancePlayer().clean(); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld",0, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // configBoard ::= configBoard posTB 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
-		 RESULT=a1; 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configBoard",50, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // configBoard ::= posTB 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
-		 RESULT=a1; 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configBoard",50, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // configBox ::= configBox posBox 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
-		 RESULT=a1; 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configBox",51, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // configBox ::= posBox 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
-		 RESULT=a1; 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configBox",51, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // configTarget ::= configTarget posT 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
-		 RESULT=a1; 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configTarget",52, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // configTarget ::= posT 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
-		 RESULT=a1; 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configTarget",52, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // configPlayer ::= configPlayer posPlayer 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
-		 RESULT=a1; 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPlayer",2, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 22: // configPlayer ::= posPlayer 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
-		 RESULT=a1;
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPlayer",2, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // posT ::= posX_A ENTERO posX_C 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceTarget().setPosX(Integer.parseInt(a1.getLexeme())); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posT",5, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 24: // posT ::= posY_A ENTERO posY_C 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceTarget().setPosY(Integer.parseInt(a1.getLexeme())); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posT",5, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 25: // posBox ::= posX_A ENTERO posX_C 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstanceBox().setPosX(Integer.parseInt(a1.getLexeme())); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posBox",4, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 26: // posBox ::= posY_A ENTERO posY_C 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		   getSingletonInstanceBox().setPosY(Integer.parseInt(a1.getLexeme())); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posBox",4, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 27: // posPlayer ::= posX_A ENTERO posX_C 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		 getSingletonInstancePlayer().setPosX( Integer.parseInt(a1.getLexeme())); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posPlayer",8, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 28: // posPlayer ::= posY_A ENTERO posY_C 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		   getSingletonInstancePlayer().setPosY(Integer.parseInt(a1.getLexeme())); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posPlayer",8, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 29: // posTB ::= posX_A ENTERO posX_C 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		  getSingletonInstanceBoard().setPosX(Integer.parseInt(a1.getLexeme())); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posTB",3, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 30: // posTB ::= posY_A ENTERO posY_C 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		  getSingletonInstanceBoard().setPosY(Integer.parseInt(a1.getLexeme())); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posTB",3, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 31: // posTB ::= typeA typeH typeC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		  getSingletonInstanceBoard().setType((Integer)a1); 
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posTB",3, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 32: // typeH ::= HALL 
-            {
-              Object RESULT =null;
-		int t1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).left;
-		int t1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).right;
-		Token t1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
-		 RESULT= t1.getTokenType() ;
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("typeH",6, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 33: // typeH ::= BRICK 
-            {
-              Object RESULT =null;
-		int t1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).left;
-		int t1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).right;
-		Token t1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
-		 RESULT=t1.getTokenType() ;
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("typeH",6, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 34: // config ::= config configPro 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("config",1, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 35: // config ::= configPro 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()).right;
-		Object a1 = (Object)((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
-		 RESULT=a1;
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("config",1, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 36: // configPro ::= box_colorA PALABRA box_colorC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		  getSingletonInstanceConfig().setBox_color(a1.getLexeme());  
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro",7, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 37: // configPro ::= box_on_target_colorA PALABRA box_on_target_colorC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		  getSingletonInstanceConfig().setBox_on_target_color(a1.getLexeme());  
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro",7, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 38: // configPro ::= target_colorA PALABRA target_colorC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		  getSingletonInstanceConfig().setTarget_color(a1.getLexeme());  
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro",7, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 39: // configPro ::= brick_colorA PALABRA brick_colorC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		  getSingletonInstanceConfig().setBrick_color(a1.getLexeme());  
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro",7, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 40: // configPro ::= hall_colorA PALABRA hall_colorC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		  getSingletonInstanceConfig().setHall_color(a1.getLexeme());  
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro",7, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 41: // configPro ::= undefined_colorA PALABRA undefined_colorC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		  getSingletonInstanceConfig().setUndefined_color(a1.getLexeme());  
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro",7, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 42: // configPro ::= player_colorA PALABRA player_colorC 
-            {
-              Object RESULT =null;
-		int a1left = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).left;
-		int a1right = ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).right;
-		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-1)).value;
-		  getSingletonInstanceConfig().setPlayer_color(a1.getLexeme());  
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro",7, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 43: // worldsA ::= SIGNO_A WORLDS SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldsA",9, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 44: // worldsC ::= SIGNO_A DIVISION WORLDS SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldsC",10, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 45: // worldA ::= SIGNO_A WORLD SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldA",11, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 46: // worldC ::= SIGNO_A DIVISION WORLD SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldC",12, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 47: // nameA ::= SIGNO_A NAME SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("nameA",13, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 48: // nameC ::= SIGNO_A DIVISION NAME SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("nameC",14, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 49: // rowsA ::= SIGNO_A ROWS SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("rowsA",15, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 50: // rowsC ::= SIGNO_A DIVISION ROWS SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("rowsC",16, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 51: // colsA ::= SIGNO_A COLS SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("colsA",17, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 52: // colsC ::= SIGNO_A DIVISION COLS SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("colsC",18, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 53: // configA ::= SIGNO_A CONFIG SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configA",19, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 54: // configC ::= SIGNO_A DIVISION CONFIG SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configC",20, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 55: // boardA ::= SIGNO_A BOARD SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("boardA",21, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 56: // boardC ::= SIGNO_A DIVISION BOARD SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("boardC",22, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 57: // boxA ::= SIGNO_A BOXES SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("boxA",23, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 58: // boxC ::= SIGNO_A DIVISION BOXES SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("boxC",24, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 59: // targetA ::= SIGNO_A TARGETS SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("targetA",25, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 60: // targetC ::= SIGNO_A DIVISION TARGETS SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("targetC",26, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 61: // playerA ::= SIGNO_A PLAYER SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("playerA",27, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 62: // playerC ::= SIGNO_A DIVISION PLAYER SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("playerC",28, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 63: // posX_A ::= SIGNO_A POS_X SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posX_A",29, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 64: // posX_C ::= SIGNO_A DIVISION POS_X SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posX_C",30, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 65: // posY_A ::= SIGNO_A POS_Y SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posY_A",31, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 66: // posY_C ::= SIGNO_A DIVISION POS_Y SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posY_C",32, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 67: // typeA ::= SIGNO_A TYPE SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("typeA",33, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 68: // typeC ::= SIGNO_A DIVISION TYPE SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("typeC",34, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 69: // box_colorA ::= SIGNO_A BOX_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("box_colorA",35, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 70: // box_colorC ::= SIGNO_A DIVISION BOX_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("box_colorC",36, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 71: // box_on_target_colorA ::= SIGNO_A BOX_ON_TARGET_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("box_on_target_colorA",37, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 72: // box_on_target_colorC ::= SIGNO_A DIVISION BOX_ON_TARGET_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("box_on_target_colorC",38, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 73: // target_colorA ::= SIGNO_A TARGET_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("target_colorA",39, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 74: // target_colorC ::= SIGNO_A DIVISION TARGET_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("target_colorC",40, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 75: // brick_colorA ::= SIGNO_A BRICK_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("brick_colorA",41, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 76: // brick_colorC ::= SIGNO_A DIVISION BRICK_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("brick_colorC",42, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 77: // hall_colorA ::= SIGNO_A HALL_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("hall_colorA",43, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 78: // hall_colorC ::= SIGNO_A DIVISION HALL_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("hall_colorC",44, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 79: // undefined_colorA ::= SIGNO_A UNDEFINED_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("undefined_colorA",45, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 80: // undefined_colorC ::= SIGNO_A DIVISION UNDEFINED_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("undefined_colorC",46, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 81: // player_colorA ::= SIGNO_A PLAYER_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("player_colorA",47, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-2)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 82: // player_colorC ::= SIGNO_A DIVISION PLAYER_COLOR SIGNO_C 
-            {
-              Object RESULT =null;
-
-              CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("player_colorC",48, ((java_cup.runtime.Symbol)CUP$ParserXml$stack.elementAt(CUP$ParserXml$top-3)), ((java_cup.runtime.Symbol)CUP$ParserXml$stack.peek()), RESULT);
-            }
-          return CUP$ParserXml$result;
-
-          /* . . . . . .*/
-          default:
-            throw new Exception(
-               "Invalid action number "+CUP$ParserXml$act_num+"found in internal parse table");
-
+        switch (CUP$ParserXml$act_num) {
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 0 -> { // $START ::= inic EOF
+                {
+                    Object RESULT = null;
+                    int start_valleft = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int start_valright = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    ArrayList<World> start_val = (ArrayList<World>) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    RESULT = start_val;
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("$START", 0, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                /* ACCEPT */
+                CUP$ParserXml$parser.done_parsing();
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 1 -> { // inic ::= enco worldsA worldPro worldsC
+                {
+                    ArrayList<World> RESULT = null;
+                    int aleft = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int aright = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    ArrayList<World> a = (ArrayList<World>) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+
+                    RESULT = a;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("inic", 55, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 2 -> { // enco ::= SIGNO_A INTERROGACION XML VERSION SIG_IGUAL SIG_COMILLAS LITERAL SIG_COMILLAS ENCODING SIG_IGUAL SIG_COMILLAS LITERAL SIG_COMILLAS INTERROGACION SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("enco", 49, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 14)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 3 -> { // worldPro ::= worldPro worldA atri worldC
+                {
+                    ArrayList<World> RESULT = null;
+                    int n1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)).left;
+                    int n1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)).right;
+                    ArrayList<World> n1 = (ArrayList<World>) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)).value;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    World a1 = (World) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+
+                    a1 = new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(), getSingletonInstanceWorld().getCols(), getSingletonInstanceWorld().getConfig(),
+                            getSingletonInstanceWorld().getArrayBoard(), getSingletonInstanceWorld().getArrayBoxes(), getSingletonInstanceWorld().getArrayTarget(), getSingletonInstanceWorld().getPlayer());
+                    n1.add(a1);
+                    RESULT = n1;
+                    getSingletonInstanceWorld().clean();
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldPro", 54, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 4 -> { // worldPro ::= worldA atri worldC
+                {
+                    ArrayList<World> RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    World a1 = (World) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+
+                    RESULT = new ArrayList<World>();
+                    RESULT.add(new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(), getSingletonInstanceWorld().getCols(), getSingletonInstanceWorld().getConfig(),
+                            getSingletonInstanceWorld().getArrayBoard(), getSingletonInstanceWorld().getArrayBoxes(), getSingletonInstanceWorld().getArrayTarget(), getSingletonInstanceWorld().getPlayer()));
+                    getSingletonInstanceWorld().clean();
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldPro", 54, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 5 -> { // atri ::= atri producWorld
+                {
+                    World RESULT = null;
+                    RESULT = getSingletonInstanceWorld();
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("atri", 53, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 6 -> { // atri ::= producWorld
+                {
+                    World RESULT = null;
+                    RESULT = getSingletonInstanceWorld();
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("atri", 53, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 7 -> { // producWorld ::= nameA PALABRA nameC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceWorld().setName(a1.getLexeme());
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld", 0, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 8 -> { // producWorld ::= rowsA ENTERO rowsC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceWorld().setRows(Integer.parseInt(a1.getLexeme()));
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld", 0, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 9 -> { // producWorld ::= colsA ENTERO colsC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceWorld().setCols(Integer.parseInt(a1.getLexeme()));
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld", 0, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 10 -> { // producWorld ::= configA config configC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceWorld().setConfig(new ConfigWorld(getSingletonInstanceConfig().getBox_color(), getSingletonInstanceConfig().getBox_on_target_color(), getSingletonInstanceConfig().getTarget_color(),
+                            getSingletonInstanceConfig().getBrick_color(), getSingletonInstanceConfig().getHall_color(), getSingletonInstanceConfig().getUndefined_color(), getSingletonInstanceConfig().getPlayer_color()));
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld", 0, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 11 -> { // producWorld ::= boardA configBoard boardC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(), getSingletonInstanceBoard().getPosY(), getSingletonInstanceBoard().getType()));
+                    getSingletonInstanceBoard().clean();
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld", 0, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 12 -> { // producWorld ::= boxA configBox boxC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(), getSingletonInstanceBox().getPosY()));
+                    getSingletonInstanceBox().clean();
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld", 0, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 13 -> { // producWorld ::= targetA configTarget targetC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(), getSingletonInstanceTarget().getPosY()));
+                    getSingletonInstanceTarget().clean();
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld", 0, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 14 -> { // producWorld ::= playerA configPlayer playerC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(), getSingletonInstancePlayer().getPosY()));
+                    getSingletonInstancePlayer().clean();
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("producWorld", 0, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 15 -> { // configBoard ::= configBoard posTB
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
+                    RESULT = a1;
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configBoard", 50, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 16 -> { // configBoard ::= posTB
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
+                    RESULT = a1;
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configBoard", 50, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 17 -> { // configBox ::= configBox posBox
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
+                    RESULT = a1;
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configBox", 51, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 18 -> { // configBox ::= posBox
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
+                    RESULT = a1;
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configBox", 51, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 19 -> { // configTarget ::= configTarget posT
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
+                    RESULT = a1;
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configTarget", 52, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 20 -> { // configTarget ::= posT
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
+                    RESULT = a1;
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configTarget", 52, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 21 -> { // configPlayer ::= configPlayer posPlayer
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
+                    RESULT = a1;
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPlayer", 2, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 22 -> { // configPlayer ::= posPlayer
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
+                    RESULT = a1;
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPlayer", 2, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 23 -> { // posT ::= posX_A ENTERO posX_C
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceTarget().setPosX(Integer.parseInt(a1.getLexeme()));
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posT", 5, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 24 -> { // posT ::= posY_A ENTERO posY_C
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceTarget().setPosY(Integer.parseInt(a1.getLexeme()));
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posT", 5, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 25 -> { // posBox ::= posX_A ENTERO posX_C
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceBox().setPosX(Integer.parseInt(a1.getLexeme()));
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posBox", 4, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 26 -> { // posBox ::= posY_A ENTERO posY_C
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceBox().setPosY(Integer.parseInt(a1.getLexeme()));
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posBox", 4, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 27 -> { // posPlayer ::= posX_A ENTERO posX_C
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstancePlayer().setPosX(Integer.parseInt(a1.getLexeme()));
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posPlayer", 8, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 28 -> { // posPlayer ::= posY_A ENTERO posY_C
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstancePlayer().setPosY(Integer.parseInt(a1.getLexeme()));
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posPlayer", 8, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 29 -> { // posTB ::= posX_A ENTERO posX_C
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceBoard().setPosX(Integer.parseInt(a1.getLexeme()));
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posTB", 3, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 30 -> { // posTB ::= posY_A ENTERO posY_C
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceBoard().setPosY(Integer.parseInt(a1.getLexeme()));
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posTB", 3, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 31 -> { // posTB ::= typeA typeH typeC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceBoard().setType((Integer) a1);
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posTB", 3, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 32 -> { // typeH ::= HALL
+                {
+                    Object RESULT = null;
+                    int t1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).left;
+                    int t1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).right;
+                    Token t1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
+                    RESULT = t1.getTokenType();
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("typeH", 6, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 33 -> { // typeH ::= BRICK
+                {
+                    Object RESULT = null;
+                    int t1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).left;
+                    int t1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).right;
+                    Token t1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
+                    RESULT = t1.getTokenType();
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("typeH", 6, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 34 -> { // config ::= config configPro
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("config", 1, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 35 -> { // config ::= configPro
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).right;
+                    Object a1 = (Object) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()).value;
+                    RESULT = a1;
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("config", 1, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 36 -> { // configPro ::= box_colorA PALABRA box_colorC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceConfig().setBox_color(a1.getLexeme());
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro", 7, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 37 -> { // configPro ::= box_on_target_colorA PALABRA box_on_target_colorC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceConfig().setBox_on_target_color(a1.getLexeme());
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro", 7, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 38 -> { // configPro ::= target_colorA PALABRA target_colorC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceConfig().setTarget_color(a1.getLexeme());
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro", 7, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 39 -> { // configPro ::= brick_colorA PALABRA brick_colorC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceConfig().setBrick_color(a1.getLexeme());
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro", 7, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 40 -> { // configPro ::= hall_colorA PALABRA hall_colorC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceConfig().setHall_color(a1.getLexeme());
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro", 7, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 41 -> { // configPro ::= undefined_colorA PALABRA undefined_colorC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceConfig().setUndefined_color(a1.getLexeme());
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro", 7, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 42 -> { // configPro ::= player_colorA PALABRA player_colorC
+                {
+                    Object RESULT = null;
+                    int a1left = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).left;
+                    int a1right = ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).right;
+                    Token a1 = (Token) ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 1)).value;
+                    getSingletonInstanceConfig().setPlayer_color(a1.getLexeme());
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configPro", 7, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 43 -> { // worldsA ::= SIGNO_A WORLDS SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldsA", 9, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 44 -> { // worldsC ::= SIGNO_A DIVISION WORLDS SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldsC", 10, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 45 -> { // worldA ::= SIGNO_A WORLD SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldA", 11, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 46 -> { // worldC ::= SIGNO_A DIVISION WORLD SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("worldC", 12, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 47 -> { // nameA ::= SIGNO_A NAME SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("nameA", 13, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 48 -> { // nameC ::= SIGNO_A DIVISION NAME SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("nameC", 14, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 49 -> { // rowsA ::= SIGNO_A ROWS SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("rowsA", 15, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 50 -> { // rowsC ::= SIGNO_A DIVISION ROWS SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("rowsC", 16, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 51 -> { // colsA ::= SIGNO_A COLS SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("colsA", 17, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 52 -> { // colsC ::= SIGNO_A DIVISION COLS SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("colsC", 18, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 53 -> { // configA ::= SIGNO_A CONFIG SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configA", 19, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 54 -> { // configC ::= SIGNO_A DIVISION CONFIG SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("configC", 20, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 55 -> { // boardA ::= SIGNO_A BOARD SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("boardA", 21, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 56 -> { // boardC ::= SIGNO_A DIVISION BOARD SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("boardC", 22, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 57 -> { // boxA ::= SIGNO_A BOXES SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("boxA", 23, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 58 -> { // boxC ::= SIGNO_A DIVISION BOXES SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("boxC", 24, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 59 -> { // targetA ::= SIGNO_A TARGETS SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("targetA", 25, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 60 -> { // targetC ::= SIGNO_A DIVISION TARGETS SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("targetC", 26, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 61 -> { // playerA ::= SIGNO_A PLAYER SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("playerA", 27, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 62 -> { // playerC ::= SIGNO_A DIVISION PLAYER SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("playerC", 28, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 63 -> { // posX_A ::= SIGNO_A POS_X SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posX_A", 29, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 64 -> { // posX_C ::= SIGNO_A DIVISION POS_X SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posX_C", 30, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 65 -> { // posY_A ::= SIGNO_A POS_Y SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posY_A", 31, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 66 -> { // posY_C ::= SIGNO_A DIVISION POS_Y SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("posY_C", 32, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 67 -> { // typeA ::= SIGNO_A TYPE SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("typeA", 33, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 68 -> { // typeC ::= SIGNO_A DIVISION TYPE SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("typeC", 34, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 69 -> { // box_colorA ::= SIGNO_A BOX_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("box_colorA", 35, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 70 -> { // box_colorC ::= SIGNO_A DIVISION BOX_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("box_colorC", 36, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 71 -> { // box_on_target_colorA ::= SIGNO_A BOX_ON_TARGET_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("box_on_target_colorA", 37, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 72 -> { // box_on_target_colorC ::= SIGNO_A DIVISION BOX_ON_TARGET_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("box_on_target_colorC", 38, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 73 -> { // target_colorA ::= SIGNO_A TARGET_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("target_colorA", 39, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 74 -> { // target_colorC ::= SIGNO_A DIVISION TARGET_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("target_colorC", 40, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 75 -> { // brick_colorA ::= SIGNO_A BRICK_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("brick_colorA", 41, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 76 -> { // brick_colorC ::= SIGNO_A DIVISION BRICK_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("brick_colorC", 42, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 77 -> { // hall_colorA ::= SIGNO_A HALL_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("hall_colorA", 43, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 78 -> { // hall_colorC ::= SIGNO_A DIVISION HALL_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("hall_colorC", 44, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 79 -> { // undefined_colorA ::= SIGNO_A UNDEFINED_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("undefined_colorA", 45, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 80 -> { // undefined_colorC ::= SIGNO_A DIVISION UNDEFINED_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("undefined_colorC", 46, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 81 -> { // player_colorA ::= SIGNO_A PLAYER_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("player_colorA", 47, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 2)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 82 -> { // player_colorC ::= SIGNO_A DIVISION PLAYER_COLOR SIGNO_C
+                {
+                    Object RESULT = null;
+
+                    CUP$ParserXml$result = parser.getSymbolFactory().newSymbol("player_colorC", 48, ((java_cup.runtime.Symbol) CUP$ParserXml$stack.elementAt(CUP$ParserXml$top - 3)), ((java_cup.runtime.Symbol) CUP$ParserXml$stack.peek()), RESULT);
+                }
+                return CUP$ParserXml$result;
+            }
+
+            /* . . . . . .*/
+            default -> throw new Exception(
+                    "Invalid action number " + CUP$ParserXml$act_num + "found in internal parse table");
         }
     } /* end of method */
 

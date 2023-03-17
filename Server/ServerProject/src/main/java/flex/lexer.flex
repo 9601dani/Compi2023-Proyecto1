@@ -1,6 +1,7 @@
 package com.dani;
-import java_cup.runtime.Symbol;
-import static com.dani.server.ParserJsonSym.*;
+import com.dani.objectsReport.ReportOperaciones;import java_cup.runtime.Symbol;
+import static com.dani.Main.reportOperaciones;
+import static com.dani.parserJson.ParserJsonSym.*;
 
 
 %%
@@ -152,18 +153,22 @@ whiteSpace     = {lineTerminator} | [ \t\f | " "]
     /*simbolos aritmeticos*/
     [-]
       {
-          return token(RESTA);
-      }
+                reportOperaciones.add(new ReportOperaciones("RESTA",yyline+1,yycolumn+1));
+                return token(RESTA);
+            }
     [/]
       {
+           reportOperaciones.add(new ReportOperaciones("DIVISION",yyline+1,yycolumn+1));
           return token(DIVISION);
       }
     [*]
       {
+           reportOperaciones.add(new ReportOperaciones("MULTIPLICACION",yyline+1,yycolumn+1));
           return token(MULTIPLY);
       }
     [+]
       {
+           reportOperaciones.add(new ReportOperaciones("SUMA",yyline+1,yycolumn+1));
           return token(SUMA);
       }
     [(]
