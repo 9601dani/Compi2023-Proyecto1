@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="190dp"
-        android:layout_height="31dp"
+        android:layout_width="193dp"
+        android:layout_height="48dp"
         android:layout_marginTop="4dp"
         android:text="@string/string_error"
         app:layout_constraintEnd_toEndOf="parent"

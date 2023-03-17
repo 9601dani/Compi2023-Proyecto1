@@ -18,8 +18,8 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="408dp"
-        android:layout_height="381dp"
+        android:layout_width="387dp"
+        android:layout_height="283dp"
         android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,26 +27,54 @@
 
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="366dp"
-        android:layout_height="150dp"
+    <EditText
+        android:id="@+id/text_mov"
+        android:layout_width="370dp"
+        android:layout_height="223dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="TextView"
-        android:textSize="12sp"
+        android:hint="@string/string_mov"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_report_ope"
+        android:layout_width="95dp"
+        android:layout_height="59dp"
+        android:text="@string/button_report_op_mov"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_mov"
+        app:layout_constraintVertical_bias="0.218" />
+
+    <Button
+        android:id="@+id/button_compile_mov"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/button_compile_mov"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_report_ope"
+        app:layout_constraintTop_toBottomOf="@+id/text_mov"
+        app:layout_constraintVertical_bias="0.265" />
+
+    <Button
+        android:id="@+id/button_report_mov"
+        android:layout_width="95dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        android:text="@string/report_mov"
+        android:textSize="8dp"
+        app:layout_constraintStart_toEndOf="@+id/button_compile_mov"
+        app:layout_constraintTop_toBottomOf="@+id/text_mov" />
 </androidx.constraintlayout.widget.ConstraintLayout>

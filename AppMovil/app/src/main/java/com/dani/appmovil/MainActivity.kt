@@ -7,23 +7,22 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.dani.appmovil.models.ConstruccionMatriz.reporMov
 import com.dani.appmovil.models.ErroresA
 import com.dani.appmovil.models.NamesA
-import com.dani.appmovil.objects.LexerMov
-import com.dani.appmovil.objects.Motion
-import com.dani.appmovil.objects.ParserMov
-import com.dani.appmovil.objectsWorld.World
 import com.dani.appmovil.objectsWorld.ArrayWorld
+import com.dani.appmovil.objectsWorld.World
 import com.dani.appmovil.parserXml.LexXml
 import com.dani.appmovil.parserXml.ParserXml
 import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.io.StringReader
+import java.net.InetAddress
 import java.net.Socket
 import java.util.concurrent.Executors
-import java.net.InetAddress
-import kotlin.collections.ArrayList
+
 public var opcion:String="";
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,14 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
     /*val cadenaN3="+"
         this.compile(cadenaN3)*/
-    private fun compiler(input: String) {
-        val lexer =  LexerMov(StringReader(input))
-        val pa= ParserMov(lexer);
-        val parser = pa.parse().value as ArrayList<Motion>
-        parser.forEach{
-            println("Mov--> ${it.getInfo()}")
-        }
-    }
+
     private fun createSocket()  {
         try{
             findViewById<Button>(R.id.compi_buttom).setOnClickListener{
@@ -150,4 +142,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }

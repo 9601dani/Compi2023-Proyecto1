@@ -1,8 +1,5 @@
 package com.dani.appmovil.parserXml
 
-import com.dani.appmovil.objects.LexerMov
-import com.dani.appmovil.objects.Motion
-import com.dani.appmovil.objects.ParserMov
 import com.dani.appmovil.objectsWorld.World
 import java.io.StringReader
 

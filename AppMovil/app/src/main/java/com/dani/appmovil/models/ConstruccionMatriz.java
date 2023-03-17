@@ -3,7 +3,15 @@ package com.dani.appmovil.models;
 import com.dani.appmovil.objectsWorld.Board;
 import com.dani.appmovil.objectsWorld.World;
 
+import java.util.ArrayList;
+
 public class ConstruccionMatriz {
+    public static ArrayList<OperacionesMovReport> reportOperaciones = new ArrayList<>();
+    public static ArrayList<ReportMov> reporMov= new ArrayList<>();
+    public static int CANTIDAD_LEFT=0;
+    public static int CANTIDAD_DOWN=0;
+    public static int CANTIDAD_UP=0;
+    public static int CANTIDAD_RIGHT=0;
     public BoardModel[][] hacerMatriz(World world){
         BoardModel [][] boards= new BoardModel[world.getRows()][world.getCols()];
         world.getArrayBoard().forEach(board -> {

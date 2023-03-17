@@ -1,6 +1,6 @@
 package com.dani.appmovil.objects;
 import java_cup.runtime.Symbol;
-import static com.dani.appmovil.objects.ParserMovSym.*;
+import static com.dani.appmovil.parserMov.ParserMovSym.*;
 %%
 %public
 %class LexerMov
@@ -55,6 +55,7 @@ whiteSpace     = {lineTerminator} | [ \t\f] | " "]
       }
     {DOWN}
       {
+          CANTIDAD_DOWN++;
           return token(DOWN);
       }
     {PUSH}
@@ -63,22 +64,27 @@ whiteSpace     = {lineTerminator} | [ \t\f] | " "]
       }
     {RIGHT}
       {
+          CANTIDAD_RIGHT++;
           return token(RIGHT);
       }
     {LEFT}
       {
+          CANTIDAD_LEFT++;
           return token(LEFT);
       }
     {UP}
       {
+          CANTIDAD_UP++;
           return token(UP);
       }
     {FLOOR}
       {
+           reportOperaciones.add(new OperacionesMovReport("FLOOR",yyline+1,yycolumn+1));
           return token(FLOOR);
       }
     {CEIL}
       {
+           reportOperaciones.add(new OperacionesMovReport("CEIL",yyline+1,yycolumn+1));
           return token(CEIL);
       }
     {number}
@@ -92,18 +98,22 @@ whiteSpace     = {lineTerminator} | [ \t\f] | " "]
    /*simbolos aritmeticos*/
    [-]
       {
+           reportOperaciones.add(new OperacionesMovReport("RESTA",yyline+1,yycolumn+1));
           return token(RESTA);
       }
    [/]
       {
+           reportOperaciones.add(new OperacionesMovReport("DIVISION",yyline+1,yycolumn+1));
           return token(DIVISION);
       }
    [*]
       {
+           reportOperaciones.add(new OperacionesMovReport("MULTIPLICACION",yyline+1,yycolumn+1));
           return token(MULTIPLY);
       }
    [+]
       {
+           reportOperaciones.add(new OperacionesMovReport("SUMA",yyline+1,yycolumn+1));
           return token(SUMA);
       }
    [(]
@@ -129,6 +139,41 @@ whiteSpace     = {lineTerminator} | [ \t\f] | " "]
       {
         yybegin(YYINITIAL);
       }
+      {DOWN}
+            {
+                yybegin(YYINITIAL);
+                return token(DOWN);
+            }
+          {PUSH}
+            {
+           yybegin(YYINITIAL);
+                return token(PUSH);
+            }
+          {RIGHT}
+            {
+           yybegin(YYINITIAL);
+                return token(RIGHT);
+            }
+          {LEFT}
+            {
+           yybegin(YYINITIAL);
+                return token(LEFT);
+            }
+          {UP}
+            {
+           yybegin(YYINITIAL);
+                return token(UP);
+            }
+          {FLOOR}
+            {
+           yybegin(YYINITIAL);
+                return token(FLOOR);
+            }
+          {CEIL}
+            {
+           yybegin(YYINITIAL);
+                return token(CEIL);
+            }
     {whiteSpace}  {/*ignore*/}
     [^]
       {

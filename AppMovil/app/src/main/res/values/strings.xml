@@ -4,7 +4,11 @@
     <string name="txt_view_editTxt">Ingrese codigo a compilar</string>
     <string name="response_server">Respuesta del servidor</string>
     <!--ventanas-->
-    <string name="string_error">AQUI SON LOS ERRORES</string>
+    <string name="string_error">ERRORES EN LA RESPUESTA DEL SERVIDOR</string>
     <string name="string_names_worlds">NOMBRES DE LOS MUNDOS:</string>
     <string name="string_paint_world">AQUI PINTARE EL MUNDO</string>
+    <string name="button_report_op_mov">Reporte Operadores Juego</string>
+    <string name="string_mov">ingrese sus movimientos</string>
+    <string name="button_compile_mov">Jugar</string>
+    <string name="report_mov">Reporte Movimientos</string>
 </resources>

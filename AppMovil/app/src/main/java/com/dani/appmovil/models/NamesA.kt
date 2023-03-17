@@ -1,7 +1,6 @@
 package com.dani.appmovil.models
 
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +10,6 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.dani.appmovil.R
 import com.dani.appmovil.objectsWorld.ArrayWorld
-import org.w3c.dom.Text
 
 class NamesA : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)

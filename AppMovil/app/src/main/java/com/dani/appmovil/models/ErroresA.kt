@@ -24,7 +24,7 @@ class ErroresA : AppCompatActivity() {
         }*/
         println("->"+response!!.aWorld.get(0).errArray.size)
         val errors= response!!.aWorld.get(0).errArray
-    setTable(errors);
+            setTable(errors);
     }
 
    private  fun setTable(listE: ArrayList<AError>){
@@ -48,6 +48,7 @@ class ErroresA : AppCompatActivity() {
         txt_descrip.text="Descripcion"
         txt_descrip.setTextColor(Color.BLUE)
         tablaErrores.addView(encabezados)
+
         listE.forEach {
             val row = LayoutInflater.from(this).inflate(R.layout.error_row, null, false)
             val txt_lexema = row.findViewById<TextView>(R.id.txt_lexema)
