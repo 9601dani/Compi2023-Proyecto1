@@ -1,5 +1,6 @@
 package com.dani.appmovil
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,6 +12,7 @@ import com.dani.appmovil.objects.LexerMov
 import com.dani.appmovil.objects.Motion
 import com.dani.appmovil.objects.ParserMov
 import com.dani.appmovil.objectsWorld.World
+import com.dani.appmovil.objectsWorld.ArrayWorld
 import com.dani.appmovil.parserXml.LexXml
 import com.dani.appmovil.parserXml.ParserXml
 import java.io.DataInputStream
@@ -21,7 +23,7 @@ import java.util.concurrent.Executors
 import java.net.InetAddress
 import java.util.*
 import kotlin.collections.ArrayList
-
+public var opcion:String="";
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,19 +84,27 @@ class MainActivity : AppCompatActivity() {
                             str=true;
                         }
                     }
+
                     if(str==false){
-                        var strnS="";
+                       /* var strnS="";
                         for(i in 0..arrayWorld.size-1){
                             strnS+=arrayWorld.get(i).getNames()+" "
                         }
-                        txtResponse.text=(strnS)
+                        txtResponse.text=(strnS)*/
+                        if(arrayWorld.get(0).arrayBoard.isEmpty()){
+                            mandarA_NuevoActivity("ONLY_NAMES",arrayWorld)
+                        }else{
+                            mandarA_NuevoActivity("DIBUJAR_MUND0",arrayWorld)
+                        }
 
                     }else{
-                        var sr=""
-                        for(i in 0..arrayWorld.size-1){
-                            sr+=arrayWorld.get(i).errArray.get(i).toString()+" "
+                        /*var sr=""
+                        for(i in 0..arrayWorld.get(0).errArray.size-1){
+                            sr+=arrayWorld.get(0).errArray.get(i).toString()
+                            print(i)
                         }
-                        txtResponse.text=(sr)
+                        txtResponse.text=(sr)*/
+                        mandarA_NuevoActivity("ERROR",arrayWorld)
                     }
                 }
             }
@@ -121,5 +131,26 @@ class MainActivity : AppCompatActivity() {
 
         return parser
 
+    }
+
+    private fun mandarA_NuevoActivity(op:String, arrayWorl: ArrayList<World>){
+        val arr: ArrayWorld =  ArrayWorld(arrayWorl)
+        when(op){
+           "DIBUJAR_MUND0"-> {
+               val intent= Intent(this, TableroJuego::class.java)
+               intent.putExtra("response",arr)
+               startActivity(intent)
+            }
+            "ONLY_NAMES"->{
+                val intent= Intent(this, Only_Names::class.java)
+                intent.putExtra("response",arr)
+                startActivity(intent)
+            }
+            "ERROR" ->{
+                val intent= Intent(this, ErroresA:: class.java)
+                intent.putExtra("response",arr)
+                startActivity(intent)
+            }
+        }
     }
 }

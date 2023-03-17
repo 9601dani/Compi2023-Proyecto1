@@ -76,6 +76,7 @@ public static String MESSAGE_ERROR="";
         }
         /*MESSAGE_ERROR=xml;
          System.out.println(MESSAGE_ERROR);*/
+        erroForClient=new ArrayList<>();
         return xml;
     }
     public  String converObjectToXmlRequestWorld (NameWorld worlds) throws IOException {

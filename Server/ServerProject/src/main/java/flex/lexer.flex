@@ -1,6 +1,6 @@
 package com.dani;
 import java_cup.runtime.Symbol;
-import static com.dani.parserJson.ParserJsonSym.*;
+import static com.dani.server.ParserJsonSym.*;
 
 
 %%

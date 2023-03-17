@@ -1,8 +1,6 @@
 package com.dani;
 import java_cup.runtime.*;
 import com.dani.objects.*;
-import com.dani.server.Response;
-import com.dani.server.Response_E;
 import java.util.ArrayList;
 import com.dani.models.Error.*;
 class ParserJson;
@@ -42,7 +40,6 @@ parser code {:
                                } else {
                                    String er = "Simbolo_inesperado";
                                    erroForClient.add(new ErrorModel(token.getLexeme(), token.getLine(), token.getColumn(),ErrorType.SINTACTICO,er));
-
                                    System.out.println(er);
                                }
                            }
@@ -52,12 +49,16 @@ parser code {:
                                    Token tok = (Token) cur_token.value;
                                    String er = "No_se_puede_recuperar_el_error_ya_no_hay_mas_tokens";
                                    erroForClient.add(new ErrorModel("FIN_ARCHIVO", tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
+                                   Converter.converObjectToXmlError(new Error(erroForClient));
+                                   erroForClient=new ArrayList();
                                    System.out.println(er);
                                } else {
                                    Token tok = (Token) cur_token.value;
                                    //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
                                    String er = "no_se_puede_recuperar_el_error";
                                    erroForClient.add(new ErrorModel(tok.getLexeme(), tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
+                                   Converter.converObjectToXmlError(new Error(erroForClient));
+                                    erroForClient=new ArrayList();
                                    System.out.println(er);
                                }
                            }
@@ -305,8 +306,7 @@ inic ::= LLAVE_A COMILLA WORLDS COMILLA DOS_PUNTOS COMILLA ALL:a COMILLA LLAVE_C
                     RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a,null,null);
                      /*RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a);*/
                         :}
-        | error LLAVE_A
-        | error LLAVE_C
+
         | error DOS_PUNTOS
         | error COMILLA;
 worldPro ::=  worldPro:n1 COMA LLAVE_A atri:a1 LLAVE_C
@@ -320,9 +320,13 @@ worldPro ::=  worldPro:n1 COMA LLAVE_A atri:a1 LLAVE_C
              RESULT= new ArrayList<World>();
              RESULT.add(new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
                                      getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer()));
-                                                                                                  :};
+                                                                                                  :}
+            | error LLAVE_A
+            | error LLAVE_C
+            | error COMA;
 atri ::= atri COMA producWorld  {:RESULT= getSingletonInstanceWorld(); :}
-        | producWorld  {:RESULT= getSingletonInstanceWorld(); :};
+        | producWorld  {:RESULT= getSingletonInstanceWorld(); :}
+        | error COMA;
 
 producWorld ::= COMILLA NAME COMILLA DOS_PUNTOS COMILLA PALABRA:a1 COMILLA  {: getSingletonInstanceWorld().setName(a1.getLexeme());:}
                 | COMILLA ROWS COMILLA DOS_PUNTOS  operacion1:a1   {: getSingletonInstanceWorld().setRows(a1.intValue()); :}
@@ -333,36 +337,59 @@ producWorld ::= COMILLA NAME COMILLA DOS_PUNTOS COMILLA PALABRA:a1 COMILLA  {: g
                 | COMILLA BOXES COMILLA DOS_PUNTOS L_CORCHETE configBoxArray:a1 R_CORCHETE {:  :}
                 | COMILLA TARGETS COMILLA DOS_PUNTOS L_CORCHETE configTargetArray:a1 R_CORCHETE{:  :}
                 | COMILLA PLAYER COMILLA DOS_PUNTOS LLAVE_A configPlayer:a1 LLAVE_C    {: getSingletonInstanceWorld().setPlayer(new Player(getSingletonInstancePlayer().getPosX(),getSingletonInstancePlayer().getPosY())); :}
+                | error COMILLA
+                | error DOS_PUNTOS
+                | error L_CORCHETE
+                | error R_CORCHETE
+                | error LLAVE_A
+                | error LLAVE_C
                 /*|error:e{: syntax_error(); :} COMILLA*/;
 
 configBoardArray ::= configBoardArray COMA LLAVE_A  configBoard  LLAVE_C {: getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType())); :}
-                    | LLAVE_A  configBoard  LLAVE_C{:getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType())); :};
+                    | LLAVE_A  configBoard  LLAVE_C{:getSingletonInstanceWorld().getArrayBoard().add(new Board(getSingletonInstanceBoard().getPosX(),getSingletonInstanceBoard().getPosY(),getSingletonInstanceBoard().getType())); :}
+                    | error LLAVE_A
+                    | error LLAVE_C
+                    | error COMA;
 
 configBoard ::= configBoard COMA posTB:a1
-                |  posTB:a1 ;
+                |  posTB:a1
+                | error COMA;
 
 configBoxArray ::= configBoxArray COMA LLAVE_A configBox LLAVE_C {:  getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY())); :}
-                   | LLAVE_A configBox LLAVE_C {:  getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY())); :};
+                   | LLAVE_A configBox LLAVE_C {:  getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY())); :}
+                   | error LLAVE_A
+                   | error LLAVE_C
+                   | error COMA;
 configBox ::= configBox COMA  posBox:a1 /*{:  getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY())); :}*/
               |  posBox:a1
+              | error COMA
 /*{:  getSingletonInstanceWorld().getArrayBoxes().add(new Box(getSingletonInstanceBox().getPosX(),getSingletonInstanceBox().getPosY())); :}*/
 ;
 configTargetArray ::= configTargetArray COMA LLAVE_A configTarget LLAVE_C  {: getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :}
-                    | LLAVE_A configTarget LLAVE_C {:getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :};
+                    | LLAVE_A configTarget LLAVE_C {:getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :}
+                    | error LLAVE_A
+                    | error LLAVE_C
+                    | error COMA;
 configTarget ::= configTarget COMA posT:a1 /* {: getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :}*/
                 |  posT:a1
+                | error COMA
 /*{:getSingletonInstanceWorld().getArrayTarget().add(new Target(getSingletonInstanceTarget().getPosX(),getSingletonInstanceTarget().getPosY())); :}*/
 ;
 
 configPlayer ::= configPlayer COMA posPlayer:a1  {: RESULT=a1; :}
                 |  posPlayer:a1
 {: RESULT=a1;:}
+                | error COMA
 ;
 posT ::=  COMILLA POS_X COMILLA DOS_PUNTOS operacion1:a1
 {: getSingletonInstanceTarget().setPosX(a1.intValue()); :}
 
         | COMILLA POS_Y COMILLA DOS_PUNTOS operacion1:a1
 {: getSingletonInstanceTarget().setPosY(a1.intValue()); :}
+        | error COMILLA
+        | error DOS_PUNTOS
+        | error POS_X
+        | error POS_Y
 ;
 
 
@@ -371,6 +398,10 @@ posBox ::=  COMILLA POS_X COMILLA DOS_PUNTOS operacion1:a1
 
         | COMILLA POS_Y COMILLA DOS_PUNTOS operacion1:a1
  {:   getSingletonInstanceBox().setPosY(a1.intValue()); :}
+        | error COMILLA
+        | error DOS_PUNTOS
+        | error POS_X
+        | error POS_Y
 ;
 
 posPlayer ::=  COMILLA POS_X COMILLA DOS_PUNTOS operacion1:a1
@@ -378,6 +409,10 @@ posPlayer ::=  COMILLA POS_X COMILLA DOS_PUNTOS operacion1:a1
 
         | COMILLA POS_Y COMILLA DOS_PUNTOS operacion1:a1
 {:   getSingletonInstancePlayer().setPosY(a1.intValue()); :}
+        | error COMILLA
+        | error DOS_PUNTOS
+        | error POS_X
+        | error POS_Y
 ;
 
 posTB ::=  COMILLA POS_X COMILLA DOS_PUNTOS operacion1:a1
@@ -388,6 +423,11 @@ posTB ::=  COMILLA POS_X COMILLA DOS_PUNTOS operacion1:a1
 
          | COMILLA TYPE COMILLA DOS_PUNTOS typeH:a1
 {:  getSingletonInstanceBoard().setType((Integer)a1); :}
+        | error COMILLA
+        | error DOS_PUNTOS
+        | error POS_X
+        | error POS_Y
+        | error TYPE
 ;
 
 typeH ::= COMILLA HALL:t1 COMILLA
@@ -395,9 +435,11 @@ typeH ::= COMILLA HALL:t1 COMILLA
 
          | COMILLA BRICK:t1 COMILLA
 {: RESULT=t1.getTokenType() ;:}
+        | error COMILLA
 ;
 config ::= config COMA configPro
-           | configPro:a1 {: RESULT=a1;:};
+           | configPro:a1 {: RESULT=a1;:}
+           | error COMA;
 configPro ::= COMILLA BOX_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR:a1 COMILLA
  {:  getSingletonInstanceConfig().setBox_color(a1.getLexeme());  :}
 
@@ -417,7 +459,9 @@ configPro ::= COMILLA BOX_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR:a1 COMI
 {:  getSingletonInstanceConfig().setUndefined_color(a1.getLexeme());  :}
 
               | COMILLA PLAYER_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR:a1 COMILLA
-{:  getSingletonInstanceConfig().setPlayer_color(a1.getLexeme());  :};
+{:  getSingletonInstanceConfig().setPlayer_color(a1.getLexeme());  :}
+               | error COMILLA
+               | error DOS_PUNTOS;
 
 /*operacion ::= operacion1:a1 {:RESULT=a1;:}
               | COMILLA operacion1:a1 COMILLA {:RESULT=a1;:};*/
@@ -428,8 +472,14 @@ configPro ::= COMILLA BOX_COLOR COMILLA DOS_PUNTOS COMILLA PALABRA_COLOR:a1 COMI
 operacion1 ::=operacion1:a1 SUMA operacion1:a2 {:RESULT = a1 + a2 ; :}
             | operacion1:a1 RESTA operacion1:a2 {:RESULT = a1 - a2 ; :}
             | operacion2:a1 {:RESULT = a1 ; :};
-operacion2 ::= operacion2:a1 MULTIPLY operacion2:a2 {:RESULT = a1 * a2 ; :}
-             | operacion2:a1 DIVISION operacion2:a2 {:RESULT = a1 / a2 ; :}
+operacion2 ::= operacion2:a1 MULTIPLY:p operacion2:a2 {:RESULT = a1 * a2 ;:}
+             | operacion2:a1 DIVISION:p operacion2:a2 {:
+                        if(a2==0){
+                            erroForClient.add(new ErrorModel("DIVISION", p.getLine(), p.getColumn(), ErrorType.SINTACTICO, "estas_diviendo_por_0_"));
+                            RESULT=1.0;
+                        };
+             RESULT = a1 / a2 ;
+             :}
              | operacion3:a1 {:RESULT = a1 ; :} ;
 operacion3 ::= ENTERO:a1 {:RESULT = Double.parseDouble(a1.getLexeme()); :}
                | operacion4:a1 {:RESULT =a1;:};
@@ -437,4 +487,7 @@ operacion4 ::= L_PARENT operacion1:a1 R_PARENT {:RESULT =a1;:}
                |COMILLA operacion1:a1 COMILLA {:RESULT =a1;:}
                | CEIL L_PARENT operacion1:a1  R_PARENT {:RESULT = Math.ceil(a1);:}
                | FLOOR L_PARENT operacion1:a1 R_PARENT {:RESULT = Math.floor(a1);:}
-               | DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :};
+               | DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :}
+               | error L_PARENT
+               | error R_PARENT
+               | error COMILLA;

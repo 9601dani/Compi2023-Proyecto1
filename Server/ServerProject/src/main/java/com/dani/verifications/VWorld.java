@@ -1,76 +1,87 @@
 package com.dani.verifications;
 
+import com.dani.models.ErrorModel;
+import com.dani.models.ErrorType;
 import com.dani.objects.*;
 
 import java.util.ArrayList;
+
+import static com.dani.Main.erroForClient;
 
 public class VWorld {
 
     public boolean verificarWorldNo(World arrayWorld){
         boolean ts=false;
+        ts= verificarDentroDeArray(arrayWorld);
+        if(ts){
+            return ts;
+        }
         ts=verificarNoNull(arrayWorld);/**/
-        if(ts==true){
+        if(ts){
             return ts;
         }
         ts=verificarNoRepetidoOnBoxes(arrayWorld.getArrayBoxes());
-        if(ts==true){
+        if(ts){
             return ts;
         }
         ts= verificarNoRepetidoOnTarget(arrayWorld.getArrayTarget());
-        if(ts==true){
+        if(ts){
             return ts;
         }
-        if(ts==true){
-            System.out.println("ts1");
+        if(ts){
             return true;
         }else{
             ts=verificarPosBoxOnBoard(arrayWorld.getArrayBoard(),arrayWorld.getArrayBoxes());
-            if(ts==true){
-                System.out.println("ts2");
+            if(ts){
                 return ts;
             }else{
                 ts=verificarPosTarget(arrayWorld.getArrayBoard(),arrayWorld.getArrayTarget());
-                if(ts==true){
-                    System.out.println("ts3");
+                if(ts){
                     return ts;
                 }
             }
         }
-        System.out.println("ts4"+ts);
         return ts;
     }
     public boolean verificarNoNull(World arrayWorld){
         if(arrayWorld.getName()=="" || arrayWorld.getName()==null){
-            System.out.println("error null name");
+            erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"nombre_del_mundo_no_definido"));
             return true;
         }else if(arrayWorld.getCols()==null || arrayWorld.getRows()==null){
-            System.out.println("error null cols | rows");
+            erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"El_numero_de_columnas_o_filas_no_definido"));
             return true;
         }else{
             for(int i =0;i<arrayWorld.getArrayBoard().size();i++){
                 if(arrayWorld.getArrayBoard().get(i).getPosX()!=null){}else{
+                    erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"BOARD_NO_DEFINIDO_POS_X"));
                     return true;
                 }
                 if(arrayWorld.getArrayBoard().get(i).getPosY()!=null){}else{
+                    erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"BOARD_NO_DEFINIDO_POS_Y"));
                     return true;
                 }
                 if(arrayWorld.getArrayBoard().get(i).getType()!=null){}else{
+                    erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"TYPE_BOARD_NO_DEFINIDO"));
                     return true;
                 }
             }
             for(int i =0;i<arrayWorld.getArrayBoxes().size();i++){
                 if(arrayWorld.getArrayBoxes().get(i).getPosX()!=null){}else{
+                    erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"BOXES_NO_DEFINIDO_POS_X"));
                     return true;
                 }
                 if(arrayWorld.getArrayBoxes().get(i).getPosY()!=null){}else{
+                    erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"BOXES_NO_DEFINIDO_POS_Y"));
                     return true;
                 }
             }
             for(int i =0;i<arrayWorld.getArrayTarget().size();i++){
                 if(arrayWorld.getArrayTarget().get(i).getPosX()!=null){}else{
+                    erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"TARGET_NO_DEFINIDO_POS_X"));
                     return true;
                 }
                 if(arrayWorld.getArrayTarget().get(i).getPosY()!=null){}else{
+                    erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"TARGET_NO_DEFINIDO_POS_X"));
                     return true;
                 }
             }
@@ -79,12 +90,10 @@ public class VWorld {
         return false;
     }
     public boolean verificarPosBoxOnBoard(ArrayList<Board> arrayBoard,ArrayList<Box> arrayBox){
-        System.out.println("psoBox");
         boolean tt=true;
         for(int i=0;i<arrayBox.size();i++){
             for(int j=0;j<arrayBoard.size();j++){
                 if(arrayBoard.get(j).getPosX()==arrayBox.get(i).getPosX() && arrayBoard.get(j).getPosY()==arrayBox.get(i).getPosY() ){
-                    System.out.println("error "+  i + " box "+j);
                     tt=false;
                     break;
                 }
@@ -95,6 +104,7 @@ public class VWorld {
             tt=  verificarNoRepetidoOnBoard(arrayBoard);
             return tt;
         }else{
+            erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"El_BOX_no_esta_definida_en_BOARD"));
             return true;
         }
 
@@ -104,7 +114,6 @@ public class VWorld {
         for(int i=0;i<arrayTarget.size();i++){
             for(int j=0;j<arrayBoard.size();j++){
                 if(arrayBoard.get(j).getPosX()==arrayTarget.get(i).getPosX() && arrayBoard.get(j).getPosY()==arrayTarget.get(i).getPosY() ){
-                    System.out.println("error "+  i + " target "+j);
                     tt=true;
                     break;
                 }
@@ -114,6 +123,7 @@ public class VWorld {
         if(tt==true){
             return false;
         }else{
+            erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"El_TARGET_no_esta_definida_en_BOARD"));
             return true;
         }
     }
@@ -122,11 +132,9 @@ public class VWorld {
         for(int i=0; i<arraybox.size();i++){
             for (int j=0;j<arraybox.size();j++){
                 if(i==j){
-                    System.out.println("son iguales");
                 }else{
                     if(arraybox.get(i).getPosX()== arraybox.get(j).getPosX() && arraybox.get(i).getPosY()== arraybox.get(j).getPosY()){
-                        System.out.println("error "+  i + " boxes "+j);
-                        System.out.println(arraybox.get(i).toString()+ " -- "+arraybox.get(i).toString());
+                        erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion "+arraybox.get(i).getPosY()+","+arraybox.get(i).getPosX()+" de_BOXES_ya_se_definio_anteriormente"));
                         return true;
                     }
                 }
@@ -139,11 +147,9 @@ public class VWorld {
             for(int i=0; i<arrayboard.size();i++){
                 for (int j=0;j<arrayboard.size();j++){
                     if(i==j){
-                        System.out.println("son iguales");
                     }else{
                         if(arrayboard.get(i).getPosX()== arrayboard.get(j).getPosX() && arrayboard.get(i).getPosY()== arrayboard.get(j).getPosY()){
-                            System.out.println("error "+  i + " board "+j);
-                            System.out.println(arrayboard.get(i).toString()+ " -- "+arrayboard.get(i).toString());
+                            erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion "+arrayboard.get(i).getPosY()+","+arrayboard.get(i).getPosX()+" de_BOARD_ya_se_definio_anteriormente"));
                             return true;
                         }
                     }
@@ -152,13 +158,12 @@ public class VWorld {
             return false;
     }
     public boolean verificarNoRepetidoOnTarget(ArrayList<Target> arrayTarget){
-        System.out.println("noRpetido");
         for(int i=0; i<arrayTarget.size();i++){
             for (int j=0;j<arrayTarget.size();j++){
                 if(i==j){
-                    System.out.println("son iguales");
                 }else{
                     if(arrayTarget.get(i).getPosX()== arrayTarget.get(j).getPosX() && arrayTarget.get(i).getPosY()== arrayTarget.get(j).getPosY()){
+                        erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion "+arrayTarget.get(i).getPosY()+","+arrayTarget.get(i).getPosX()+" de_TARGET_ya_se_definio_anteriormente"));
                         return true;
                     }
                 }
@@ -188,6 +193,28 @@ public class VWorld {
         if(config.getPlayer_color()!=null){}else{
             config.setPlayer_color("ff00f7");
         }
+    }
+
+    public static Boolean verificarDentroDeArray(World world){
+        for (int i=0; i<world.getArrayBoard().size();i++){
+            if(world.getArrayBoard().get(i).getPosX()>= world.getRows() || world.getArrayBoard().get(i).getPosY()>= world.getCols()){
+                erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion "+world.getArrayBoard().get(i).getPosY()+","+world.getArrayBoard().get(i).getPosX()+" en_BOARD_no_esta_definida"));
+                return true;
+            }
+        }
+        for (int i=0;i<world.getArrayBoxes().size();i++){
+            if(world.getArrayBoxes().get(i).getPosX()>= world.getRows() || world.getArrayBoxes().get(i).getPosY()>= world.getCols()){
+                erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion "+world.getArrayBoxes().get(i).getPosY()+","+world.getArrayBoxes().get(i).getPosX()+" en_BOXES_no_esta_definida"));
+                return true;
+            }
+        }
+        for (int i=0;i<world.getArrayTarget().size();i++){
+            if(world.getArrayTarget().get(i).getPosX()>= world.getRows() || world.getArrayTarget().get(i).getPosY()>= world.getCols()){
+                erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion "+world.getArrayTarget().get(i).getPosY()+","+world.getArrayTarget().get(i).getPosX()+" en_TARGET_no_esta_definida"));
+                return true;
+            }
+        }
+        return false;
     }
 
 }

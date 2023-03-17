@@ -45,6 +45,7 @@ public class Server {
                /* System.out.println("Inicie servidor");*/
                 while(true){
                     sc= server.accept();
+                    erroForClient=new ArrayList<>();
                     /*System.out.println("Cliente conectado");*/
                     in= new DataInputStream(sc.getInputStream());
                     out = new DataOutputStream(sc.getOutputStream());
@@ -53,7 +54,12 @@ public class Server {
                     String response=compileJson(mensaje);
                     txt_to_android.setText("Enviando a cliente: \n "+ response);
                     if(response==""){
-                        out.writeUTF("HEMOS ENCONTRADO ERRORES");
+                        erroForClient.add(new ErrorModel("WORLD", 0,0, ErrorType.SINTACTICO,"Hay_errores_sintacticos"));
+                        String yesErr="";
+                        yesErr=Converter.converObjectToXmlError(new Error(erroForClient));
+                        out.writeUTF(yesErr);
+                        erroForClient= new ArrayList<>();
+                        txt_to_android.setText("Enviando a cliente: \n "+ yesErr);
                         sc.close();
                     }else{
                         out.writeUTF(response);
@@ -193,6 +199,11 @@ public class Server {
                                     worldList.getWorld().get(i).getArrayBoard(),worldList.getWorld().get(i).getArrayBoxes(),worldList.getWorld().get(i).getArrayTarget(),worldList.getWorld().get(i).getPlayer())*/
                         /*converObjectToXml(worldList.get(i));*/
                     }
+                    if(!erroForClient.isEmpty()){
+                        datXml=converObjectToXmlError(new Error(erroForClient));
+                        erroForClient=new ArrayList<>();
+                        return datXml;
+                    }
                     if(ms==false){
                         VWorld veri= new VWorld();
 
@@ -201,15 +212,13 @@ public class Server {
                                 worldList.getWorld().get(0).getArrayTarget(),worldList.getWorld().get(0).getPlayer()) )==true){
                             ms=true;
                         }
-
-                        /*AQUI EL ERROR............................*/
-                        System.out.println("--> mostrare");
-                        for(int i=0; i<listToXml.size();i++){
+/*                        for(int i=0; i<listToXml.size();i++){
                             System.out.println(i+". "+ listToXml.get(i).getBoard());
-                        }
+                        }*/
                         if(ms==true){
-                            System.out.println("si hay error en verrificaciones");
-                            return "HAY ERRORES EN VERIFICACIONES";
+                            datXml=converObjectToXmlError(new Error(erroForClient));
+                            erroForClient=new ArrayList<>();
+                            return datXml;
                         }else{
                             System.out.println("no hay error\n"+listToXml.toString());
                             configDefecto(listToXml.get(listToXml.size()-1).getConfig());
@@ -226,7 +235,6 @@ public class Server {
                 //System.out.printf(datXml);
                 return datXml;
             }else{
-                System.out.println("el array de errores es nulo");
                 /*aqui si hay errores*/
                 datXml=converObjectToXmlError(new Error(erroForClient));
                 erroForClient=new ArrayList<>();
@@ -266,6 +274,7 @@ public class Server {
             if(arregloExistente.get(i).getName().equals(nuevoMundo.getName())){
                 System.out.println("YA EXISTE EL MUNDO");
                 exist=true;
+                erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"El_mundo_ya_existe"));
                 return exist;
             }
         }

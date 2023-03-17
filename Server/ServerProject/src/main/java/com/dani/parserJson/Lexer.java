@@ -3,8 +3,8 @@
 package com.dani.parserJson;
 import com.dani.Token;
 import java_cup.runtime.Symbol;
-import static com.dani.parserJson.ParserJsonSym.*;
 
+import static com.dani.parserJson.ParserJsonSym.*;
 
 
 /**

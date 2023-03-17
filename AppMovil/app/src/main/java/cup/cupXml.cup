@@ -167,7 +167,7 @@ erroPro::= erroPro:n1 errorA findErro:a1 errorC
                              getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer(),getSingletonInstanceWorld().getErrArray());
               n1.add((World)a1);
               RESULT=n1;
-              getSingletonInstanceWorld().clean();
+               getSingletonInstanceWorld().clean();
              :}
             |errorA findErro:a1 errorC
             {:
@@ -175,7 +175,7 @@ erroPro::= erroPro:n1 errorA findErro:a1 errorC
             RESULT.add(new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),
             getSingletonInstanceWorld().getConfig(),getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),
             getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer(),getSingletonInstanceWorld().getErrArray()));
-                                                 getSingletonInstanceWorld().clean();                                                              :};
+                          getSingletonInstanceWorld().clean();                                                                                      :};
             /*RESULT.add(new)*/
 findErro::= lexemaA proErr:a1 lexemaC
              lineaA proLine:a2 lineaC
@@ -227,6 +227,7 @@ proErr::= LITERAL:a1{:RESULT= a1.getLexeme(); :}
          |DECIMAL:a1{:RESULT = a1.getLexeme();:}
          |SIGNO_A:a1{:RESULT = a1.getLexeme();:}
          |SIGNO_C:a1{:RESULT = a1.getLexeme();:}
+         | ENTERO:a1{:RESULT = a1.getLexeme();:}
          |ALL:a1{:RESULT = a1.getLexeme();:};
 
 worldPro ::=  worldPro:n1 worldA atri:a1 worldC
@@ -234,7 +235,9 @@ worldPro ::=  worldPro:n1 worldA atri:a1 worldC
                 a1=new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
                                                                getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer(),new ArrayList<>());
                 n1.add(a1);
+
                 RESULT=n1;
+                getSingletonInstanceWorld().clean();
                 :}
             | worldPro:n1 worldA PALABRA:a1 worldC
             {:
@@ -242,19 +245,20 @@ worldPro ::=  worldPro:n1 worldA atri:a1 worldC
                                                                                                   getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer(),new ArrayList<>()));
 
                             RESULT=n1;
+                             getSingletonInstanceWorld().clean();
             :}
             | worldA PALABRA:a1 worldC
                         {:
                         RESULT= new ArrayList<World>();
                                      RESULT.add(new World(a1.getLexeme(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
                                                              getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer(),new ArrayList<>()));
-
+                         getSingletonInstanceWorld().clean();
                         :}
             | worldA atri:a1 worldC {:
              RESULT= new ArrayList<World>();
              RESULT.add(new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
                                      getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer(),new ArrayList<>()));
-                                                                                                  :};
+                                          getSingletonInstanceWorld().clean();                                                         :};
 
 atri ::= atri producWorld  {:RESULT= getSingletonInstanceWorld(); :}
         | producWorld  {:RESULT= getSingletonInstanceWorld(); :};
@@ -329,25 +333,25 @@ typeH ::= HALL:t1
 config ::= config configPro
            | configPro:a1 {: RESULT=a1;:};
 configPro ::= box_colorA PALABRA:a1 box_colorC
- {:  getSingletonInstanceConfig().setBox_color(a1.getLexeme());  :}
+ {:  getSingletonInstanceConfig().setBox_color("#"+a1.getLexeme());  :}
 
               | box_on_target_colorA PALABRA:a1 box_on_target_colorC
-{:  getSingletonInstanceConfig().setBox_on_target_color(a1.getLexeme());  :}
+{:  getSingletonInstanceConfig().setBox_on_target_color("#"+a1.getLexeme());  :}
 
               | target_colorA PALABRA:a1 target_colorC
-{:  getSingletonInstanceConfig().setTarget_color(a1.getLexeme());  :}
+{:  getSingletonInstanceConfig().setTarget_color("#"+a1.getLexeme());  :}
 
               | brick_colorA PALABRA:a1 brick_colorC
-{:  getSingletonInstanceConfig().setBrick_color(a1.getLexeme());  :}
+{:  getSingletonInstanceConfig().setBrick_color("#"+a1.getLexeme());  :}
 
               | hall_colorA PALABRA:a1 hall_colorC
-{:  getSingletonInstanceConfig().setHall_color(a1.getLexeme());  :}
+{:  getSingletonInstanceConfig().setHall_color("#"+a1.getLexeme());  :}
 
               | undefined_colorA PALABRA:a1 undefined_colorC
-{:  getSingletonInstanceConfig().setUndefined_color(a1.getLexeme());  :}
+{:  getSingletonInstanceConfig().setUndefined_color("#"+a1.getLexeme());  :}
 
               | player_colorA PALABRA:a1 player_colorC
-{:  getSingletonInstanceConfig().setPlayer_color(a1.getLexeme());  :}
+{:  getSingletonInstanceConfig().setPlayer_color("#"+a1.getLexeme());  :}
 ;
 /*XML ERROR*/
 errorsA::= SIGNO_A ERRORS SIGNO_C;
