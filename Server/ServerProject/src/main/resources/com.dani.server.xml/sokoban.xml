@@ -556,8 +556,8 @@
   </world>
   <world>
     <name>tatoine</name>
-    <rows>5</rows>
-    <cols>4</cols>
+    <rows>4</rows>
+    <cols>5</cols>
     <config>
       <box_color>#ffff00</box_color>
       <box_on_target_color>#fe0002</box_on_target_color>

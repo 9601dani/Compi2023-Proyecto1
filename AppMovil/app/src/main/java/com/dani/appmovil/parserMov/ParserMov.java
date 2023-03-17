@@ -5,10 +5,14 @@
 
 package com.dani.appmovil.parserMov;
 
+import static com.dani.appmovil.models.ConstruccionMatriz.erroForClient;
 import static com.dani.appmovil.parserMov.ParserMovSym.*;
 
+import java_cup.runtime.*;
+import com.dani.appmovil.models.ErrorMovClient;
 import com.dani.appmovil.objects.Motion;
 import com.dani.appmovil.objects.Token;
+import com.dani.appmovil.parserXml.ParserXmlSym;
 
 import java.util.ArrayList;
 
@@ -35,13 +39,15 @@ public class ParserMov extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\025\000\002\002\004\000\002\010\005\000\002\010" +
-    "\004\000\002\002\006\000\002\002\007\000\002\003\003" +
-    "\000\002\003\003\000\002\003\003\000\002\003\003\000" +
-    "\002\007\005\000\002\007\005\000\002\007\003\000\002" +
-    "\005\005\000\002\005\005\000\002\005\003\000\002\004" +
-    "\003\000\002\004\003\000\002\006\005\000\002\006\006" +
-    "\000\002\006\006\000\002\006\003" });
+    "\000\033\000\002\002\004\000\002\010\005\000\002\010" +
+    "\004\000\002\010\004\000\002\010\004\000\002\002\006" +
+    "\000\002\002\007\000\002\002\004\000\002\002\004\000" +
+    "\002\003\003\000\002\003\003\000\002\003\003\000\002" +
+    "\003\003\000\002\007\005\000\002\007\005\000\002\007" +
+    "\003\000\002\005\005\000\002\005\005\000\002\005\003" +
+    "\000\002\004\003\000\002\004\003\000\002\006\005\000" +
+    "\002\006\006\000\002\006\006\000\002\006\003\000\002" +
+    "\006\004\000\002\006\004" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -49,44 +55,54 @@ public class ParserMov extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\054\000\014\004\007\005\012\006\010\011\006\012" +
-    "\005\001\002\000\004\022\054\001\002\000\004\022\ufffc" +
-    "\001\002\000\004\022\ufffa\001\002\000\004\022\ufffb\001" +
-    "\002\000\004\022\ufff9\001\002\000\016\002\051\004\007" +
-    "\005\012\006\010\011\006\012\005\001\002\000\012\004" +
-    "\007\006\010\011\006\012\005\001\002\000\004\013\014" +
-    "\001\002\000\016\002\uffff\004\uffff\005\uffff\006\uffff\011" +
-    "\uffff\012\uffff\001\002\000\004\022\016\001\002\000\014" +
-    "\007\024\010\026\014\017\015\021\022\025\001\002\000" +
-    "\014\016\ufff2\017\ufff2\020\ufff2\021\ufff2\023\ufff2\001\002" +
-    "\000\014\016\ufff3\017\ufff3\020\ufff3\021\ufff3\023\ufff3\001" +
-    "\002\000\014\016\uffed\017\uffed\020\uffed\021\uffed\023\uffed" +
-    "\001\002\000\014\016\ufff6\017\046\020\ufff6\021\045\023" +
-    "\ufff6\001\002\000\010\016\033\020\032\023\044\001\002" +
-    "\000\004\022\041\001\002\000\014\007\024\010\026\014" +
-    "\017\015\021\022\025\001\002\000\004\022\030\001\002" +
-    "\000\014\016\ufff1\017\ufff1\020\ufff1\021\ufff1\023\ufff1\001" +
-    "\002\000\014\007\024\010\026\014\017\015\021\022\025" +
-    "\001\002\000\010\016\033\020\032\023\034\001\002\000" +
-    "\014\007\024\010\026\014\017\015\021\022\025\001\002" +
-    "\000\014\007\024\010\026\014\017\015\021\022\025\001" +
-    "\002\000\014\016\uffef\017\uffef\020\uffef\021\uffef\023\uffef" +
-    "\001\002\000\010\016\ufff8\020\032\023\ufff8\001\002\000" +
-    "\010\016\ufff7\020\ufff7\023\ufff7\001\002\000\010\016\033" +
-    "\020\032\023\040\001\002\000\014\016\ufff0\017\ufff0\020" +
-    "\ufff0\021\ufff0\023\ufff0\001\002\000\014\007\024\010\026" +
-    "\014\017\015\021\022\025\001\002\000\010\016\033\020" +
-    "\032\023\043\001\002\000\014\016\uffee\017\uffee\020\uffee" +
-    "\021\uffee\023\uffee\001\002\000\004\013\ufffd\001\002\000" +
-    "\014\007\024\010\026\014\017\015\021\022\025\001\002" +
-    "\000\014\007\024\010\026\014\017\015\021\022\025\001" +
-    "\002\000\014\016\ufff5\017\ufff5\020\ufff5\021\045\023\ufff5" +
-    "\001\002\000\014\016\ufff4\017\ufff4\020\ufff4\021\ufff4\023" +
-    "\ufff4\001\002\000\004\002\001\001\002\000\004\013\053" +
-    "\001\002\000\016\002\000\004\000\005\000\006\000\011" +
-    "\000\012\000\001\002\000\014\007\024\010\026\014\017" +
-    "\015\021\022\025\001\002\000\010\016\033\020\032\023" +
-    "\056\001\002\000\004\013\ufffe\001\002" });
+    "\000\065\000\016\003\007\004\010\005\006\006\005\011" +
+    "\004\012\014\001\002\000\004\022\ufff6\001\002\000\004" +
+    "\022\ufff5\001\002\000\012\004\010\006\005\011\004\012" +
+    "\014\001\002\000\012\013\062\022\060\023\061\024\063" +
+    "\001\002\000\004\022\ufff7\001\002\000\020\002\054\003" +
+    "\055\004\010\005\006\006\005\011\004\012\014\001\002" +
+    "\000\004\022\016\001\002\000\004\013\015\001\002\000" +
+    "\004\022\ufff8\001\002\000\020\002\uffff\003\uffff\004\uffff" +
+    "\005\uffff\006\uffff\011\uffff\012\uffff\001\002\000\016\003" +
+    "\025\007\024\010\027\014\020\015\021\022\026\001\002" +
+    "\000\014\016\uffef\017\uffef\020\uffef\021\uffef\023\uffef\001" +
+    "\002\000\014\016\uffee\017\uffee\020\uffee\021\uffee\023\uffee" +
+    "\001\002\000\014\016\uffe9\017\uffe9\020\uffe9\021\uffe9\023" +
+    "\uffe9\001\002\000\014\016\ufff2\017\051\020\ufff2\021\050" +
+    "\023\ufff2\001\002\000\010\016\034\020\033\023\047\001" +
+    "\002\000\004\022\044\001\002\000\006\022\042\023\043" +
+    "\001\002\000\016\003\025\007\024\010\027\014\020\015" +
+    "\021\022\026\001\002\000\004\022\031\001\002\000\014" +
+    "\016\uffed\017\uffed\020\uffed\021\uffed\023\uffed\001\002\000" +
+    "\016\003\025\007\024\010\027\014\020\015\021\022\026" +
+    "\001\002\000\010\016\034\020\033\023\035\001\002\000" +
+    "\016\003\025\007\024\010\027\014\020\015\021\022\026" +
+    "\001\002\000\016\003\025\007\024\010\027\014\020\015" +
+    "\021\022\026\001\002\000\014\016\uffeb\017\uffeb\020\uffeb" +
+    "\021\uffeb\023\uffeb\001\002\000\010\016\ufff4\020\033\023" +
+    "\ufff4\001\002\000\010\016\ufff3\020\ufff3\023\ufff3\001\002" +
+    "\000\010\016\034\020\033\023\041\001\002\000\014\016" +
+    "\uffec\017\uffec\020\uffec\021\uffec\023\uffec\001\002\000\014" +
+    "\016\uffe8\017\uffe8\020\uffe8\021\uffe8\023\uffe8\001\002\000" +
+    "\014\016\uffe7\017\uffe7\020\uffe7\021\uffe7\023\uffe7\001\002" +
+    "\000\016\003\025\007\024\010\027\014\020\015\021\022" +
+    "\026\001\002\000\010\016\034\020\033\023\046\001\002" +
+    "\000\014\016\uffea\017\uffea\020\uffea\021\uffea\023\uffea\001" +
+    "\002\000\004\013\ufffc\001\002\000\016\003\025\007\024" +
+    "\010\027\014\020\015\021\022\026\001\002\000\016\003" +
+    "\025\007\024\010\027\014\020\015\021\022\026\001\002" +
+    "\000\014\016\ufff1\017\ufff1\020\ufff1\021\050\023\ufff1\001" +
+    "\002\000\014\016\ufff0\017\ufff0\020\ufff0\021\ufff0\023\ufff0" +
+    "\001\002\000\004\002\001\001\002\000\006\022\060\023" +
+    "\061\001\002\000\004\013\057\001\002\000\020\002\000" +
+    "\003\000\004\000\005\000\006\000\011\000\012\000\001" +
+    "\002\000\004\013\ufffa\001\002\000\004\013\ufff9\001\002" +
+    "\000\020\002\ufffe\003\ufffe\004\ufffe\005\ufffe\006\ufffe\011" +
+    "\ufffe\012\ufffe\001\002\000\020\002\ufffd\003\ufffd\004\ufffd" +
+    "\005\ufffd\006\ufffd\011\ufffd\012\ufffd\001\002\000\004\022" +
+    "\065\001\002\000\016\003\025\007\024\010\027\014\020" +
+    "\015\021\022\026\001\002\000\010\016\034\020\033\023" +
+    "\067\001\002\000\004\013\ufffb\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -94,26 +110,29 @@ public class ParserMov extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\054\000\010\002\012\003\003\010\010\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\006\002\051\003\003\001" +
-    "\001\000\004\003\014\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\012\004\017\005\021\006" +
-    "\026\007\022\001\001\000\002\001\001\000\002\001\001" +
+    "\000\065\000\010\002\012\003\011\010\010\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\003\063\001\001" +
+    "\000\002\001\001\000\002\001\001\000\006\002\055\003" +
+    "\011\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\012\004\016\005\021\006" +
+    "\027\007\022\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\012\004\017\005\021\006\026\007\036" +
-    "\001\001\000\002\001\001\000\002\001\001\000\012\004" +
-    "\017\005\021\006\026\007\030\001\001\000\002\001\001" +
-    "\000\012\004\017\005\021\006\026\007\035\001\001\000" +
-    "\012\004\017\005\021\006\026\007\034\001\001\000\002" +
+    "\002\001\001\000\002\001\001\000\012\004\016\005\021" +
+    "\006\027\007\037\001\001\000\002\001\001\000\002\001" +
+    "\001\000\012\004\016\005\021\006\027\007\031\001\001" +
+    "\000\002\001\001\000\012\004\016\005\021\006\027\007" +
+    "\036\001\001\000\012\004\016\005\021\006\027\007\035" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\012\004\017\005\021\006\026" +
-    "\007\041\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\010\004\017\005\047\006\026\001\001" +
-    "\000\010\004\017\005\046\006\026\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\012\004\017\005\021\006\026\007" +
-    "\054\001\001\000\002\001\001\000\002\001\001" });
+    "\000\002\001\001\000\012\004\016\005\021\006\027\007" +
+    "\044\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\010\004\016\005\052\006\027\001\001\000" +
+    "\010\004\016\005\051\006\027\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\012\004\016\005\021\006\027\007\065\001\001" +
+    "\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -153,6 +172,55 @@ public class ParserMov extends java_cup.runtime.lr_parser {
 
 
         Motion movimiento;
+                                        public Symbol scan() throws Exception {
+                                               Symbol symbol = this.getScanner().next_token();
+                                               if (symbol == null) {
+                                                   return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
+                                               }
+
+                                               while(symbol != null && symbol.sym == ParserXmlSym.SYM) {
+                                                   this.report_expected_token_ids();
+                                                   System.out.println("Ingorando: " + symbol.value.toString());
+                                                   Token token = (Token) symbol.value;
+                                                   erroForClient.add(new ErrorMovClient(token.getLexeme(),token.getLine(),token.getColumn(), "LEXICO","No_existe_esta_cadena_en_el_lenguaje"));
+                                                   symbol = this.getScanner().next_token();
+                                               }
+
+                                               if (symbol == null) {
+                                                   return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
+                                               }
+
+                                               return symbol;
+                                       }
+                                        public void syntax_error(Symbol cur_token) {
+                                               Token token = (Token) cur_token.value;
+
+                                               if (cur_token.sym ==ParserXmlSym.EOF) {
+                                       //          String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
+                                                   String er = "Simbolo_inesperado_se_esperada:";
+                                                   erroForClient.add(new ErrorMovClient("Fin_del_archivo", token.getLine(),token.getColumn(), "SINTACTICO",er));
+                                                   System.out.println(er);
+                                               } else {
+                                                   String er = "Simbolo_inesperado";
+                                                   erroForClient.add(new ErrorMovClient(token.getLexeme(), token.getLine(), token.getColumn(),"SINTACTICO",er));
+                                                   System.out.println(er);
+                                               }
+                                           }
+
+                                           public void unrecovered_syntax_error(Symbol cur_token) {
+                                               if (cur_token.sym == ParserXmlSym.EOF) {
+                                                   Token tok = (Token) cur_token.value;
+                                                   String er = "No_se_puede_recuperar_el_error_ya_no_hay_mas_tokens";
+                                                   erroForClient.add(new ErrorMovClient("FIN_ARCHIVO", tok.getLine(), tok.getColumn(), "SINTACTICO", er));
+                                                   System.out.println(er);
+                                               } else {
+                                                   Token tok = (Token) cur_token.value;
+                                                   //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
+                                                   String er = "no_se_puede_recuperar_el_error";
+                                                   erroForClient.add(new ErrorMovClient(tok.getLexeme(), tok.getLine(), tok.getColumn(), "SINTACTICO", er));
+                                                   System.out.println(er);
+                                               }
+                                           }
 
 
 /** Cup generated class to encapsulate user supplied action code.*/
@@ -229,7 +297,25 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // typeMov ::= instr L_PARENT operacion1 R_PARENT 
+          case 3: // expr ::= error PUNTO_COMA 
+            {
+              ArrayList<Motion> RESULT =null;
+
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("expr",6, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+            }
+          return CUP$ParserMov$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 4: // expr ::= error SYM 
+            {
+              ArrayList<Motion> RESULT =null;
+
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("expr",6, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+            }
+          return CUP$ParserMov$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 5: // typeMov ::= instr L_PARENT operacion1 R_PARENT 
             {
               Motion RESULT =null;
 		int n1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-3)).left;
@@ -246,7 +332,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // typeMov ::= PUSH instr L_PARENT operacion1 R_PARENT 
+          case 6: // typeMov ::= PUSH instr L_PARENT operacion1 R_PARENT 
             {
               Motion RESULT =null;
 		int n1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-3)).left;
@@ -263,7 +349,25 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // instr ::= UP 
+          case 7: // typeMov ::= error L_PARENT 
+            {
+              Motion RESULT =null;
+
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("typeMov",0, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+            }
+          return CUP$ParserMov$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 8: // typeMov ::= error R_PARENT 
+            {
+              Motion RESULT =null;
+
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("typeMov",0, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+            }
+          return CUP$ParserMov$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // instr ::= UP 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).left;
@@ -275,7 +379,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // instr ::= DOWN 
+          case 10: // instr ::= DOWN 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).left;
@@ -287,7 +391,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // instr ::= LEFT 
+          case 11: // instr ::= LEFT 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).left;
@@ -299,7 +403,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // instr ::= RIGHT 
+          case 12: // instr ::= RIGHT 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).left;
@@ -311,7 +415,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // operacion1 ::= operacion1 SUMA operacion1 
+          case 13: // operacion1 ::= operacion1 SUMA operacion1 
             {
               Double RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)).left;
@@ -326,7 +430,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // operacion1 ::= operacion1 RESTA operacion1 
+          case 14: // operacion1 ::= operacion1 RESTA operacion1 
             {
               Double RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)).left;
@@ -341,7 +445,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // operacion1 ::= operacion2 
+          case 15: // operacion1 ::= operacion2 
             {
               Double RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).left;
@@ -353,7 +457,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // operacion2 ::= operacion2 MULTIPLY operacion2 
+          case 16: // operacion2 ::= operacion2 MULTIPLY operacion2 
             {
               Double RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)).left;
@@ -368,7 +472,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // operacion2 ::= operacion2 DIVISION operacion2 
+          case 17: // operacion2 ::= operacion2 DIVISION operacion2 
             {
               Double RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-2)).left;
@@ -383,7 +487,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // operacion2 ::= operacion3 
+          case 18: // operacion2 ::= operacion3 
             {
               Double RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).left;
@@ -395,7 +499,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // operacion3 ::= NUM 
+          case 19: // operacion3 ::= NUM 
             {
               Double RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).left;
@@ -407,7 +511,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // operacion3 ::= operacion4 
+          case 20: // operacion3 ::= operacion4 
             {
               Double RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).left;
@@ -419,7 +523,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // operacion4 ::= L_PARENT operacion1 R_PARENT 
+          case 21: // operacion4 ::= L_PARENT operacion1 R_PARENT 
             {
               Double RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).left;
@@ -431,7 +535,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // operacion4 ::= CEIL L_PARENT operacion1 R_PARENT 
+          case 22: // operacion4 ::= CEIL L_PARENT operacion1 R_PARENT 
             {
               Double RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).left;
@@ -443,7 +547,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // operacion4 ::= FLOOR L_PARENT operacion1 R_PARENT 
+          case 23: // operacion4 ::= FLOOR L_PARENT operacion1 R_PARENT 
             {
               Double RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)).left;
@@ -455,7 +559,7 @@ class CUP$ParserMov$actions {
           return CUP$ParserMov$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // operacion4 ::= DECIMAL 
+          case 24: // operacion4 ::= DECIMAL 
             {
               Double RESULT =null;
 		int a1left = ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()).left;
@@ -463,6 +567,24 @@ class CUP$ParserMov$actions {
 		Token a1 = (Token)((java_cup.runtime.Symbol) CUP$ParserMov$stack.peek()).value;
 		 RESULT = Double.parseDouble(a1.getLexeme()); 
               CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion4",4, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+            }
+          return CUP$ParserMov$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 25: // operacion4 ::= error L_PARENT 
+            {
+              Double RESULT =null;
+
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion4",4, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
+            }
+          return CUP$ParserMov$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 26: // operacion4 ::= error R_PARENT 
+            {
+              Double RESULT =null;
+
+              CUP$ParserMov$result = parser.getSymbolFactory().newSymbol("operacion4",4, ((java_cup.runtime.Symbol)CUP$ParserMov$stack.elementAt(CUP$ParserMov$top-1)), ((java_cup.runtime.Symbol)CUP$ParserMov$stack.peek()), RESULT);
             }
           return CUP$ParserMov$result;
 

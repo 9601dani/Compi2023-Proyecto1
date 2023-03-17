@@ -1,11 +1,62 @@
 package com.dani.appmovil;
 import java_cup.runtime.*;
-import com.dani.appmovil.Objects.LexerMov;
 import java.util.ArrayList;
+/*import static com.dani.appmovil.models.ConstruccionMatriz.*;*/
 class ParserMov;
 
 parser code{:
         Motion movimiento;
+                                        public Symbol scan() throws Exception {
+                                               Symbol symbol = this.getScanner().next_token();
+                                               if (symbol == null) {
+                                                   return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
+                                               }
+
+                                               while(symbol != null && symbol.sym == ParserXmlSym.SYM) {
+                                                   this.report_expected_token_ids();
+                                                   System.out.println("Ingorando: " + symbol.value.toString());
+                                                   Token token = (Token) symbol.value;
+                                                   erroForClient.add(new ErrorMovClient(token.getLexeme(),token.getLine(),token.getColumn(), "LEXICO","No_existe_esta_cadena_en_el_lenguaje"));
+                                                   symbol = this.getScanner().next_token();
+                                               }
+
+                                               if (symbol == null) {
+                                                   return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
+                                               }
+
+                                               return symbol;
+                                       }
+                                        public void syntax_error(Symbol cur_token) {
+                                               Token token = (Token) cur_token.value;
+
+                                               if (cur_token.sym ==ParserXmlSym.EOF) {
+                                       //          String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
+                                                   String er = "Simbolo_inesperado";
+                                                   erroForClient.add(new ErrorMovClient("Fin_del_archivo", token.getLine(),token.getColumn(), "SINTACTICO",er));
+                                                   System.out.println(er);
+                                               } else {
+                                                   String er = "Simbolo_inesperado";
+                                                   erroForClient.add(new ErrorMovClient(token.getLexeme(), token.getLine(), token.getColumn(),"SINTACTICO",er));
+                                                   System.out.println(er);
+                                               }
+                                           }
+
+                                           public void unrecovered_syntax_error(Symbol cur_token) {
+                                               if (cur_token.sym == ParserXmlSym.EOF) {
+                                                   Token tok = (Token) cur_token.value;
+                                                   String er = "No_se_puede_recuperar_el_error_ya_no_hay_mas_tokens";
+                                                   erroForClient.add(new ErrorMovClient("FIN_ARCHIVO", tok.getLine(), tok.getColumn(), "SINTACTICO", er));
+                                                   erroForClient=new ArrayList();
+                                                   System.out.println(er);
+                                               } else {
+                                                   Token tok = (Token) cur_token.value;
+                                                   //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
+                                                   String er = "no_se_puede_recuperar_el_error";
+                                                   erroForClient.add(new ErrorMovClient(tok.getLexeme(), tok.getLine(), tok.getColumn(), "SINTACTICO", er));
+                                                    erroForClient=new ArrayList();
+                                                   System.out.println(er);
+                                               }
+                                           }
 :}
 /*
 Gramatica txt prueba 1
@@ -53,7 +104,7 @@ operacion4---> DECIMAL
 			 */
 
 /*Simbolos terminales*/
-terminal Token DOWN,PUSH,RIGHT,FLOOR,CEIL,LEFT,UP,PUNTO_COMA,NUM,DECIMAL,SUMA,MULTIPLY,RESTA,DIVISION,L_PARENT,R_PARENT;
+terminal Token DOWN,PUSH,RIGHT,FLOOR,CEIL,LEFT,UP,PUNTO_COMA,NUM,DECIMAL,SUMA,MULTIPLY,RESTA,DIVISION,L_PARENT,R_PARENT,SYM;
 nonterminal Motion typeMov;
 nonterminal instr;
 nonterminal Double operacion3,operacion2,operacion4,operacion1;
@@ -76,7 +127,9 @@ expr ::= expr:n1 typeMov:a1 PUNTO_COMA
              RESULT= new ArrayList<Motion>();
              RESULT.add(a1);
              //RESULT.add((Integer)a1);
-             :};
+             :}
+        | error PUNTO_COMA
+        | error SYM;
 
 typeMov ::= instr:n1 L_PARENT operacion1:a1 R_PARENT
              {:
@@ -85,7 +138,9 @@ typeMov ::= instr:n1 L_PARENT operacion1:a1 R_PARENT
             | PUSH instr:n1 L_PARENT operacion1:a1 R_PARENT
             {:
             RESULT= new Motion((Integer)n1,a1.intValue(),true);
-            :};
+            :}
+            |error L_PARENT
+            | error R_PARENT;
 instr      ::= UP:a {:RESULT= UP;:}
               | DOWN:a {:RESULT=DOWN;:}
               | LEFT:a {:RESULT=LEFT;:}
@@ -102,4 +157,6 @@ operacion3 ::= NUM:a1 {:RESULT = Double.parseDouble(a1.getLexeme()); :}
 operacion4 ::= L_PARENT operacion1:a1 R_PARENT {:RESULT =a1;:}
                | CEIL L_PARENT operacion1:a1  R_PARENT {:RESULT = Math.ceil(a1);:}
                | FLOOR L_PARENT operacion1:a1 R_PARENT {:RESULT = Math.floor(a1);:}
-               | DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :};
+               | DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :}
+               |error L_PARENT
+               |error R_PARENT;

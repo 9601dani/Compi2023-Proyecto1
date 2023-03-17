@@ -12,6 +12,7 @@ public class ConstruccionMatriz {
     public static int CANTIDAD_DOWN=0;
     public static int CANTIDAD_UP=0;
     public static int CANTIDAD_RIGHT=0;
+    public static ArrayList<ErrorMovClient> erroForClient= new ArrayList<>();
     public BoardModel[][] hacerMatriz(World world){
         BoardModel [][] boards= new BoardModel[world.getRows()][world.getCols()];
         world.getArrayBoard().forEach(board -> {

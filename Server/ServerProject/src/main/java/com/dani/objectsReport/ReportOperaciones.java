@@ -1,7 +1,5 @@
 package com.dani.objectsReport;
 
-import com.dani.parserJson.ParserJsonSym;
-
 public class ReportOperaciones {
     private String operador;
     private int linea;

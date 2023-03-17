@@ -182,7 +182,8 @@ findErro::= lexemaA proErr:a1 lexemaC
              typeA PALABRA:a4 typeC
              descriptionA descripPro:a5 descriptionC {:getSingletonInstanceWorld().getErrArray().add(new AError(a1.toString(),Integer.parseInt( a2.toString()) ,Integer.parseInt(a3.toString()),a4.getLexeme(), a5.toString()));:};
 descripPro::=descripPro PALABRA:a {:RESULT= a.getInfo();:}
-            | PALABRA:a {:RESULT= a.getInfo();:} ;
+            | PALABRA:a {:RESULT= a.getInfo();:}
+            |SYM:a {:RESULT= a.getInfo();:};
 
 proLine::= ENTERO:a1 {:RESULT=Integer.parseInt(a1.getLexeme());:}
            | LITERAL:a1 {:RESULT=Integer.parseInt(a1.getLexeme());:};
@@ -228,7 +229,8 @@ proErr::= LITERAL:a1{:RESULT= a1.getLexeme(); :}
          |SIGNO_A:a1{:RESULT = a1.getLexeme();:}
          |SIGNO_C:a1{:RESULT = a1.getLexeme();:}
          | ENTERO:a1{:RESULT = a1.getLexeme();:}
-         |ALL:a1{:RESULT = a1.getLexeme();:};
+         |ALL:a1{:RESULT = a1.getLexeme();:}
+         | ;
 
 worldPro ::=  worldPro:n1 worldA atri:a1 worldC
                 {:

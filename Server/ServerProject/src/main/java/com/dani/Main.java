@@ -521,14 +521,14 @@ public class Main {
                "   }\n" +
                "}";
         String testString5="{\n" +
-                "  \"name\": \"ta_20\",\n" +
+                "  \"name\": \"tata\",\n" +
                 "  \"config\": {\n" +
                 "    \"box_color\": \"#123ff4\",\n" +
                 "    \"target_color\": \"#09ffff\",\n" +
                 "    \"player_color\": \"#ffff01\"\n" +
                 "  },\n" +
                 "  \"player\":  {\n" +
-                "    \"posX\": \"5*0\",\n" +
+                "    \"posX\": \"\",\n" +
                 "    \"posY\": 1\n" +
                 "  },\n" +
                 "  \"board\": [\n" +
@@ -632,7 +632,7 @@ public class Main {
                 "  ]\n }";
         /*compileJson("{\"worlds\":\"all\"}");*/
         /*compileJson("{\"world\":\"nombrePrueba\"}");*/
-        /*compileJson(testString5);*/
+       /* compileJson(testString5);*/
         /*compileJson(testString5);*/
         /*compileXml(testString);*/
        /* LexXml lexer = new LexXml(new StringReader(testString));

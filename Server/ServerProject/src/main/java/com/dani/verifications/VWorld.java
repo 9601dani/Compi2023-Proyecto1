@@ -134,7 +134,7 @@ public class VWorld {
                 if(i==j){
                 }else{
                     if(arraybox.get(i).getPosX()== arraybox.get(j).getPosX() && arraybox.get(i).getPosY()== arraybox.get(j).getPosY()){
-                        erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion "+arraybox.get(i).getPosY()+","+arraybox.get(i).getPosX()+" de_BOXES_ya_se_definio_anteriormente"));
+                        erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion_"+arraybox.get(i).getPosY()+"_"+arraybox.get(i).getPosX()+"_de_BOXES_ya_se_definio_anteriormente"));
                         return true;
                     }
                 }
@@ -149,7 +149,7 @@ public class VWorld {
                     if(i==j){
                     }else{
                         if(arrayboard.get(i).getPosX()== arrayboard.get(j).getPosX() && arrayboard.get(i).getPosY()== arrayboard.get(j).getPosY()){
-                            erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion "+arrayboard.get(i).getPosY()+","+arrayboard.get(i).getPosX()+" de_BOARD_ya_se_definio_anteriormente"));
+                            erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion_"+arrayboard.get(i).getPosY()+"_"+arrayboard.get(i).getPosX()+"_de_BOARD_ya_se_definio_anteriormente"));
                             return true;
                         }
                     }
@@ -163,7 +163,7 @@ public class VWorld {
                 if(i==j){
                 }else{
                     if(arrayTarget.get(i).getPosX()== arrayTarget.get(j).getPosX() && arrayTarget.get(i).getPosY()== arrayTarget.get(j).getPosY()){
-                        erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion "+arrayTarget.get(i).getPosY()+","+arrayTarget.get(i).getPosX()+" de_TARGET_ya_se_definio_anteriormente"));
+                        erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion_"+arrayTarget.get(i).getPosY()+"_"+arrayTarget.get(i).getPosX()+"_de_TARGET_ya_se_definio_anteriormente"));
                         return true;
                     }
                 }
@@ -198,19 +198,19 @@ public class VWorld {
     public static Boolean verificarDentroDeArray(World world){
         for (int i=0; i<world.getArrayBoard().size();i++){
             if(world.getArrayBoard().get(i).getPosX()>= world.getRows() || world.getArrayBoard().get(i).getPosY()>= world.getCols()){
-                erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion "+world.getArrayBoard().get(i).getPosY()+","+world.getArrayBoard().get(i).getPosX()+" en_BOARD_no_esta_definida"));
+                erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion_"+world.getArrayBoard().get(i).getPosY()+"_"+world.getArrayBoard().get(i).getPosX()+"_en_BOARD_no_esta_definida"));
                 return true;
             }
         }
         for (int i=0;i<world.getArrayBoxes().size();i++){
             if(world.getArrayBoxes().get(i).getPosX()>= world.getRows() || world.getArrayBoxes().get(i).getPosY()>= world.getCols()){
-                erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion "+world.getArrayBoxes().get(i).getPosY()+","+world.getArrayBoxes().get(i).getPosX()+" en_BOXES_no_esta_definida"));
+                erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion_"+world.getArrayBoxes().get(i).getPosY()+"_"+world.getArrayBoxes().get(i).getPosX()+"_en_BOXES_no_esta_definida"));
                 return true;
             }
         }
         for (int i=0;i<world.getArrayTarget().size();i++){
             if(world.getArrayTarget().get(i).getPosX()>= world.getRows() || world.getArrayTarget().get(i).getPosY()>= world.getCols()){
-                erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion "+world.getArrayTarget().get(i).getPosY()+","+world.getArrayTarget().get(i).getPosX()+" en_TARGET_no_esta_definida"));
+                erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"La_posicion_"+world.getArrayTarget().get(i).getPosY()+"_"+world.getArrayTarget().get(i).getPosX()+"_en_TARGET_no_esta_definida"));
                 return true;
             }
         }

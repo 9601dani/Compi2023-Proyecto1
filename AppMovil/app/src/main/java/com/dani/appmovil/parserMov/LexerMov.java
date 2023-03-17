@@ -2,10 +2,10 @@
 
 package com.dani.appmovil.parserMov;
 import java_cup.runtime.Symbol;
-
+import static com.dani.appmovil.models.ConstruccionMatriz.*;
 import static com.dani.appmovil.models.ConstruccionMatriz.reportOperaciones;
 import static com.dani.appmovil.parserMov.ParserMovSym.*;
-import static com.dani.appmovil.models.ConstruccionMatriz.*;
+
 import com.dani.appmovil.models.OperacionesMovReport;
 import com.dani.appmovil.objects.Token;
 
@@ -40,12 +40,14 @@ public class LexerMov implements java_cup.runtime.Scanner {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\1\34\1\33\1\0\1\34\1\32\22\0\1\35\2\0\1\37"+
-    "\4\0\1\44\1\45\1\42\1\43\1\0\1\40\1\31\1\41\1\30"+
-    "\11\27\1\0\1\46\7\0\1\24\1\0\1\25\1\20\2\0\1\26"+
-    "\2\0\1\21\2\0\1\22\2\0\1\23\12\0\1\36\6\0\1\3"+
-    "\1\10\1\11\1\15\1\16\1\14\2\0\1\7\1\0\1\6\1\4"+
-    "\1\2\1\0\1\13\1\17\1\12\1\1\1\0\1\5\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff98\0";
+    "\11\0\1\34\1\33\1\0\1\34\1\32\22\0\1\35\1\37\1\0"+
+    "\1\40\4\37\1\45\1\46\1\43\1\44\1\0\1\41\1\31\1\42"+
+    "\1\30\11\27\1\0\1\47\3\0\2\37\2\0\1\24\1\0\1\25"+
+    "\1\20\2\0\1\26\2\0\1\21\2\0\1\22\2\0\1\23\12\0"+
+    "\1\36\6\0\1\3\1\10\1\11\1\15\1\16\1\14\2\0\1\7"+
+    "\1\0\1\6\1\4\1\2\1\0\1\13\1\17\1\12\1\1\1\0"+
+    "\1\5\4\0\1\37\1\0\1\37\42\0\1\37\6\0\1\37\16\0"+
+    "\1\37\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff58\0";
 
   /** 
    * Translates characters to character classes
@@ -59,13 +61,13 @@ public class LexerMov implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\2\0\10\1\1\2\1\1\3\3\1\4\1\5\1\6"+
-    "\1\7\1\10\1\11\1\12\1\13\7\1\1\14\1\15"+
-    "\10\0\1\16\14\0\1\17\6\0\1\20\1\21\1\22"+
-    "\2\0\1\23\1\24\1\25\1\26\2\0\1\27\1\30"+
-    "\1\31\1\32\1\33";
+    "\1\7\1\10\1\11\1\12\1\13\1\14\7\1\1\15"+
+    "\1\16\10\0\1\17\14\0\1\20\6\0\1\21\1\22"+
+    "\1\23\2\0\1\24\1\25\1\26\1\27\2\0\1\30"+
+    "\1\31\1\32\1\33\1\34";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[76];
+    int [] result = new int[77];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -90,19 +92,19 @@ public class LexerMov implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\47\0\116\0\165\0\234\0\303\0\352\0\u0111"+
-    "\0\u0138\0\u015f\0\u0186\0\u01ad\0\u01d4\0\116\0\u01fb\0\116"+
-    "\0\116\0\116\0\116\0\116\0\116\0\116\0\116\0\u0222"+
-    "\0\u0249\0\u0270\0\u0297\0\u02be\0\u02e5\0\u030c\0\116\0\116"+
-    "\0\u0333\0\u035a\0\u0381\0\u03a8\0\u03cf\0\u03f6\0\u041d\0\u01ad"+
-    "\0\116\0\u0444\0\u046b\0\u0492\0\u04b9\0\u04e0\0\u0507\0\u052e"+
-    "\0\u0555\0\u057c\0\u05a3\0\u05ca\0\u05f1\0\u041d\0\u0618\0\u063f"+
-    "\0\u0666\0\u068d\0\u06b4\0\u06db\0\116\0\116\0\116\0\u0702"+
-    "\0\u0729\0\116\0\116\0\116\0\116\0\u0750\0\u0777\0\116"+
-    "\0\116\0\116\0\116\0\116";
+    "\0\0\0\50\0\120\0\170\0\240\0\310\0\360\0\u0118"+
+    "\0\u0140\0\u0168\0\u0190\0\u01b8\0\u01e0\0\120\0\u0208\0\u0230"+
+    "\0\120\0\120\0\120\0\120\0\120\0\120\0\120\0\120"+
+    "\0\u0258\0\u0280\0\u02a8\0\u02d0\0\u02f8\0\u0320\0\u0348\0\120"+
+    "\0\120\0\u0370\0\u0398\0\u03c0\0\u03e8\0\u0410\0\u0438\0\u0460"+
+    "\0\u01b8\0\120\0\u0488\0\u04b0\0\u04d8\0\u0500\0\u0528\0\u0550"+
+    "\0\u0578\0\u05a0\0\u05c8\0\u05f0\0\u0618\0\u0640\0\u0460\0\u0668"+
+    "\0\u0690\0\u06b8\0\u06e0\0\u0708\0\u0730\0\120\0\120\0\120"+
+    "\0\u0758\0\u0780\0\120\0\120\0\120\0\120\0\u07a8\0\u07d0"+
+    "\0\120\0\120\0\120\0\120\0\120";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[76];
+    int [] result = new int[77];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -128,24 +130,25 @@ public class LexerMov implements java_cup.runtime.Scanner {
     "\1\3\1\4\1\5\1\6\3\3\1\7\3\3\1\10"+
     "\4\3\1\11\3\3\1\12\2\3\1\13\1\14\1\3"+
     "\1\15\2\16\1\17\1\3\1\20\1\21\1\22\1\23"+
-    "\1\24\1\25\1\26\1\27\1\3\1\30\1\31\1\32"+
-    "\3\3\1\33\3\3\1\34\4\3\1\35\3\3\1\36"+
-    "\5\3\1\15\1\37\1\16\1\17\11\3\51\0\1\40"+
-    "\45\0\1\41\51\0\1\42\52\0\1\43\52\0\1\44"+
-    "\53\0\1\45\52\0\1\46\50\0\2\13\1\47\44\0"+
-    "\2\50\1\47\50\0\1\16\51\0\1\16\12\0\1\51"+
-    "\45\0\1\52\51\0\1\53\52\0\1\54\52\0\1\55"+
-    "\53\0\1\56\52\0\1\57\40\0\1\60\34\0\1\61"+
-    "\52\0\1\62\52\0\1\63\53\0\1\64\52\0\1\65"+
-    "\47\0\2\66\35\0\1\67\34\0\1\70\52\0\1\71"+
-    "\52\0\1\72\53\0\1\73\52\0\1\74\36\0\1\75"+
-    "\36\0\1\76\52\0\1\77\52\0\1\100\52\0\1\101"+
-    "\45\0\1\102\43\0\1\103\36\0\1\104\52\0\1\105"+
-    "\52\0\1\106\52\0\1\107\45\0\1\110\37\0\1\111"+
-    "\57\0\1\112\35\0\1\113\57\0\1\114\23\0";
+    "\1\24\1\25\1\26\1\27\1\30\1\3\1\31\1\32"+
+    "\1\33\3\3\1\34\3\3\1\35\4\3\1\36\3\3"+
+    "\1\37\5\3\1\15\1\40\1\16\1\17\12\3\52\0"+
+    "\1\41\46\0\1\42\52\0\1\43\53\0\1\44\53\0"+
+    "\1\45\54\0\1\46\53\0\1\47\51\0\2\13\1\50"+
+    "\45\0\2\51\1\50\51\0\1\16\52\0\1\16\50\0"+
+    "\1\20\12\0\1\52\46\0\1\53\52\0\1\54\53\0"+
+    "\1\55\53\0\1\56\54\0\1\57\53\0\1\60\41\0"+
+    "\1\61\35\0\1\62\53\0\1\63\53\0\1\64\54\0"+
+    "\1\65\53\0\1\66\50\0\2\67\36\0\1\70\35\0"+
+    "\1\71\53\0\1\72\53\0\1\73\54\0\1\74\53\0"+
+    "\1\75\37\0\1\76\37\0\1\77\53\0\1\100\53\0"+
+    "\1\101\53\0\1\102\46\0\1\103\44\0\1\104\37\0"+
+    "\1\105\53\0\1\106\53\0\1\107\53\0\1\110\46\0"+
+    "\1\111\40\0\1\112\60\0\1\113\36\0\1\114\60\0"+
+    "\1\115\24\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[1950];
+    int [] result = new int[2040];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -183,12 +186,12 @@ public class LexerMov implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\2\0\1\11\12\1\1\11\1\1\10\11\7\1\2\11"+
+    "\2\0\1\11\12\1\1\11\2\1\10\11\7\1\2\11"+
     "\10\0\1\11\14\0\1\1\6\0\3\11\2\0\4\11"+
     "\2\0\5\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[76];
+    int [] result = new int[77];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -268,7 +271,7 @@ public class LexerMov implements java_cup.runtime.Scanner {
             return new Symbol(type, new Token(value.toString(), type,  yycolumn + 1, yyline + 1));
      }
      private Symbol token(int type) {
-             return new Symbol(type, new Token(null, type, yycolumn + 1, yyline + 1));
+             return new Symbol(type, new Token(yytext(), type, yycolumn + 1, yyline + 1));
      }
        /* private Token methodWithToken(int type){
             Token tok= new Token(yytext(), type, yycolumn + 1, yyline + 1);
@@ -299,7 +302,7 @@ public class LexerMov implements java_cup.runtime.Scanner {
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 150) {
+    while (i < 176) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
@@ -668,154 +671,159 @@ public class LexerMov implements java_cup.runtime.Scanner {
             { /*ignore all*/
             } 
             // fall through
-          case 28: break;
+          case 29: break;
           case 2: 
             { return token(NUM, yytext());
             } 
             // fall through
-          case 29: break;
+          case 30: break;
           case 3: 
             { /*ignore*/
             } 
             // fall through
-          case 30: break;
+          case 31: break;
           case 4: 
+            { return token(SYM);
+            } 
+            // fall through
+          case 32: break;
+          case 5: 
             { yybegin(COMMENT);
             } 
             // fall through
-          case 31: break;
-          case 5: 
+          case 33: break;
+          case 6: 
             { reportOperaciones.add(new OperacionesMovReport("RESTA",yyline+1,yycolumn+1));
           return token(RESTA);
             } 
             // fall through
-          case 32: break;
-          case 6: 
+          case 34: break;
+          case 7: 
             { reportOperaciones.add(new OperacionesMovReport("DIVISION",yyline+1,yycolumn+1));
           return token(DIVISION);
             } 
             // fall through
-          case 33: break;
-          case 7: 
+          case 35: break;
+          case 8: 
             { reportOperaciones.add(new OperacionesMovReport("MULTIPLICACION",yyline+1,yycolumn+1));
           return token(MULTIPLY);
             } 
             // fall through
-          case 34: break;
-          case 8: 
+          case 36: break;
+          case 9: 
             { reportOperaciones.add(new OperacionesMovReport("SUMA",yyline+1,yycolumn+1));
           return token(SUMA);
             } 
             // fall through
-          case 35: break;
-          case 9: 
+          case 37: break;
+          case 10: 
             { return token(L_PARENT);
             } 
             // fall through
-          case 36: break;
-          case 10: 
+          case 38: break;
+          case 11: 
             { return token(R_PARENT);
             } 
             // fall through
-          case 37: break;
-          case 11: 
+          case 39: break;
+          case 12: 
             { return token(PUNTO_COMA);
             } 
             // fall through
-          case 38: break;
-          case 12: 
+          case 40: break;
+          case 13: 
             { yybegin(YYINITIAL);
             } 
             // fall through
-          case 39: break;
-          case 13: 
+          case 41: break;
+          case 14: 
             { CANTIDAD_UP++;
           return token(UP);
             } 
             // fall through
-          case 40: break;
-          case 14: 
+          case 42: break;
+          case 15: 
             { yybegin(YYINITIAL);
                 return token(UP);
             } 
             // fall through
-          case 41: break;
-          case 15: 
+          case 43: break;
+          case 16: 
             { return token(DECIMAL, yytext());
             } 
             // fall through
-          case 42: break;
-          case 16: 
+          case 44: break;
+          case 17: 
             { return token(PUSH);
             } 
             // fall through
-          case 43: break;
-          case 17: 
+          case 45: break;
+          case 18: 
             { CANTIDAD_DOWN++;
           return token(DOWN);
             } 
             // fall through
-          case 44: break;
-          case 18: 
+          case 46: break;
+          case 19: 
             { CANTIDAD_LEFT++;
           return token(LEFT);
             } 
             // fall through
-          case 45: break;
-          case 19: 
+          case 47: break;
+          case 20: 
             { reportOperaciones.add(new OperacionesMovReport("CEIL",yyline+1,yycolumn+1));
           return token(CEIL);
             } 
             // fall through
-          case 46: break;
-          case 20: 
+          case 48: break;
+          case 21: 
             { yybegin(YYINITIAL);
                 return token(PUSH);
             } 
             // fall through
-          case 47: break;
-          case 21: 
+          case 49: break;
+          case 22: 
             { yybegin(YYINITIAL);
                 return token(DOWN);
             } 
             // fall through
-          case 48: break;
-          case 22: 
+          case 50: break;
+          case 23: 
             { yybegin(YYINITIAL);
                 return token(LEFT);
             } 
             // fall through
-          case 49: break;
-          case 23: 
+          case 51: break;
+          case 24: 
             { yybegin(YYINITIAL);
                 return token(CEIL);
             } 
             // fall through
-          case 50: break;
-          case 24: 
+          case 52: break;
+          case 25: 
             { CANTIDAD_RIGHT++;
           return token(RIGHT);
             } 
             // fall through
-          case 51: break;
-          case 25: 
+          case 53: break;
+          case 26: 
             { reportOperaciones.add(new OperacionesMovReport("FLOOR",yyline+1,yycolumn+1));
           return token(FLOOR);
             } 
             // fall through
-          case 52: break;
-          case 26: 
+          case 54: break;
+          case 27: 
             { yybegin(YYINITIAL);
                 return token(RIGHT);
             } 
             // fall through
-          case 53: break;
-          case 27: 
+          case 55: break;
+          case 28: 
             { yybegin(YYINITIAL);
                 return token(FLOOR);
             } 
             // fall through
-          case 54: break;
+          case 56: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

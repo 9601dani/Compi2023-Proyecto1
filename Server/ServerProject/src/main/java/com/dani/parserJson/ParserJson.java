@@ -6,7 +6,6 @@
 package com.dani.parserJson;
 
 import com.dani.Token;
-import com.dani.models.Error;
 import com.dani.models.ErrorModel;
 import com.dani.models.ErrorType;
 import com.dani.server.Converter;
@@ -41,8 +40,8 @@ public class ParserJson extends java_cup.runtime.lr_parser {
     unpackFromStrings(new String[] {
     "\000\160\000\002\002\004\000\002\027\013\000\002\027" +
     "\013\000\002\027\003\000\002\027\004\000\002\027\004" +
-    "\000\002\026\007\000\002\026\005\000\002\026\004\000" +
-    "\002\026\004\000\002\026\004\000\002\025\005\000\002" +
+    "\000\002\027\004\000\002\027\004\000\002\026\007\000" +
+    "\002\026\005\000\002\026\004\000\002\025\005\000\002" +
     "\025\003\000\002\025\004\000\002\002\011\000\002\002" +
     "\007\000\002\002\007\000\002\002\011\000\002\002\011" +
     "\000\002\002\011\000\002\002\011\000\002\002\011\000" +
@@ -82,15 +81,15 @@ public class ParserJson extends java_cup.runtime.lr_parser {
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
     "\000\u0124\000\006\003\004\025\007\001\002\000\014\024" +
-    "\u0122\025\u0125\026\u0124\040\u0123\050\u0126\001\002\000\004" +
+    "\u0122\025\u0126\026\u0124\040\u0123\050\u0125\001\002\000\004" +
     "\002\u0121\001\002\000\006\002\ufffe\024\u011d\001\002\000" +
     "\006\003\010\040\011\001\002\000\020\024\u011c\025\u010d" +
     "\026\u010b\040\u0109\050\u010c\051\u0108\052\u010a\001\002\000" +
     "\026\011\030\012\022\013\023\014\021\015\026\016\025" +
     "\017\027\020\024\056\u010f\057\u010e\001\002\000\006\024" +
     "\ufff5\026\ufff5\001\002\000\006\024\014\026\015\001\002" +
-    "\000\006\003\016\040\017\001\002\000\006\002\ufffa\024" +
-    "\ufffa\001\002\000\016\025\u010d\026\u010b\040\u0109\050\u010c" +
+    "\000\006\003\016\040\017\001\002\000\006\002\ufff8\024" +
+    "\ufff8\001\002\000\016\025\u010d\026\u010b\040\u0109\050\u010c" +
     "\051\u0108\052\u010a\001\002\000\022\011\030\012\022\013" +
     "\023\014\021\015\026\016\025\017\027\020\024\001\002" +
     "\000\006\024\ufff6\026\ufff6\001\002\000\004\040\320\001" +
@@ -282,10 +281,10 @@ public class ParserJson extends java_cup.runtime.lr_parser {
     "\000\004\002\uffff\001\002\000\006\024\ufff4\026\ufff4\001" +
     "\002\000\004\025\u011e\001\002\000\006\003\010\040\017" +
     "\001\002\000\006\024\014\026\u0120\001\002\000\006\002" +
-    "\ufffb\024\ufffb\001\002\000\004\002\001\001\002\000\006" +
-    "\002\ufff7\024\ufff7\001\002\000\004\002\ufffc\001\002\000" +
-    "\006\002\ufff8\024\ufff8\001\002\000\006\002\ufff9\024\ufff9" +
-    "\001\002\000\004\002\ufffd\001\002" });
+    "\ufff9\024\ufff9\001\002\000\004\002\001\001\002\000\006" +
+    "\002\ufff7\024\ufff7\001\002\000\004\002\ufffa\001\002\000" +
+    "\004\002\ufffc\001\002\000\004\002\ufffb\001\002\000\004" +
+    "\002\ufffd\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -480,12 +479,16 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                                    Token tok = (Token) cur_token.value;
                                    String er = "No_se_puede_recuperar_el_error_ya_no_hay_mas_tokens";
                                    erroForClient.add(new ErrorModel("FIN_ARCHIVO", tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
+                                  /* Converter.converObjectToXmlError(new Error(erroForClient));*/
+                                   erroForClient=new ArrayList();
                                    System.out.println(er);
                                } else {
                                    Token tok = (Token) cur_token.value;
                                    //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
                                    String er = "no_se_puede_recuperar_el_error";
                                    erroForClient.add(new ErrorModel(tok.getLexeme(), tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
+                                  /* Converter.converObjectToXmlError(new Error(erroForClient));*/
+                                    erroForClient=new ArrayList();
                                    System.out.println(er);
                                }
                            }
@@ -668,7 +671,7 @@ class CUP$ParserJson$actions {
             }
 
             /*. . . . . . . . . . . . . . . . . . . .*/
-            case 4 -> { // inic ::= error DOS_PUNTOS
+            case 4 -> { // inic ::= error LLAVE_A
                 {
                     Response RESULT = null;
 
@@ -678,7 +681,7 @@ class CUP$ParserJson$actions {
             }
 
             /*. . . . . . . . . . . . . . . . . . . .*/
-            case 5 -> { // inic ::= error COMILLA
+            case 5 -> { // inic ::= error LLAVE_C
                 {
                     Response RESULT = null;
 
@@ -688,7 +691,27 @@ class CUP$ParserJson$actions {
             }
 
             /*. . . . . . . . . . . . . . . . . . . .*/
-            case 6 -> { // worldPro ::= worldPro COMA LLAVE_A atri LLAVE_C
+            case 6 -> { // inic ::= error DOS_PUNTOS
+                {
+                    Response RESULT = null;
+
+                    CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("inic", 21, ((Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top - 1)), ((Symbol) CUP$ParserJson$stack.peek()), RESULT);
+                }
+                return CUP$ParserJson$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 7 -> { // inic ::= error COMILLA
+                {
+                    Response RESULT = null;
+
+                    CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("inic", 21, ((Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top - 1)), ((Symbol) CUP$ParserJson$stack.peek()), RESULT);
+                }
+                return CUP$ParserJson$result;
+            }
+
+            /*. . . . . . . . . . . . . . . . . . . .*/
+            case 8 -> { // worldPro ::= worldPro COMA LLAVE_A atri LLAVE_C
                 {
                     ArrayList<World> RESULT = null;
                     int n1left = ((Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top - 4)).left;
@@ -709,7 +732,7 @@ class CUP$ParserJson$actions {
             }
 
             /*. . . . . . . . . . . . . . . . . . . .*/
-            case 7 -> { // worldPro ::= LLAVE_A atri LLAVE_C
+            case 9 -> { // worldPro ::= LLAVE_A atri LLAVE_C
                 {
                     ArrayList<World> RESULT = null;
                     int a1left = ((Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top - 1)).left;
@@ -721,26 +744,6 @@ class CUP$ParserJson$actions {
                             getSingletonInstanceWorld().getArrayBoard(), getSingletonInstanceWorld().getArrayBoxes(), getSingletonInstanceWorld().getArrayTarget(), getSingletonInstanceWorld().getPlayer()));
 
                     CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("worldPro", 20, ((Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top - 2)), ((Symbol) CUP$ParserJson$stack.peek()), RESULT);
-                }
-                return CUP$ParserJson$result;
-            }
-
-            /*. . . . . . . . . . . . . . . . . . . .*/
-            case 8 -> { // worldPro ::= error LLAVE_A
-                {
-                    ArrayList<World> RESULT = null;
-
-                    CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("worldPro", 20, ((Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top - 1)), ((Symbol) CUP$ParserJson$stack.peek()), RESULT);
-                }
-                return CUP$ParserJson$result;
-            }
-
-            /*. . . . . . . . . . . . . . . . . . . .*/
-            case 9 -> { // worldPro ::= error LLAVE_C
-                {
-                    ArrayList<World> RESULT = null;
-
-                    CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("worldPro", 20, ((Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top - 1)), ((Symbol) CUP$ParserJson$stack.peek()), RESULT);
                 }
                 return CUP$ParserJson$result;
             }

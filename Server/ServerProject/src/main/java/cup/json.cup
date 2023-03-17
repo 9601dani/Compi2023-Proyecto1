@@ -306,7 +306,8 @@ inic ::= LLAVE_A COMILLA WORLDS COMILLA DOS_PUNTOS COMILLA ALL:a COMILLA LLAVE_C
                     RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a,null,null);
                      /*RESULT= new Response(Response_E.REQUEST_NEW_WORLD,a);*/
                         :}
-
+        | error LLAVE_A
+        | error LLAVE_C
         | error DOS_PUNTOS
         | error COMILLA;
 worldPro ::=  worldPro:n1 COMA LLAVE_A atri:a1 LLAVE_C
@@ -321,8 +322,6 @@ worldPro ::=  worldPro:n1 COMA LLAVE_A atri:a1 LLAVE_C
              RESULT.add(new World(getSingletonInstanceWorld().getName(), getSingletonInstanceWorld().getRows(),getSingletonInstanceWorld().getCols(),getSingletonInstanceWorld().getConfig(),
                                      getSingletonInstanceWorld().getArrayBoard(),getSingletonInstanceWorld().getArrayBoxes(),getSingletonInstanceWorld().getArrayTarget(),getSingletonInstanceWorld().getPlayer()));
                                                                                                   :}
-            | error LLAVE_A
-            | error LLAVE_C
             | error COMA;
 atri ::= atri COMA producWorld  {:RESULT= getSingletonInstanceWorld(); :}
         | producWorld  {:RESULT= getSingletonInstanceWorld(); :}

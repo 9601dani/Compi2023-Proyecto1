@@ -11,4 +11,5 @@
     <string name="string_mov">ingrese sus movimientos</string>
     <string name="button_compile_mov">Jugar</string>
     <string name="report_mov">Reporte Movimientos</string>
+    <string name="report_err_mov">Reporte de Errores en los Movimientos</string>
 </resources>

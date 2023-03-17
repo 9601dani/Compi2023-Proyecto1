@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import com.dani.appmovil.models.ConstruccionMatriz.reporMov
 import com.dani.appmovil.models.ErroresA
 import com.dani.appmovil.models.NamesA
 import com.dani.appmovil.objectsWorld.ArrayWorld

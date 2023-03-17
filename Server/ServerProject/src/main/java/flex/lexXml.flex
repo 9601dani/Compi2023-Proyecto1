@@ -46,7 +46,7 @@ palabraColor=([a-f0-9]{6} | [a-f0-9]{3})
 literal = ({letter})* \- ({number}|{decimalNumber}) | {number} | {decimalNumber}
 lineTerminator = \r|\n|\r\n
 whiteSpace     = {lineTerminator} | [ \t\f | " "]
-SYM= [&!@*¨~!$%_<>\|:'¡\?!·]+
+SYM= [&!@*¨~!$%\|'¡\?!·]+
 %{
     private Symbol token(int type, Object value) {
      System.out.println("Encontre un: "+ type+" "+value.toString());

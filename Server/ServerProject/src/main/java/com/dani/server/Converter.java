@@ -57,6 +57,11 @@ public static String MESSAGE_ERROR="";
     }
     public  static String converObjectToXmlError (Error error) {
         SIHAYERROR=true;
+        for(int i=0;i<error.getErr().size();i++){
+            if(error.getErr().get(i).getLexema()==null || error.getErr().get(i).getLexema().isEmpty()){
+                error.getErr().get(i).setLexema("WORLD");
+            }
+        }
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
            /* String nombreArchivo = "xmlArch.xml";

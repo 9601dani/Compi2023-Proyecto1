@@ -20,6 +20,7 @@ public class ParserMovSym {
   public static final int NUM = 10;
   public static final int RIGHT = 4;
   public static final int LEFT = 7;
+  public static final int SYM = 18;
   public static final int EOF = 0;
   public static final int PUSH = 3;
   public static final int error = 1;
@@ -44,7 +45,8 @@ public class ParserMovSym {
   "RESTA",
   "DIVISION",
   "L_PARENT",
-  "R_PARENT"
+  "R_PARENT",
+  "SYM"
   };
 }
 

@@ -26,13 +26,13 @@ number={numberInteger}({digit}*)
 decimalNumber=({digit})+ \. ({digit})+
 lineTerminator = \r|\n|\r\n
 whiteSpace     = {lineTerminator} | [ \t\f] | " "]
-
+SYM= [&!@¨~!$%\|'¡\?!·]+
 %{
      private Symbol token(int type, Object value) {
             return new Symbol(type, new Token(value.toString(), type,  yycolumn + 1, yyline + 1));
      }
      private Symbol token(int type) {
-             return new Symbol(type, new Token(null, type, yycolumn + 1, yyline + 1));
+             return new Symbol(type, new Token(yytext(), type, yycolumn + 1, yyline + 1));
      }
        /* private Token methodWithToken(int type){
             Token tok= new Token(yytext(), type, yycolumn + 1, yyline + 1);
@@ -128,6 +128,10 @@ whiteSpace     = {lineTerminator} | [ \t\f] | " "]
       {
           return token(PUNTO_COMA);
       }
+       {SYM}
+                        {
+                            return token(SYM);
+                        }
    {whiteSpace}  {/*ignore*/}
    [^]
       {

@@ -123,14 +123,16 @@ public class Server {
             }
             if(erroForClient.isEmpty()){
                 if(getSingletonInstanceResponse()==null){
-                    datXml+="HAY ERRORES";
+                     erroForClient.add(new ErrorModel("",0,0,ErrorType.OTHER,"PETICION NO RECONOCIDA"));
+                    datXml=converObjectToXmlError(new Error(erroForClient));
+                    erroForClient=new ArrayList<>();
+                    return datXml;
                 }else if(worldList.getTypeRes()== Response_E.REQUEST_ALL_WORLDS){
                     try{
                         System.out.println(new FileXml().readFile());
                         ArrayList<World> wor=compileXml(new FileXml().readFile());
                         if(erroForClient.isEmpty()){
                             if(wor==null){
-                                System.out.println("NO HAY MUNDOS");
                             }else{
                                 ArrayList<String> arrayNames= new ArrayList<>();
                                 for (int i = 0; i < wor.size(); i++) {
@@ -138,7 +140,6 @@ public class Server {
                                     arrayNames.add(new String(wor.get(i).getName()));
                                 }
                                 datXml= new Converter().converObjectToXmlRequestWorld(new NameWorld(arrayNames));
-                                System.out.println("esto genere :\n"+datXml);
                                 return datXml;
                             }
                         }else{
@@ -180,7 +181,7 @@ public class Server {
                             }
                             System.out.println("esto genere :\n"+datXml);
                             if(datXml.equals("")){
-                                erroForClient.add(new ErrorModel("",0,0,ErrorType.OTHER,"no existe el mudndo"));
+                                erroForClient.add(new ErrorModel("",0,0,ErrorType.OTHER,"no_existe_el_mundo"));
                                 datXml=converObjectToXmlError(new Error(erroForClient));
                                 erroForClient=new ArrayList<>();
                                 return datXml;
