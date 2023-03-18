@@ -9,6 +9,7 @@ package com.dani.appmovil.parserMov;
 public class ParserMovSym {
   /* terminals */
   public static final int MULTIPLY = 13;
+  public static final int NEGATIVO = 19;
   public static final int DECIMAL = 11;
   public static final int DIVISION = 15;
   public static final int SUMA = 12;
@@ -46,7 +47,8 @@ public class ParserMovSym {
   "DIVISION",
   "L_PARENT",
   "R_PARENT",
-  "SYM"
+  "SYM",
+  "NEGATIVO"
   };
 }
 

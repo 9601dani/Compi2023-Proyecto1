@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dani.appmovil.models.ErroresA
 import com.dani.appmovil.models.NamesA
@@ -81,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                         }
                         txtResponse.text=(strnS)*/
                         if(arrayWorld.get(0).arrayBoard.isEmpty()){
+
                             mandarA_NuevoActivity("ONLY_NAMES",arrayWorld)
                         }else{
                             mandarA_NuevoActivity("DIBUJAR_MUND0",arrayWorld)

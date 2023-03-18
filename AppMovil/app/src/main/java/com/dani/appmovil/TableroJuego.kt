@@ -8,7 +8,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import com.dani.appmovil.models.ConstruccionMatriz.*
 import com.dani.appmovil.models.ReportMovLayout
 import com.dani.appmovil.models.ReportOperacionesMov
@@ -16,7 +18,6 @@ import com.dani.appmovil.objects.Motion
 import com.dani.appmovil.objectsWorld.ArrayWorld
 import com.dani.appmovil.parserMov.LexerMov
 import com.dani.appmovil.parserMov.ParserMov
-import java_cup.runtime.Symbol
 import java.io.StringReader
 
 class TableroJuego : AppCompatActivity() {
@@ -38,12 +39,16 @@ class TableroJuego : AppCompatActivity() {
 
         botonCompileMov.setOnClickListener(View.OnClickListener {
             reportOperaciones=ArrayList()
+            erroForClient= ArrayList()
             CANTIDAD_LEFT=0
             CANTIDAD_DOWN=0
             CANTIDAD_UP=0
             CANTIDAD_RIGHT=0
+            println("esto mandare-> " +txt_mov.text.toString())
             motionsObe= (compiler(txt_mov.text.toString()))
-            if(!motionsObe.isEmpty()){
+
+            if(motionsObe.isNotEmpty()){
+                Toast.makeText(this,"Se analizo correctamente",Toast.LENGTH_LONG).show()
                 botonReportMov.setOnClickListener(View.OnClickListener {
                     val intent= Intent(this,ReportOperacionesMov::class.java)
                     startActivity(intent)
@@ -53,9 +58,15 @@ class TableroJuego : AppCompatActivity() {
                     startActivity(intent1)
                 })
             }else{
-                /*crear el intent de errores*/
-                val intent2= Intent(this, LayoutErrMov::class.java)
-                startActivity(intent2)
+                if(erroForClient.isEmpty()){
+                    Toast.makeText(this,"errores del movimiento",Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this,"Ups, hemos encontrado errores",Toast.LENGTH_SHORT).show()
+                    /*crear el intent de errores*/
+                    val intent2= Intent(this, LayoutErrMov::class.java)
+                    startActivity(intent2)
+                }
+
             }
 
         })
@@ -64,10 +75,11 @@ class TableroJuego : AppCompatActivity() {
 
     }
     private fun compiler(input: String): ArrayList<Motion> {
+        println("entre al compiler")
         val lexer = LexerMov(StringReader(input))
         val pa= ParserMov(lexer);
         val sym = pa.parse();
-        if(sym!= null && sym.value is Motion){
+        if(sym!= null && sym.value is ArrayList<*>){
             val motionPa= sym.value as ArrayList<Motion>
             motionPa.forEach{
                 println("Mov--> ${it.getInfo()}")

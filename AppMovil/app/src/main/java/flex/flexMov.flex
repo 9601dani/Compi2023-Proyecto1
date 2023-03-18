@@ -1,6 +1,7 @@
 package com.dani.appmovil.objects;
 import java_cup.runtime.Symbol;
 import static com.dani.appmovil.parserMov.ParserMovSym.*;
+/*import static com.dani.appmovil.models.ConstruccionMatriz.*;*/
 %%
 %public
 %class LexerMov
@@ -24,6 +25,7 @@ cero=[0]
 digit=[0-9]
 number={numberInteger}({digit}*)
 decimalNumber=({digit})+ \. ({digit})+
+negativo=-{number}
 lineTerminator = \r|\n|\r\n
 whiteSpace     = {lineTerminator} | [ \t\f] | " "]
 SYM= [&!@¨~!$%\|'¡\?!·]+
@@ -95,6 +97,10 @@ SYM= [&!@¨~!$%\|'¡\?!·]+
       {
           return token(DECIMAL, yytext());
       }
+      {negativo}
+                  {
+                      return token(NEGATIVO);
+                  }
    /*simbolos aritmeticos*/
    [-]
       {

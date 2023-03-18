@@ -2,10 +2,10 @@
 
 package com.dani.appmovil.parserMov;
 import java_cup.runtime.Symbol;
-import static com.dani.appmovil.models.ConstruccionMatriz.*;
+
 import static com.dani.appmovil.models.ConstruccionMatriz.reportOperaciones;
 import static com.dani.appmovil.parserMov.ParserMovSym.*;
-
+import static com.dani.appmovil.models.ConstruccionMatriz.*;
 import com.dani.appmovil.models.OperacionesMovReport;
 import com.dani.appmovil.objects.Token;
 

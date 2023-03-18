@@ -2,6 +2,13 @@ package com.dani.appmovil;
 import java_cup.runtime.*;
 import java.util.ArrayList;
 /*import static com.dani.appmovil.models.ConstruccionMatriz.*;*/
+/*import static com.dani.appmovil.models.ConstruccionMatriz.erroForClient;
+import static com.dani.appmovil.parserMov.ParserMovSym.*;*/
+
+import com.dani.appmovil.models.ErrorMovClient;
+import com.dani.appmovil.objects.Motion;
+import com.dani.appmovil.objects.Token;
+import com.dani.appmovil.parserXml.ParserXmlSym;
 class ParserMov;
 
 parser code{:
@@ -46,14 +53,14 @@ parser code{:
                                                    Token tok = (Token) cur_token.value;
                                                    String er = "No_se_puede_recuperar_el_error_ya_no_hay_mas_tokens";
                                                    erroForClient.add(new ErrorMovClient("FIN_ARCHIVO", tok.getLine(), tok.getColumn(), "SINTACTICO", er));
-                                                   erroForClient=new ArrayList();
+                                                   /*erroForClient=new ArrayList();*/
                                                    System.out.println(er);
                                                } else {
                                                    Token tok = (Token) cur_token.value;
                                                    //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
                                                    String er = "no_se_puede_recuperar_el_error";
                                                    erroForClient.add(new ErrorMovClient(tok.getLexeme(), tok.getLine(), tok.getColumn(), "SINTACTICO", er));
-                                                    erroForClient=new ArrayList();
+                                                    /*erroForClient=new ArrayList();*/
                                                    System.out.println(er);
                                                }
                                            }
@@ -104,7 +111,7 @@ operacion4---> DECIMAL
 			 */
 
 /*Simbolos terminales*/
-terminal Token DOWN,PUSH,RIGHT,FLOOR,CEIL,LEFT,UP,PUNTO_COMA,NUM,DECIMAL,SUMA,MULTIPLY,RESTA,DIVISION,L_PARENT,R_PARENT,SYM;
+terminal Token DOWN,PUSH,RIGHT,FLOOR,CEIL,LEFT,UP,PUNTO_COMA,NUM,DECIMAL,SUMA,MULTIPLY,RESTA,DIVISION,L_PARENT,R_PARENT,SYM,NEGATIVO;
 nonterminal Motion typeMov;
 nonterminal instr;
 nonterminal Double operacion3,operacion2,operacion4,operacion1;
@@ -153,6 +160,7 @@ operacion2 ::= operacion2:a1 MULTIPLY operacion2:a2 {:RESULT = a1 * a2 ; :}
              | operacion2:a1 DIVISION operacion2:a2 {:RESULT = a1 / a2 ; :}
              | operacion3:a1 {:RESULT = a1 ; :} ;
 operacion3 ::= NUM:a1 {:RESULT = Double.parseDouble(a1.getLexeme()); :}
+               |NEGATIVO :a1{:RESULT = Double.parseDouble(a1.getLexeme());:}
                | operacion4:a1 {:RESULT =a1;:};
 operacion4 ::= L_PARENT operacion1:a1 R_PARENT {:RESULT =a1;:}
                | CEIL L_PARENT operacion1:a1  R_PARENT {:RESULT = Math.ceil(a1);:}

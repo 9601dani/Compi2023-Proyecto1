@@ -49,6 +49,7 @@ letter=[a-zA-Z]
 digit=[0-9]
 number=({digit})+
 decimalNumber={number} \. {number}
+negativo= -{number}
 palabra=[a-zA-Z_][a-zA-z][a-zA-z0-9]*
 palabraColor=([a-f0-9]{6} | [a-f0-9]{3})
 literal = ({letter})* \- ({number}|{decimalNumber}) | {number} | {decimalNumber}
@@ -235,6 +236,7 @@ SYM= [&!@*¨~!$%_\|:'¡!·]+
             {
                 return token(PLAYER);
             }
+
              {number}
                        {
                            return token(ENTERO);
