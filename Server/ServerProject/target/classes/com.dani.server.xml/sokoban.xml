@@ -95,7 +95,7 @@
     <board>
       <posX>3</posX>
       <posY>3</posY>
-      <type>BRICK</type>
+      <type>null</type>
     </board>
     <boxes>
       <posX>1</posX>

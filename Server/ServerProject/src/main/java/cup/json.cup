@@ -430,7 +430,9 @@ posTB ::=  COMILLA POS_X COMILLA DOS_PUNTOS operacion1:a1
 ;
 
 typeH ::= COMILLA HALL:t1 COMILLA
- {: RESULT= t1.getTokenType() ;:}
+ {:
+  RESULT= t1.getTokenType()
+  ;:}
 
          | COMILLA BRICK:t1 COMILLA
 {: RESULT=t1.getTokenType() ;:}

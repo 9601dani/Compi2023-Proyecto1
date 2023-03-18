@@ -3,6 +3,7 @@ package com.dani.verifications;
 import com.dani.models.ErrorModel;
 import com.dani.models.ErrorType;
 import com.dani.objects.*;
+import com.dani.parserJson.ParserJsonSym;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,18 @@ public class VWorld {
         }
         return ts;
     }
+    public void verificarTypeNull(ArrayList<Board> type){
+        for(int i=0;i<type.size();i++){
+            if(type.get(i).getType().equals(null)){
+                type.get(i).setType(3);
+            }
+        }
+    }
     public boolean verificarNoNull(World arrayWorld){
+        if(arrayWorld.getArrayTarget().size()!=arrayWorld.getArrayBoard().size()){
+            erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"numero_de_targets_no_es_igual_a_boxes"));
+            return true;
+        }
         if(arrayWorld.getName()=="" || arrayWorld.getName()==null){
             erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"nombre_del_mundo_no_definido"));
             return true;
