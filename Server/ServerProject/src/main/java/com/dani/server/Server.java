@@ -129,7 +129,7 @@ public class Server {
                     return datXml;
                 }else if(worldList.getTypeRes()== Response_E.REQUEST_ALL_WORLDS){
                     try{
-                        System.out.println(new FileXml().readFile());
+                        /*System.out.println(new FileXml().readFile());*/
                         ArrayList<World> wor=compileXml(new FileXml().readFile());
                         if(erroForClient.isEmpty()){
                             if(wor==null){
@@ -152,7 +152,7 @@ public class Server {
                 }else if(worldList.getTypeRes()== Response_E.REQUEST_FOR_NAME){
                     /*AQUI REGRESO EL MUNDO PARA JUGAR*/
                     try{
-                        System.out.println(new FileXml().readFile());
+                       /* System.out.println(new FileXml().readFile());*/
                         ArrayList<World> wor=compileXml(new FileXml().readFile());
 
                         if(wor.isEmpty()){
@@ -179,7 +179,7 @@ public class Server {
                                 WorldsModel arrayToRequest= new WorldsModel(listToXmlRequest);
                                 datXml=  new Converter().converObjectToXml(arrayToRequest,false);
                             }
-                            System.out.println("esto genere :\n"+datXml);
+                          /*  System.out.println("esto genere :\n"+datXml);*/
                             if(datXml.equals("")){
                                 erroForClient.add(new ErrorModel("",0,0,ErrorType.OTHER,"no_existe_el_mundo"));
                                 datXml=converObjectToXmlError(new Error(erroForClient));
@@ -189,14 +189,14 @@ public class Server {
                             return datXml;
                         }
                     }catch(Exception e) {}
-                    System.out.println("REGRESARE POR NOMBRE");
+                    /*System.out.println("REGRESARE POR NOMBRE");*/
                 } else if (worldList.getTypeRes()== Response_E.REQUEST_NEW_WORLD) {
-                    System.out.println("sooooo\n"+ worldList.getWorld().toString());
-                    System.out.println("algo aqui si");
+                   /* System.out.println("sooooo\n"+ worldList.getWorld().toString());
+                    System.out.println("algo aqui si");*/
                     String doc=new FileXml().getSingletonInstanceFile().readFile();
                     ArrayList<WorldsModel> listXml= new ArrayList<>();
                     ArrayList<WorldModel> listToXml= new ArrayList<>();
-                    System.out.println(doc);
+                   /* System.out.println(doc);*/
                     ArrayList<World> wor=compileXml(doc);
                     //WorldModel.forEach(System.out::println);
                     for(int i=0; i<wor.size();i++){
@@ -240,7 +240,7 @@ public class Server {
                             erroForClient=new ArrayList<>();
                             return datXml;
                         }else{
-                            System.out.println("no hay error\n"+listToXml.toString());
+                          /*  System.out.println("no hay error\n"+listToXml.toString());*/
                             configDefecto(listToXml.get(listToXml.size()-1).getConfig());
                             datXml+=new Converter().converObjectToXml(new WorldsModel(listToXml),true);
                         /*if(listXml.get(listXml.size()).getArrayWorld().size()<1){
@@ -292,7 +292,7 @@ public class Server {
         boolean exist=false;
         for(int i=0;i<arregloExistente.size();i++){
             if(arregloExistente.get(i).getName().equals(nuevoMundo.getName())){
-                System.out.println("YA EXISTE EL MUNDO");
+                /*System.out.println("YA EXISTE EL MUNDO");*/
                 exist=true;
                 erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"El_mundo_ya_existe"));
                 return exist;

@@ -158,7 +158,7 @@ public class VWorld {
         }
     }
     public boolean verificarNoRepetidoOnBoxes(ArrayList<Box> arraybox){
-        System.out.println("noRpetido");
+        /*System.out.println("noRpetido");*/
         for(int i=0; i<arraybox.size();i++){
             for (int j=0;j<arraybox.size();j++){
                 if(i==j){
@@ -173,7 +173,7 @@ public class VWorld {
         return false;
     }
     public boolean verificarNoRepetidoOnBoard(ArrayList<Board> arrayboard){
-        System.out.println("noRpetido");
+       /* System.out.println("noRpetido");*/
             for(int i=0; i<arrayboard.size();i++){
                 for (int j=0;j<arrayboard.size();j++){
                     if(i==j){

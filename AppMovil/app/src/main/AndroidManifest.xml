@@ -27,9 +27,9 @@
         <activity
             android:name=".models.NamesA"
             android:exported="false" />
-        <activity
+<!--        <activity
             android:name=".PaintPanel"
-            android:exported="false" />
+            android:exported="false" />-->
         <activity
             android:name=".models.ErroresA"
             android:exported="false" />

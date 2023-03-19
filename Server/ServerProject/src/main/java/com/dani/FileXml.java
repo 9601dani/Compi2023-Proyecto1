@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class FileXml {
-    private static final String PATH="src/main/resources/com.dani.server.xml/sokoban.xml";
+    private static final String PATH="sokoban.xml";
     private static FileXml fileXml;
 
     public FileXml(){}

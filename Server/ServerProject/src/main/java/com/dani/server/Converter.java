@@ -19,9 +19,9 @@ public static String MESSAGE_ERROR="";
     private FileXml file;
     public  String converObjectToXml (WorldsModel worlds,boolean escribir) throws IOException {
         String xml="";
-        for(int i=0; i<worlds.getArrayWorld().size();i++){
+        /*for(int i=0; i<worlds.getArrayWorld().size();i++){
             System.out.println(i+". "+ worlds.getArrayWorld().get(i).toString());
-        }
+        }*/
            /* String nombreArchivo = "xmlArch.xml";
             String ubicacion = "/home/danimo/Desktop";
             File arch= new File(ubicacion+nombreArchivo);
@@ -47,7 +47,7 @@ public static String MESSAGE_ERROR="";
             /*System.out.println("---------------------------------");
             System.out.println(xml);*/
         }else{
-            System.out.println(xml);
+           /* System.out.println(xml);*/
             return xml;
         }
 

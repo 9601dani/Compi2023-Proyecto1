@@ -447,7 +447,7 @@ public class ParserJson extends java_cup.runtime.lr_parser {
 
                                while(symbol != null && symbol.sym == ParserJsonSym.SYM) {
                                    this.report_expected_token_ids();
-                                   System.out.println("Ingorando: " + symbol.value.toString());
+                                   /*System.out.println("Ingorando: " + symbol.value.toString());*/
                                    Token token = (Token) symbol.value;
                                    erroForClient.add(new ErrorModel(token.getLexeme(),token.getLine(),token.getColumn(), ErrorType.LEXICO,"No_existe_esta_cadena_en_el_lenguaje"));
                                    symbol = this.getScanner().next_token();
@@ -466,11 +466,11 @@ public class ParserJson extends java_cup.runtime.lr_parser {
                        //          String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
                                    String er = "Simbolo_inesperado";
                                    erroForClient.add(new ErrorModel("Fin_del_archivo", token.getLine(),token.getColumn(), ErrorType.SINTACTICO,er));
-                                   System.out.println(er);
+                                   /*System.out.println(er);*/
                                } else {
                                    String er = "Simbolo_inesperado";
                                    erroForClient.add(new ErrorModel(token.getLexeme(), token.getLine(), token.getColumn(),ErrorType.SINTACTICO,er));
-                                   System.out.println(er);
+                                   /*System.out.println(er);*/
                                }
                            }
 

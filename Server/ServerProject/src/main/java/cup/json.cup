@@ -17,7 +17,7 @@ parser code {:
 
                                while(symbol != null && symbol.sym == ParserJsonSym.SYM) {
                                    this.report_expected_token_ids();
-                                   System.out.println("Ingorando: " + symbol.value.toString());
+                                  /* System.out.println("Ingorando: " + symbol.value.toString());*/
                                    Token token = (Token) symbol.value;
                                    erroForClient.add(new ErrorModel(token.getLexeme(),token.getLine(),token.getColumn(), ErrorType.LEXICO,"No_existe_esta_cadena_en_el_lenguaje"));
                                    symbol = this.getScanner().next_token();
@@ -36,11 +36,11 @@ parser code {:
                        //          String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
                                    String er = "Simbolo_inesperado";
                                    erroForClient.add(new ErrorModel("Fin_del_archivo", token.getLine(),token.getColumn(), ErrorType.SINTACTICO,er));
-                                   System.out.println(er);
+                                /*   System.out.println(er);*/
                                } else {
                                    String er = "Simbolo_inesperado";
                                    erroForClient.add(new ErrorModel(token.getLexeme(), token.getLine(), token.getColumn(),ErrorType.SINTACTICO,er));
-                                   System.out.println(er);
+                                   /*System.out.println(er);*/
                                }
                            }
 
@@ -51,7 +51,7 @@ parser code {:
                                    erroForClient.add(new ErrorModel("FIN_ARCHIVO", tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
                                    Converter.converObjectToXmlError(new Error(erroForClient));
                                    erroForClient=new ArrayList();
-                                   System.out.println(er);
+                                  /* System.out.println(er);*/
                                } else {
                                    Token tok = (Token) cur_token.value;
                                    //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
@@ -59,7 +59,7 @@ parser code {:
                                    erroForClient.add(new ErrorModel(tok.getLexeme(), tok.getLine(), tok.getColumn(), ErrorType.SINTACTICO, er));
                                    Converter.converObjectToXmlError(new Error(erroForClient));
                                     erroForClient=new ArrayList();
-                                   System.out.println(er);
+                                  /* System.out.println(er);*/
                                }
                            }
                                        /*public Symbol scan() throws Exception{
