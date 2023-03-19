@@ -9,7 +9,8 @@
     <string name="string_paint_world">AQUI PINTARE EL MUNDO</string>
     <string name="button_report_op_mov">Reporte Operadores Juego</string>
     <string name="string_mov">ingrese sus movimientos</string>
-    <string name="button_compile_mov">Jugar</string>
+    <string name="button_compile_mov">Report Movimientos finales</string>
     <string name="report_mov">Reporte Movimientos</string>
     <string name="report_err_mov">Reporte de Errores en los Movimientos</string>
+    <string name="button_analizar">Analizar texto </string>
 </resources>

@@ -8,10 +8,13 @@ import static com.dani.appmovil.parserMov.ParserMovSym.*;*/
 import com.dani.appmovil.models.ErrorMovClient;
 import com.dani.appmovil.objects.Motion;
 import com.dani.appmovil.objects.Token;
-import com.dani.appmovil.parserXml.ParserXmlSym;
 class ParserMov;
 
 parser code{:
+
+            public ParserMov(LexerMov lexer){
+                    super(lexer);
+                }
         Motion movimiento;
                                         public Symbol scan() throws Exception {
                                                Symbol symbol = this.getScanner().next_token();
@@ -19,7 +22,7 @@ parser code{:
                                                    return this.getSymbolFactory().newSymbol("END_OF_FILE", this.EOF_sym());
                                                }
 
-                                               while(symbol != null && symbol.sym == ParserXmlSym.SYM) {
+                                               while(symbol != null && symbol.sym == ParserMovSym.SYM) {
                                                    this.report_expected_token_ids();
                                                    System.out.println("Ingorando: " + symbol.value.toString());
                                                    Token token = (Token) symbol.value;
@@ -36,7 +39,7 @@ parser code{:
                                         public void syntax_error(Symbol cur_token) {
                                                Token token = (Token) cur_token.value;
 
-                                               if (cur_token.sym ==ParserXmlSym.EOF) {
+                                               if (cur_token.sym ==ParserMovSym.EOF) {
                                        //          String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminales.obtenerSimbolos(expected_token_ids()).toString();
                                                    String er = "Simbolo_inesperado";
                                                    erroForClient.add(new ErrorMovClient("Fin_del_archivo", token.getLine(),token.getColumn(), "SINTACTICO",er));
@@ -49,7 +52,7 @@ parser code{:
                                            }
 
                                            public void unrecovered_syntax_error(Symbol cur_token) {
-                                               if (cur_token.sym == ParserXmlSym.EOF) {
+                                               if (cur_token.sym == ParserMovSym.EOF) {
                                                    Token tok = (Token) cur_token.value;
                                                    String er = "No_se_puede_recuperar_el_error_ya_no_hay_mas_tokens";
                                                    erroForClient.add(new ErrorMovClient("FIN_ARCHIVO", tok.getLine(), tok.getColumn(), "SINTACTICO", er));
@@ -111,7 +114,7 @@ operacion4---> DECIMAL
 			 */
 
 /*Simbolos terminales*/
-terminal Token DOWN,PUSH,RIGHT,FLOOR,CEIL,LEFT,UP,PUNTO_COMA,NUM,DECIMAL,SUMA,MULTIPLY,RESTA,DIVISION,L_PARENT,R_PARENT,SYM,NEGATIVO;
+terminal Token DOWN,PUSH,RIGHT,FLOOR,CEIL,LEFT,UP,PUNTO_COMA,NUM,DECIMAL,SUMA,MULTIPLICACION,RESTA,DIVISION,L_PARENT,R_PARENT,SYM,NEGATIVO;
 nonterminal Motion typeMov;
 nonterminal instr;
 nonterminal Double operacion3,operacion2,operacion4,operacion1;
@@ -119,7 +122,7 @@ nonterminal Double operacion3,operacion2,operacion4,operacion1;
 nonterminal ArrayList<Motion> expr ;
 precedence left SUMA;
 precedence left RESTA ;
-precedence left MULTIPLY;
+precedence left MULTIPLICACION;
 precedence left DIVISION;
 start with expr;
 
@@ -135,8 +138,7 @@ expr ::= expr:n1 typeMov:a1 PUNTO_COMA
              RESULT.add(a1);
              //RESULT.add((Integer)a1);
              :}
-        | error PUNTO_COMA
-        | error SYM;
+        | error PUNTO_COMA;
 
 typeMov ::= instr:n1 L_PARENT operacion1:a1 R_PARENT
              {:
@@ -148,6 +150,7 @@ typeMov ::= instr:n1 L_PARENT operacion1:a1 R_PARENT
             :}
             |error L_PARENT
             | error R_PARENT;
+
 instr      ::= UP:a {:RESULT= UP;:}
               | DOWN:a {:RESULT=DOWN;:}
               | LEFT:a {:RESULT=LEFT;:}
@@ -156,15 +159,13 @@ instr      ::= UP:a {:RESULT= UP;:}
 operacion1 ::= operacion1:a1 SUMA operacion1:a2 {:RESULT = a1 + a2 ; :}
             | operacion1:a1 RESTA operacion1:a2 {:RESULT = a1 - a2 ; :}
             | operacion2:a1 {:RESULT = a1 ; :};
-operacion2 ::= operacion2:a1 MULTIPLY operacion2:a2 {:RESULT = a1 * a2 ; :}
+operacion2 ::= operacion2:a1 MULTIPLICACION operacion2:a2 {:RESULT = a1 * a2 ; :}
              | operacion2:a1 DIVISION operacion2:a2 {:RESULT = a1 / a2 ; :}
              | operacion3:a1 {:RESULT = a1 ; :} ;
 operacion3 ::= NUM:a1 {:RESULT = Double.parseDouble(a1.getLexeme()); :}
-               |NEGATIVO :a1{:RESULT = Double.parseDouble(a1.getLexeme());:}
+/*               |NEGATIVO :a1{:RESULT = Double.parseDouble(a1.getLexeme());:}*/
                | operacion4:a1 {:RESULT =a1;:};
 operacion4 ::= L_PARENT operacion1:a1 R_PARENT {:RESULT =a1;:}
                | CEIL L_PARENT operacion1:a1  R_PARENT {:RESULT = Math.ceil(a1);:}
                | FLOOR L_PARENT operacion1:a1 R_PARENT {:RESULT = Math.floor(a1);:}
-               | DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :}
-               |error L_PARENT
-               |error R_PARENT;
+               | DECIMAL:a1 {: RESULT = Double.parseDouble(a1.getLexeme()); :};

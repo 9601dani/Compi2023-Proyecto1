@@ -102,6 +102,7 @@ class MainActivity : AppCompatActivity() {
             }
         }catch (e: java.lang.Exception){
             println("sin conexion")}
+        Toast.makeText(this,"Ups, no hay conexion",Toast.LENGTH_SHORT).show()
 
     }
     fun compilerXml(input: String): ArrayList<World> {

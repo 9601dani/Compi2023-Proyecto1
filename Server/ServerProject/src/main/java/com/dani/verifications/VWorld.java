@@ -13,25 +13,17 @@ public class VWorld {
 
     public boolean verificarWorldNo(World arrayWorld){
         boolean ts=false;
+        ts=verificarNoBrick(arrayWorld.getArrayBoard(),arrayWorld.getArrayBoxes(),arrayWorld.getArrayTarget());
+        if(ts){return ts;}
         ts= verificarDentroDeArray(arrayWorld);
-        if(ts){
-            return ts;
-        }
+        if(ts){return ts;}
         ts=verificarNoNull(arrayWorld);/**/
-        if(ts){
-            return ts;
-        }
+        if(ts){return ts;}
         ts=verificarNoRepetidoOnBoxes(arrayWorld.getArrayBoxes());
-        if(ts){
-            return ts;
-        }
+        if(ts){return ts;}
         ts= verificarNoRepetidoOnTarget(arrayWorld.getArrayTarget());
-        if(ts){
-            return ts;
-        }
-        if(ts){
-            return true;
-        }else{
+        if(ts){return ts;}
+        if(ts){return true;}else{
             ts=verificarPosBoxOnBoard(arrayWorld.getArrayBoard(),arrayWorld.getArrayBoxes());
             if(ts){
                 return ts;
@@ -43,6 +35,32 @@ public class VWorld {
             }
         }
         return ts;
+    }
+    public boolean verificarNoBrick(ArrayList<Board> board, ArrayList<Box> arrayBox, ArrayList<Target> arratTarget){
+        for(int i=0; i<arrayBox.size();i++){
+
+            for(int j=0;j<board.size();j++){
+                if(board.get(j).getPosX()== arrayBox.get(i).getPosX() && board.get(j).getPosY()== arrayBox.get(i).getPosY()){
+                    if(board.get(j).getType().equals(ParserJsonSym.BRICK)){
+                        erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"no_se_puede_definir_una_caja_en_ya_que_hay_ladrillo"));
+                        return true;
+                    }
+                }
+            }
+        }
+        for(int i=0; i<arratTarget.size();i++){
+
+            for(int j=0;j<board.size();j++){
+                if(board.get(j).getPosX()== arratTarget.get(i).getPosX() && board.get(j).getPosY()== arratTarget.get(i).getPosY()){
+                    if(board.get(j).getType().equals(ParserJsonSym.BRICK)){
+                        erroForClient.add(new ErrorModel("WORLD",0,0, ErrorType.OTHER,"no_se_puede_definir_un_target_en_ya_que_hay_ladrillo"));
+                        return true;
+                    }
+                }
+            }
+
+        }
+        return false;
     }
     public void verificarTypeNull(ArrayList<Board> type){
         for(int i=0;i<type.size();i++){

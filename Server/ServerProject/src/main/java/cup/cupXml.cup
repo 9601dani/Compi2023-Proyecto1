@@ -8,9 +8,9 @@ class ParserXml;
 
 parser code {:
 
-    /*public ParserXml(LexXml lexer){
+    public ParserXml(LexXml lexer){
         super(lexer);
-    }*/
+    }
     public static World worldSingleton;
         public static World getSingletonInstanceWorld() {
             if (worldSingleton == null){

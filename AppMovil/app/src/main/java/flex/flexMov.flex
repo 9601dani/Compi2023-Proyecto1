@@ -19,7 +19,10 @@ RIGHT="right"
 PUSH="push"
 FLOOR="FLOOR"
 CEIL="CEIL"
-
+SUMA="+"
+RESTA="-"
+MULTIPLI="*"
+DIVISION="/"
 numberInteger=[1-9]
 cero=[0]
 digit=[0-9]
@@ -28,7 +31,7 @@ decimalNumber=({digit})+ \. ({digit})+
 negativo=-{number}
 lineTerminator = \r|\n|\r\n
 whiteSpace     = {lineTerminator} | [ \t\f] | " "]
-SYM= [&!@¨~!$%\|'¡\?!·]+
+SYM= [&!@¨~!$%\|'¡\?!]+
 %{
      private Symbol token(int type, Object value) {
             return new Symbol(type, new Token(value.toString(), type,  yycolumn + 1, yyline + 1));
@@ -58,6 +61,7 @@ SYM= [&!@¨~!$%\|'¡\?!·]+
     {DOWN}
       {
           CANTIDAD_DOWN++;
+          listMovimientosFinales.add(new MotionArr(DOWN,yyline+1,yycolumn+1,0));
           return token(DOWN);
       }
     {PUSH}
@@ -66,16 +70,19 @@ SYM= [&!@¨~!$%\|'¡\?!·]+
       }
     {RIGHT}
       {
+           listMovimientosFinales.add(new MotionArr(RIGHT,yyline+1,yycolumn+1,0));
           CANTIDAD_RIGHT++;
           return token(RIGHT);
       }
     {LEFT}
       {
+           listMovimientosFinales.add(new MotionArr(LEFT,yyline+1,yycolumn+1,0));
           CANTIDAD_LEFT++;
           return token(LEFT);
       }
     {UP}
       {
+           listMovimientosFinales.add(new MotionArr(UP,yyline+1,yycolumn+1,0));
           CANTIDAD_UP++;
           return token(UP);
       }
@@ -97,27 +104,24 @@ SYM= [&!@¨~!$%\|'¡\?!·]+
       {
           return token(DECIMAL, yytext());
       }
-      {negativo}
-                  {
-                      return token(NEGATIVO);
-                  }
+
    /*simbolos aritmeticos*/
-   [-]
+   {RESTA}
       {
            reportOperaciones.add(new OperacionesMovReport("RESTA",yyline+1,yycolumn+1));
           return token(RESTA);
       }
-   [/]
+    {DIVISION}
       {
            reportOperaciones.add(new OperacionesMovReport("DIVISION",yyline+1,yycolumn+1));
           return token(DIVISION);
       }
-   [*]
+   {MULTIPLI}
       {
            reportOperaciones.add(new OperacionesMovReport("MULTIPLICACION",yyline+1,yycolumn+1));
-          return token(MULTIPLY);
+          return token(MULTIPLICACION);
       }
-   [+]
+   {SUMA}
       {
            reportOperaciones.add(new OperacionesMovReport("SUMA",yyline+1,yycolumn+1));
           return token(SUMA);

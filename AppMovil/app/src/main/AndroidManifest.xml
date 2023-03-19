@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AppMovil"
         tools:targetApi="31">
         <activity
+            android:name=".FinaReportMov"
+            android:exported="false" />
+        <activity
             android:name=".LayoutErrMov"
             android:exported="false" />
         <activity

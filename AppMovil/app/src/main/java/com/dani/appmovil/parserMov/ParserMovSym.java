@@ -8,7 +8,7 @@ package com.dani.appmovil.parserMov;
 /** CUP generated class containing symbol constants. */
 public class ParserMovSym {
   /* terminals */
-  public static final int MULTIPLY = 13;
+  public static final int MULTIPLICACION = 13;
   public static final int NEGATIVO = 19;
   public static final int DECIMAL = 11;
   public static final int DIVISION = 15;
@@ -42,7 +42,7 @@ public class ParserMovSym {
   "NUM",
   "DECIMAL",
   "SUMA",
-  "MULTIPLY",
+  "MULTIPLICACION",
   "RESTA",
   "DIVISION",
   "L_PARENT",

@@ -8,26 +8,23 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.dani.appmovil.R
 import com.dani.appmovil.models.ConstruccionMatriz.*
-import java.util.ArrayList
 
 
 class ReportMovLayout : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report_mov)
-        reporMov!!.add(ReportMov("LEFT", CANTIDAD_LEFT))
-        reporMov!!.add(ReportMov("RIGHT", CANTIDAD_RIGHT))
-        reporMov!!.add(ReportMov("UP", CANTIDAD_UP))
-        reporMov!!.add(ReportMov("DOWN", CANTIDAD_DOWN))
-        val listMov= reporMov;
+        reporMovimientos!!.add(ReportMov("LEFT", CANTIDAD_LEFT))
+        reporMovimientos!!.add(ReportMov("RIGHT", CANTIDAD_RIGHT))
+        reporMovimientos!!.add(ReportMov("UP", CANTIDAD_UP))
+        reporMovimientos!!.add(ReportMov("DOWN", CANTIDAD_DOWN))
+        val listMov= reporMovimientos;
         setTable(listMov)
-        CANTIDAD_DOWN=0;
-        CANTIDAD_LEFT=0;
-        CANTIDAD_UP=0;
-        CANTIDAD_RIGHT=0;
-        reporMov= ArrayList()
+        reporMovimientos= ArrayList()
         
     }
+
+
     private fun setTable(listOpeMov: ArrayList<ReportMov>) {
         val tableMovReport = findViewById<TableLayout>(R.id.table_repor_mov_l)
         tableMovReport.removeAllViews()
