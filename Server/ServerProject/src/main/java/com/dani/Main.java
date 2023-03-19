@@ -19,7 +19,6 @@ public class Main {
 
         Request_response window= new Request_response();
         window.show();
-        jButton1.setEnabled(false);
         conec();
         String testString="<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                 "<worlds>\n" +
